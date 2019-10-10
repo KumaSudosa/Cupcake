@@ -1,7 +1,7 @@
 <%-- 
     Document   : registration
     Created on : 09-Oct-2019, 12:08:44
-    Author     : Marcus
+    Author     : Gruppe 3
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

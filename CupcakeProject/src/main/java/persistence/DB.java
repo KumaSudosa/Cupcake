@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
  /*
- @author Marcus
+ @author Gruppe 3
  */
 public class DB {
 

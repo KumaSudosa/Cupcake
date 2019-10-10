@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
  /*
- * @author Marcus
+ * @author Gruppe 3
  */
 
 public interface ICupcakeMapper {

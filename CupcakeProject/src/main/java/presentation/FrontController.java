@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
  /*
- @author Marcus
+ @author Gruppe 3
  */
 
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
