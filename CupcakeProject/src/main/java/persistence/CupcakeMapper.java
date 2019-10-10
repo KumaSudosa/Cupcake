@@ -13,7 +13,7 @@ public class CupcakeMapper implements ICupcakeMapper {
     public ArrayList<HashMap<String, String>> getUsers() {
         ArrayList<HashMap<String, String>> users = new ArrayList();
 
-        String sql = "SELECT * FROM cupcakeproject.users";
+        String sql = "SELECT * FROM cupcake_opgave.users";
 
         try {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
