@@ -10,43 +10,17 @@ import java.util.logging.Logger;
 public class CupcakeMapper implements ICupcakeMapper {
 
     @Override
-    public ArrayList<HashMap<String, String>> getUsers() {
-        ArrayList<HashMap<String, String>> users = new ArrayList();
-
-        String sql = "SELECT * FROM cupcake_opgave.users";
-
-        try {
-            ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
-            while (rs.next()) {
-                HashMap<String, String> map = new HashMap();
-                map.put("username", rs.getString("username"));
-                map.put("password", rs.getString("password"));
-                map.put("email", rs.getString("email"));
-                map.put("balance", rs.getString("balance"));
-                users.add(map);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(CupcakeMapper.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return users;
-    }
-    
-    
-    @Override
     public ArrayList<HashMap<String, String>> getCupcakeBottoms() {
         ArrayList<HashMap<String, String>> bottoms = new ArrayList();
 
-        String sql = "SELECT * FROM cupcakeproject.bottoms";
+        String sql = "SELECT * FROM cupcakeshop.bottoms";
 
         try {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
             while (rs.next()) {
                 HashMap<String, String> map = new HashMap();
-                map.put("username", rs.getString("username"));
-                map.put("password", rs.getString("password"));
-                map.put("email", rs.getString("email"));
-                map.put("balance", rs.getString("balance"));
+                map.put("bottom", rs.getString("bottom"));
+                map.put("price", rs.getString("price"));
                 bottoms.add(map);
             }
         } catch (SQLException ex) {
@@ -60,16 +34,14 @@ public class CupcakeMapper implements ICupcakeMapper {
     public ArrayList<HashMap<String, String>> getCupcakeToppings() {
         ArrayList<HashMap<String, String>> toppings = new ArrayList();
 
-        String sql = "SELECT * FROM cupcakeproject.toppings";
+        String sql = "SELECT * FROM cupcakeshop.toppings";
 
         try {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
             while (rs.next()) {
                 HashMap<String, String> map = new HashMap();
-                map.put("username", rs.getString("username"));
-                map.put("password", rs.getString("password"));
-                map.put("email", rs.getString("email"));
-                map.put("balance", rs.getString("balance"));
+                map.put("topping", rs.getString("topping"));
+                map.put("price", rs.getString("price"));
                 toppings.add(map);
             }
         } catch (SQLException ex) {
