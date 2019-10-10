@@ -23,7 +23,7 @@ public class DB {
     public static Connection getConnection() throws SQLException {
 
         // Gather information for connection for the propeties file.
-        try (FileInputStream f = new FileInputStream("D:\\GITprojects\\Cupcake\\CupcakeProject\\src\\main\\java\\persistence\\db.properties")) {
+        try (FileInputStream f = new FileInputStream("src\\main\\java\\persistence\\db.properties")) {
 
             Properties pros = new Properties();
             pros.load(f);
