@@ -5,3 +5,4 @@ Our repository for the Cupcake project
 # Andreas : PetersenAndreas
 # Cahit : Cabak06
 # Marcus : KumaSudosa
+# Kristine : KDalby
