@@ -1,10 +1,55 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
+        <title>Cupcake</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body bgcolor="#f27ef0">
+        <h1 align="center">Cupcake shop </h1>
+    <div align="center">
+        <div>
+        <p><img src="decorations\\sifbaslfdbfd.png" alt="Bookstore Icon Stolen From The Internet" width="250" height="281"></p>
+        <br>
+        <div>
+        <div style="float:left; width: 20%">
+        <table border = "1">
+            <thead>
+                <tr bgcolor = "#ffd1fe">
+                    <td style="width: 15%" align="center">Toppings</td>
+                    <td style="width: 5%" align="center">Price</td>
+                </tr>
+            </thead>
+        </table>
+        </div>
+        
+        <div style="float:right; width: 20%">
+        <table border = "1">
+            <thead>
+                <tr bgcolor = "#ffd1fe">
+                    <td style="width:5%" align="center">Price</td>
+                    <td style="width:15%" align="center">Bottoms</td>
+                </tr>
+            </thead>
+        </table>
+            </div>
+        </div>
+        
+        <div>
+            <br>
+        <form action="FrontController">
+            <p align="center">
+            <input type="hidden" name="cmd" value="login" />
+            <input type="submit" value="Login" />
+            </p>
+        </form>
+        <form action="FrontController">
+            <p align="center">
+            <input type="hidden" name="cmd" value="create" />    
+            <input align="center" type="submit" value="Create user" />
+            </p>
+        </form>
+            </div>
+        </div>
+    </div>
     </body>
 </html>
