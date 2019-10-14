@@ -19,6 +19,7 @@ public class CupcakeMapper implements ICupcakeMapper {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
             while (rs.next()) {
                 HashMap<String, String> map = new HashMap();
+                map.put("id", rs.getString("id"));
                 map.put("bottom", rs.getString("bottom"));
                 map.put("price", rs.getString("price"));
                 bottoms.add(map);
@@ -40,6 +41,7 @@ public class CupcakeMapper implements ICupcakeMapper {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
             while (rs.next()) {
                 HashMap<String, String> map = new HashMap();
+                map.put("id", rs.getString("id"));
                 map.put("topping", rs.getString("topping"));
                 map.put("price", rs.getString("price"));
                 toppings.add(map);
@@ -48,5 +50,29 @@ public class CupcakeMapper implements ICupcakeMapper {
             Logger.getLogger(CupcakeMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return toppings;
+    }
+
+    @Override
+    public HashMap<String, String> getCupcakeBottomsFromID(int cupcakeBottomID) {
+        ArrayList<HashMap<String, String>> fullList = getCupcakeBottoms();
+        for (HashMap<String, String> map : fullList) {
+            int mapCupcakeBottomID = Integer.parseInt(map.get("id"));
+            if(mapCupcakeBottomID == cupcakeBottomID){
+                return map;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public HashMap<String, String> getCupcakeToppingsFromID(int cupcakeToppingID) {
+        ArrayList<HashMap<String, String>> fullList = getCupcakeToppings();
+        for (HashMap<String, String> map : fullList) {
+            int mapCupcakeToppingID = Integer.parseInt(map.get("id"));
+            if(mapCupcakeToppingID == cupcakeToppingID){
+                return map;
+            }
+        }
+        return null;
     }
 }
