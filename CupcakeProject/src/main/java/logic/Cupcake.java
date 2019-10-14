@@ -18,6 +18,16 @@ public class Cupcake {
         Cupcake.cupcakeMapper = cupcakeMapper;
     }
 
+    
+    /**
+     * Constructor to be called from flow when cupcake should be added to shoppingCart. 
+     * Pulls data from SQL-DB thought CupecakeMapper with matching IDs to the given IDs.
+     * 
+     * @author Michael N. Korsgaard
+     * @version alpha version 1.0, first draft
+     * @param cupcakeToppingID int from the selection from jsp mathcing a toppingID in the database.
+     * @param cupcakeBottomID int from the selection from jsp mathcing a bottomID in the database.
+     */
     public Cupcake(int cupcakeToppingID, int cupcakeBottomID) {
         this.cupcakeToppingID = cupcakeToppingID;
         this.cupcakeBottomID = cupcakeBottomID;
@@ -34,5 +44,23 @@ public class Cupcake {
     public double getPrice() {
         return price;
     }
+
+    public double getPriceBottom() {
+        return priceBottom;
+    }
+
+    public double getPriceTopping() {
+        return priceTopping;
+    }
+
+    public String getCupcakeTopping() {
+        return cupcakeTopping;
+    }
+
+    public String getCupcakeBottom() {
+        return cupcakeBottom;
+    }
+    
+    
 
 }

@@ -1,4 +1,4 @@
-package persistenceTest;
+package persistence;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import persistence.DB;
 
  /*
  * @Gruppe 3
