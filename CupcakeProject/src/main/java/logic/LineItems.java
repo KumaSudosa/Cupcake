@@ -11,6 +11,10 @@ public class LineItems {
         this.amount = amount;
         subTotalPrice = amount * cupcake.getPrice();
     }
+    
+    public void increaseAmount(int increaseAmount){
+        this.amount += increaseAmount;
+    }
 
     public Cupcake getCupcake() {
         return cupcake;

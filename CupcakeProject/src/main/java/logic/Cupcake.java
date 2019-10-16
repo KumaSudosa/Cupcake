@@ -60,6 +60,16 @@ public class Cupcake {
     public String getCupcakeBottom() {
         return cupcakeBottom;
     }
+
+    public int getCupcakeToppingID() {
+        return cupcakeToppingID;
+    }
+
+    public int getCupcakeBottomID() {
+        return cupcakeBottomID;
+    }
+    
+    
     
     
 

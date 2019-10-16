@@ -81,6 +81,8 @@ public class CupcakeTest {
         assertEquals(expectedBottomPrice, result.getPriceBottom(), 0);
         assertEquals(expectedToppingPrice, result.getPriceTopping(), 0);
         assertEquals(expectedTotalPrice, result.getPrice(), 0);
+        assertEquals(cupcakeToppingID, result.getCupcakeToppingID());
+        assertEquals(cupcakeBottomID, result.getCupcakeBottomID());
         assertTrue(expectedTopping.equals(result.getCupcakeTopping()));
         assertTrue(expectedBottom.equals(result.getCupcakeBottom()));
 
