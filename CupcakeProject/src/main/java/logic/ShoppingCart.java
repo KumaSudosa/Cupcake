@@ -31,7 +31,7 @@ public class ShoppingCart {
      * @param cupcakeBottomID int from the selection from jsp mathcing a bottomID in the database.
      * @param amount int the amount of the cupcake that should be added to the shoppingCart
      */
-    public void addLineItemsToShoopingCart(int cupcakeToppingID, int cupcakeBottomID, int amount) {
+    public void addLineItemsToShoppingCart(int cupcakeToppingID, int cupcakeBottomID, int amount) {
 
         //Check if an identical cupcake is already in a lineitem
         boolean identicalCupcakeFound = false;
@@ -82,5 +82,15 @@ public class ShoppingCart {
         calculateTotalPrice();
         return totalPrice;
     }
+
+    public static int getHighestInvoiceNr() {
+        return highestInvoiceNr;
+    }
+
+    public int getCupcakeAmount() {
+        return cupcakeAmount;
+    }
+    
+    
 
 }

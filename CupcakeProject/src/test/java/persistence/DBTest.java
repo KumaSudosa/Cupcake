@@ -7,58 +7,42 @@ import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
- /*
+/*
  * @Gruppe 3
  */
-
 public class DBTest {
-    
-    
+
     @Test
-    public void testConnection() throws SQLException{
+    public void testConnection() throws SQLException {
         //arrange
         Connection result;
-        
+
         //act
         result = DB.getConnection();
-        
+
         //assert
         assertNotNull(result);
         assertTrue(!result.isClosed());
     }
-    
-    
+
     @Test
-    public void testDatabaseInfo() throws SQLException {
+    public void testSelectFromDatabaseInfo() throws SQLException {
         //arrange
-        String SQL = "SELECT username FROM cupcakeshop.users";
+        String SQL = "SELECT testName FROM cupcakeshop.test";
         ArrayList<String> result = new ArrayList();
-        
+
         //act
         ResultSet rs = DB.getConnection().prepareStatement(SQL).executeQuery();
-        while(rs.next()){
-            result.add(rs.getString("username"));
+        while (rs.next()) {
+            result.add(rs.getString("testName"));
         }
-        
+
         //assert
-        assertTrue(result.contains("Marcus"));
+        int expectedSize = 3;
+        assertEquals(expectedSize, result.size());
+        assertTrue(result.contains("Test1"));
+        assertTrue(result.contains("TestB"));
+        assertTrue(result.contains("TestThree"));
     }
-    
-    
-    @Test
-    public void insertIntoDatabase() throws SQLException {
-        //arrange
-        String SQL = ("INSERT INTO cupcakeshop.users (username, login, email, balance)"
-                   + " VALUES ('Andreas', 'Andreas123', 'Andreas.Andreas@Andreas.dk', 16.0)");
-        
-        //act
-        int results = DB.getConnection().prepareStatement(SQL).executeUpdate(); 
-        
-        //assert
-        assertEquals(1, results);
-        
-        //deleting test user from database, to use test again later
-        String SQL1 = "DELETE FROM cupcakeshop.users WHERE username = 'Andreas'";
-        DB.getConnection().prepareStatement(SQL1).executeUpdate(); 
-    }
+
 }
