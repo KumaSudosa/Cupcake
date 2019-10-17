@@ -14,7 +14,7 @@ public class CupcakeMapper implements ICupcakeMapper {
         ArrayList<HashMap<String, String>> bottoms = new ArrayList();
 
         String sql = "SELECT * FROM cupcakeshop.bottoms";
-
+        
         try {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
             while (rs.next()) {
