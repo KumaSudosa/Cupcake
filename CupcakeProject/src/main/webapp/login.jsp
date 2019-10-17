@@ -9,9 +9,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>login </title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <h1 align="center"> Login page</h1>
+        
+        <br>
+        <p align="center"> Name:      <input type="text" name="name" value="" /></p>
+        <p align="center"> Email:     <input type="text" name="email" value="" /></p>
+        <p align="center"> Phone:     <input type="text" name="phone" value="" /></p>
+        <br>
+        
+            <form action="FrontController" method="POST">
+            <input type="hidden" name="cmd" value="complete" />
+            <p align="center"> <input type="submit" value="Finish Login" /></p>
+            </form>
+                
     </body>
 </html>
