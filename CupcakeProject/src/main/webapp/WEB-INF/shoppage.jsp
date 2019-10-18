@@ -4,6 +4,7 @@
     Author     : Michael N. Korsgaard
 --%>
 
+<%@page import="logic.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1 align="center">Welcome</h1>
+        <br>
+        <%
+            User user = (User) session.getAttribute("user");
+        %>
+
+        <h2 align="center">
+            You are logged in as:
+            <br>
+            <%=user.getUsername()%>
+        </h2>
+
     </body>
 </html>

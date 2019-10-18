@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
- /*
+/*
  @author Gruppe 3
  */
 public class DB {
@@ -23,6 +23,10 @@ public class DB {
     public static Connection getConnection() throws SQLException {
 
         // Gather information for connection for the propeties file.
+        /*
+        * FIX: This does not work when run from server, need to change paths, most likely use classLoader to find Classpath and work from there
+        *
+        *
         try (FileInputStream f = new FileInputStream("src\\main\\java\\persistence\\db.properties")) {
 
             Properties pros = new Properties();
@@ -34,7 +38,11 @@ public class DB {
         } catch (IOException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+         */
+        URL = "jdbc:mysql://68.183.211.81:3306/cupcakeshop";
+        USER = "Marcus";
+        PASSWORD = "Password123";
+        
         try {
             // Make the connection and send return it
             Class.forName(DRIVER);

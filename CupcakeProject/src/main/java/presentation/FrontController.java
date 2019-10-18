@@ -1,31 +1,41 @@
 package presentation;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.security.auth.login.LoginException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.User;
+import persistence.IUserMapper;
+import persistence.UserMapper;
 
  /*
  @author Gruppe 3
  */
-
+@WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
+    
+    boolean needSetup = true;
+    
+    private void setup(){
+        IUserMapper userMapper = new UserMapper();
+        User.setupMapper(userMapper);
+        needSetup = false;
+    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(needSetup){
+            setup();
+        }
         try {
             Command cmd = Command.from(request);
             String view = cmd.execute(request, response);
             request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
-        } catch (LoginException ex) {
+        } catch (Exception ex) {
             request.setAttribute("error", ex.getMessage());
-            request.getRequestDispatcher("errorpage.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/errorpage.jsp").forward(request, response);
         }
     }
 
