@@ -25,7 +25,7 @@ public class FrontController extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
         } catch (LoginException ex) {
             request.setAttribute("error", ex.getMessage());
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("errorpage.jsp").forward(request, response);
         }
     }
 
