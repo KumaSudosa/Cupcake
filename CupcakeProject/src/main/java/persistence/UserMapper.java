@@ -83,19 +83,14 @@ public class UserMapper implements IUserMapper {
     @Override
     public void insertUser(User user) {
 
-     String sql = "INSERT INTO users (username, login, email, balance)"
-             + "VALUES("+user.getUsername()+", "+user.getPassword()+", "
-             + user.getEmail()+", " +user.getBalance()+ ")";
+     String sql = "INSERT INTO users (username, login, email, balance) "
+             + "VALUES('"+user.getUsername()+"', '"+user.getPassword()+"', '"
+             + user.getEmail()+"', " +user.getBalance()+ ")";
      
         try {
             DB.getConnection().prepareStatement(sql).executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
-
     }
-
-  
-    
 }

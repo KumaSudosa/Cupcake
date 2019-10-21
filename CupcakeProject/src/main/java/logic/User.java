@@ -1,14 +1,8 @@
 package logic;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.security.auth.login.LoginException;
-import persistence.CupcakeMapper;
-import persistence.DB;
 import persistence.IUserMapper;
 
 /**
@@ -28,14 +22,6 @@ public class User {
         User.userMapper = mapper;
     }
 
-    /**
-     * werwerwerwer
-     *
-     * @param username
-     * @param password
-     * @param email
-     * @param balance
-     */
     public User(String username, String password, String email, double balance) {
         this.username = username;
         this.password = password;
@@ -51,24 +37,8 @@ public class User {
      * @param email
      * @throws IllegalArgumentException
      */
-    public static void createUser(String username, String password, String email) throws IllegalArgumentException {
-
-        for (HashMap<String, String> map : userMapper.getUserList()) {
-            String dbUsername = map.get("username");
-            String dbEmail = map.get("email");
-            if (username.toLowerCase().equals(dbUsername.toLowerCase())) {
-                throw new IllegalArgumentException("username in use, try with another name.");
-            } else if (email.toLowerCase().equals(dbEmail.toLowerCase())) {
-                throw new IllegalArgumentException("email not correct.");
-            }
-        }
-        //consider adding starting funds
-        User user = new User(username, password, email, 0);
-        //need to add method to upload the new user to DB
-    }
-
     public static void createUsersFromDB() {
-        userList.clear();
+        //userList.clear();
         for (HashMap<String, String> map : userMapper.getUserList()) {
             String username = map.get("username");
             String password = map.get("login");
@@ -85,6 +55,7 @@ public class User {
      * @return
      * @throws LoginException
      */
+    
     public static User LoginUser(String username, String password) throws LoginException {
         for (User user : userList) {
             if (user.getUsername().toLowerCase().equals(username.toLowerCase())) {
@@ -97,7 +68,35 @@ public class User {
         }
         throw new LoginException("No Matching Username");
     }
+    
+    /**
+     * @author Marcus & Cahit
+     * @param username
+     * @param password
+     * @param password2
+     * @param email
+     * @throws LoginException 
+     */
 
+    public static void RegisterUser(String username, String password, String password2, String email) throws LoginException {
+        for (HashMap<String, String> map : userMapper.getUserList()) {
+            String dbUsername = map.get("username");
+            String dbEmail = map.get("email");
+            if (username.toLowerCase().equals(dbUsername.toLowerCase())) {
+                throw new IllegalArgumentException("username in use, try another name.");
+            }
+            if (!password2.toLowerCase().equals(password.toLowerCase())) {
+                throw new IllegalArgumentException("passwords do not match.");
+            }
+            if (email.toLowerCase().equals(dbEmail.toLowerCase())) {
+                throw new IllegalArgumentException("email not correct.");
+            }
+        }
+        User newUser = new User(username, password, email, 0.0);
+        userMapper.insertUser(newUser);
+    }
+
+    
     public double getBalance() {
         return balance;
     }
@@ -129,5 +128,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }

@@ -6,6 +6,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.User;
 
+/**
+ * 
+ * @author Michael N. Korsgaard
+ */
+
 public class LoginCommand extends Command {
 
     @Override
@@ -26,7 +31,3 @@ public class LoginCommand extends Command {
         return nextJspPage;
     }
 }
-// User user = LogicFacade.login(username, password);
-// session.setAttribute("user", user);
-// session.setAttribute("role", user.getRole());
-       // return user.getRole() + "page";

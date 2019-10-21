@@ -3,27 +3,29 @@ package presentation;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import logic.User;
+
+/**
+ * 
+ * @author Marcus
+ */
 
 public class RegistrationCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
+        User.createUsersFromDB();
+        String nextJspPage = "login";
         String username = request.getParameter ("username");
+        String password = request.getParameter("password");
+        String password2 = request.getParameter("passwordRepeat");
         String email = request.getParameter("email");
-        String password1 = request.getParameter("password1");
-        String password2 = request.getParameter("password2");
-//        if (password1.equals(password2)) {
-//            User user = LogicFacade.createUser(username, email, password1);
-//            HttpSession session = request.getSession();
-//            session.setAttribute("user", user);
-//            session.setAttribute("role", user.getRole());
-//            return user.getRole() + "page";
-//        } else {
-//            throw new LoginException("the two passwords did not match");
-//        }
-        //Fjern lige dette return statement, når koden er fixet...
-        return null;
-    
+        try {
+            User.RegisterUser(username, password, password2, email);
+        } catch (LoginException exception) {
+            request.setAttribute("RegistrationError", exception);
+            nextJspPage = "registration";
+        }
+        return nextJspPage;
     }
 }
