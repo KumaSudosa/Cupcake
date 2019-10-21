@@ -56,29 +56,12 @@ public class User {
         }
         //consider adding starting funds
         User user = new User(username, password, email, 0);
-         
-       
-        
-        
-        
-        
 
+        
     }
 
-//    public static ArrayList<User> createUser() {
-//    
-//    ArrayList<HashMap<String, String>> users = getUserList();
-//    
-//     for (HashMap<String, String> user : users){
-//            if()
-//        
-//        
-//    }
-//        
-//        
-//        return null;
-//    
-//    }
+
+
     public double getBalance() {
         return balance;
     }
