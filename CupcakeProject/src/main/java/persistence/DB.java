@@ -47,7 +47,12 @@ public class DB {
     }
 
     /**
-     * This code is an abomination unto all that is holy about programming, born by a mix of sickness, suffering, cheap soda and immense anger, and is the most crude method of which the problem of finding the path to the db.properties file could be solved. This would have been so much easier, and better in every way, if it had been solved by the use of a classLoader or ClassPath method, but since we do not know how to use those, smashing the head against the keyboard was the best solution available.
+     * This code is an abomination unto all that is holy about programming, born by a mix of sickness, 
+     * suffering, cheap soda and immense anger, and is the most crude method of which the problem of 
+     * finding the path to the db.properties file could be solved. This would have been so much easier, 
+     * and better in every way, if it had been solved by the use of a classLoader or ClassPath method, 
+     * but since we do not know how to use those, smashing the head against the keyboard was the best 
+     * solution available.
      *
      * @author by much pain and suffering, Michael N. Korsgaard
      * @return a string of the path for the db.properties file.

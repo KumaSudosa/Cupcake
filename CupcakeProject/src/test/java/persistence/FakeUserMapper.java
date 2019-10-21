@@ -10,7 +10,7 @@ import logic.User;
  */
 public class FakeUserMapper implements IUserMapper {
 
-    ArrayList<HashMap<String, String>> userInfo;
+    ArrayList<HashMap<String, String>> userInfo = new ArrayList();
 
     public void addUserInfo(HashMap<String, String> userInfo) {
         this.userInfo.add(userInfo);

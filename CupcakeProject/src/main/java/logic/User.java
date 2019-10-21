@@ -30,6 +30,10 @@ public class User {
         userList.add(this);
     }
 
+    public static ArrayList<User> getUserList() {
+        return userList;
+    }
+
     /**
      * @author Cahit
      * @param username
