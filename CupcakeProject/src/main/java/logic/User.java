@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.security.auth.login.LoginException;
 import persistence.CupcakeMapper;
 import persistence.DB;
 import persistence.IUserMapper;
@@ -43,6 +44,13 @@ public class User {
         userList.add(this);
     }
 
+    /**
+     * @author Cahit
+     * @param username
+     * @param password
+     * @param email
+     * @throws IllegalArgumentException
+     */
     public static void createUser(String username, String password, String email) throws IllegalArgumentException {
 
         for (HashMap<String, String> map : userMapper.getUserList()) {
@@ -56,11 +64,39 @@ public class User {
         }
         //consider adding starting funds
         User user = new User(username, password, email, 0);
-
-        
+        //need to add method to upload the new user to DB
     }
 
+    public static void createUsersFromDB() {
+        userList.clear();
+        for (HashMap<String, String> map : userMapper.getUserList()) {
+            String username = map.get("username");
+            String password = map.get("login");
+            String email = map.get("email");
+            Double balance = Double.parseDouble(map.get("balance"));
+            User user = new User(username, password, email, balance);
+        }
+    }
 
+    /**
+     * @author Michael N. Korsgaard
+     * @param username
+     * @param password
+     * @return
+     * @throws LoginException
+     */
+    public static User LoginUser(String username, String password) throws LoginException {
+        for (User user : userList) {
+            if (user.getUsername().toLowerCase().equals(username.toLowerCase())) {
+                if (user.getPassword().equals(password)) {
+                    return user;
+                } else {
+                    throw new LoginException("Wrong Password");
+                }
+            }
+        }
+        throw new LoginException("No Matching Username");
+    }
 
     public double getBalance() {
         return balance;

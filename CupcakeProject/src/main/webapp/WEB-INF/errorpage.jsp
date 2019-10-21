@@ -1,7 +1,7 @@
 <%-- 
-    Document   : login
-    Created on : 09-Oct-2019, 12:08:57
-    Author     : Gruppe 3
+    Document   : errorPage
+    Created on : 18-10-2019, 08:16:39
+    Author     : Michael N. Korsgaard
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>ERROR</h1>
     </body>
 </html>

@@ -19,7 +19,7 @@ public class UserMapper implements IUserMapper {
     public ArrayList<HashMap<String, String>> getUserList() {
         ArrayList<HashMap<String, String>> users = new ArrayList();
 
-        String sql = "SELECT * FROM cupcakeshop.users";
+        String sql = "SELECT * FROM users";
 
         try {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();

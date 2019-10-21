@@ -12,7 +12,11 @@ public abstract class Command {
     private static void initCommands() {
         commands = new HashMap<>();
         commands.put("login", new LoginCommand());
-        commands.put( "register", new RegisterCommand() );
+        commands.put("registration", new RegistrationCommand());
+        commands.put("products", new ProductsCommand());
+        commands.put("confirmation", new RegistrationCommand());
+        commands.put("shoppage", new ShoppageCommand());
+        commands.put("entry", new EntryCommand());
     }
 
     public static Command from(HttpServletRequest request) {
