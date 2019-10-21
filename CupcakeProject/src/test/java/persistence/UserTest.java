@@ -66,8 +66,7 @@ public class UserTest {
         String pw = "12345";
         String mail = "cph2@gmail.com";
         //act
-        User.createUser(brugerNavn, pw, mail);
-        
+        User.RegisterUser(brugerNavn, pw, pw, mail);
     }
     
     @Test (expected = IllegalArgumentException.class)
@@ -77,7 +76,19 @@ public class UserTest {
         String pw = "12345";
         String mail = "cph@gmail.com";
         //act
-        User.createUser(brugerNavn, pw, mail);
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void TestCreateUserPasswordMismatch() {
+        //arrange
+        String brugerNavn = "Marcus";
+        String pw = "12345";
+        String pw2 = "1234";
+        String mail = "marc@hotmail.com";
+        //act
+        User.RegisterUser (brugerNavn, pw, pw2, mail);
+        
     }
     
     @Test
@@ -87,7 +98,7 @@ public class UserTest {
         String pw = "12345";
         String mail = "cphmichael@mail.com";
         //act
-        User.createUser(brugerNavn, pw, mail);
+        User.RegisterUser(brugerNavn, pw, pw, mail);
         //assert
         int expectedBalance = 0;
         assertEquals(brugerNavn, User.getUserList().get(0).getUsername());

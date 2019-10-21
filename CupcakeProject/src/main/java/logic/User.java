@@ -42,7 +42,7 @@ public class User {
      * @throws IllegalArgumentException
      */
     public static void createUsersFromDB() {
-        //userList.clear();
+        userList.clear();
         for (HashMap<String, String> map : userMapper.getUserList()) {
             String username = map.get("username");
             String password = map.get("login");
@@ -82,7 +82,7 @@ public class User {
      * @throws LoginException 
      */
 
-    public static void RegisterUser(String username, String password, String password2, String email) throws LoginException {
+    public static void RegisterUser(String username, String password, String password2, String email) throws IllegalArgumentException {
         for (HashMap<String, String> map : userMapper.getUserList()) {
             String dbUsername = map.get("username");
             String dbEmail = map.get("email");

@@ -13,7 +13,7 @@ import logic.User;
 public class RegistrationCommand extends Command {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         User.createUsersFromDB();
         String nextJspPage = "login";
         String username = request.getParameter ("username");
@@ -22,7 +22,7 @@ public class RegistrationCommand extends Command {
         String email = request.getParameter("email");
         try {
             User.RegisterUser(username, password, password2, email);
-        } catch (LoginException exception) {
+        } catch (IllegalArgumentException exception) {
             request.setAttribute("RegistrationError", exception);
             nextJspPage = "registration";
         }
