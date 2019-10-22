@@ -1,7 +1,7 @@
 <%-- 
     Document   : shoppage
     Created on : 18-10-2019, 08:27:08
-    Author     : Michael N. Korsgaard
+    Author     : 
 --%>
 
 <%@page import="logic.User"%>
@@ -10,20 +10,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Shop page</title>
     </head>
     <body>
-        <h1 align="center">Welcome</h1>
+        <h1 align="center"></h1>
         <br>
         <%
             User user = (User) session.getAttribute("user");
         %>
-
-        <h2 align="center">
+        <h5 align="right">
             You are logged in as:
             <br>
             <%=user.getUsername()%>
-        </h2>
-
+        </h5>
+        <h5 align="right">
+            Your balance is:
+            <%=user.getBalance()%> DKK
+        </h5>
     </body>
 </html>
