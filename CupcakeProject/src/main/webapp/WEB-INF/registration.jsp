@@ -38,5 +38,12 @@
             <input type="hidden" name="command" value="registration" />
             <p align="center"> <input type="submit" value="Register" /></p>
         </form>
+        
+        <%if (request.getAttribute("RegistrationError") != null) {
+        IllegalArgumentException registrationError = (IllegalArgumentException) request.getAttribute("RegistrationError");
+        String errorMessage = registrationError.getMessage();
+        %>
+        <h2 align="center"><%=errorMessage%> </h2>
+        <%}%>
     </body>
 </html>

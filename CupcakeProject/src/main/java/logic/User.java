@@ -79,10 +79,21 @@ public class User {
      * @param password
      * @param password2
      * @param email
-     * @throws LoginException 
+     * @throws IllegalArgumentException 
      */
 
     public static void RegisterUser(String username, String password, String password2, String email) throws IllegalArgumentException {
+        
+        //check for unfilled forms in registration
+        boolean noUsername = username.length() < 1;
+        boolean noPassword = password.length() < 1;
+        boolean noEmail = email.length() < 1;
+        
+        if(noUsername || noPassword || noEmail){
+            throw new IllegalArgumentException("remember to fill out all fields");
+        }
+        
+        
         for (HashMap<String, String> map : userMapper.getUserList()) {
             String dbUsername = map.get("username");
             String dbEmail = map.get("email");
