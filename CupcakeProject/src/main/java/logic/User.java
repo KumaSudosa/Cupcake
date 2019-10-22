@@ -95,16 +95,12 @@ public class User {
         
         
         for (HashMap<String, String> map : userMapper.getUserList()) {
-            String dbUsername = map.get("username");
             String dbEmail = map.get("email");
-            if (username.toLowerCase().equals(dbUsername.toLowerCase())) {
-                throw new IllegalArgumentException("username in use, try another name.");
-            }
             if (!password2.toLowerCase().equals(password.toLowerCase())) {
                 throw new IllegalArgumentException("passwords do not match.");
             }
             if (email.toLowerCase().equals(dbEmail.toLowerCase())) {
-                throw new IllegalArgumentException("email not correct.");
+                throw new IllegalArgumentException("email is already in use.");
             }
         }
         User newUser = new User(username, password, email, 0.0);
