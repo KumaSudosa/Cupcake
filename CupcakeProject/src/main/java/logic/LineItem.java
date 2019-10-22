@@ -10,7 +10,7 @@ public class LineItem {
 
     public LineItem(int cupcakeToppingID, int cupcakeBottomID, int amount) {
         this.cupcakeBottom = CupcakeBottom.getCupcakeBottomFromID(cupcakeBottomID);
-        this.cupcakeTopping = CupcakeTopping.getToppingFromID(cupcakeToppingID);
+        this.cupcakeTopping = CupcakeTopping.getCupcakeToppingFromID(cupcakeToppingID);
         this.amount = amount;
         this.cupcakePrice = cupcakeBottom.getPriceBottom() + cupcakeTopping.getPriceTopping();
         this.subTotalPrice = amount * cupcakePrice;
@@ -40,5 +40,4 @@ public class LineItem {
     public double getCupcakePrice() {
         return cupcakePrice;
     }
-
 }
