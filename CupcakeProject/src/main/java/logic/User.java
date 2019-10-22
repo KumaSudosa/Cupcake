@@ -54,15 +54,15 @@ public class User {
 
     /**
      * @author Michael N. Korsgaard
-     * @param username
+     * @param email
      * @param password
      * @return
      * @throws LoginException
      */
     
-    public static User LoginUser(String username, String password) throws LoginException {
+    public static User LoginUser(String email, String password) throws LoginException {
         for (User user : userList) {
-            if (user.getUsername().toLowerCase().equals(username.toLowerCase())) {
+            if (user.getEmail().toLowerCase().equals(email.toLowerCase())) {
                 if (user.getPassword().equals(password)) {
                     return user;
                 } else {
@@ -70,7 +70,7 @@ public class User {
                 }
             }
         }
-        throw new LoginException("No Matching Username");
+        throw new LoginException("No Matching Email");
     }
     
     /**
@@ -95,16 +95,12 @@ public class User {
         
         
         for (HashMap<String, String> map : userMapper.getUserList()) {
-            String dbUsername = map.get("username");
             String dbEmail = map.get("email");
-            if (username.toLowerCase().equals(dbUsername.toLowerCase())) {
-                throw new IllegalArgumentException("username in use, try another name.");
-            }
             if (!password2.toLowerCase().equals(password.toLowerCase())) {
                 throw new IllegalArgumentException("passwords do not match.");
             }
             if (email.toLowerCase().equals(dbEmail.toLowerCase())) {
-                throw new IllegalArgumentException("email not correct.");
+                throw new IllegalArgumentException("email is already in use.");
             }
         }
         User newUser = new User(username, password, email, 0.0);

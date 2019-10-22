@@ -1,7 +1,7 @@
 <%-- 
     Document   : registration
     Created on : 09-Oct-2019, 12:08:44
-    Author     : Gruppe 3
+    Author     : Marcus
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,11 +23,11 @@
             
             <h3 align="center"> password:</h3>
                 <p align="center">
-                <input type="text" name="password" value="" placeholder="choose password"
+                <input type="password" name="password" value="" placeholder="choose password"
                 /></p>
                 
                 <p align="center">
-                <input type="text" name="passwordRepeat" value="" placeholder="write password again"
+                <input type="password" name="passwordRepeat" value="" placeholder="write password again"
                 /></p>
                 
             <h3 align="center"> email:</h3>

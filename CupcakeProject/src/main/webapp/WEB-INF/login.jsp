@@ -1,7 +1,7 @@
 <%-- 
 Document   : login
 Created on : 09-Oct-2019, 12:08:57
-Author     : Gruppe 3
+Author     : Michael
 --%>
 
 <%@page import="javax.security.auth.login.LoginException"%>
@@ -19,9 +19,9 @@ Author     : Gruppe 3
         <br>
         <form action="FrontController" method="POST">
             <p align="center"> 
-                Username
+                Email
                 <br>
-                <input type="text" name="username" value="" /></p>
+                <input type="text" name="email" value="" /></p>
             <p align="center"> 
                 Password 
                 <br>
