@@ -41,7 +41,7 @@ public class UserTest {
     }
 
     @Test
-    public void TestCreateUserConstructor() {
+    public void testCreateUserConstructor() {
         //arrange
         String brugerNavn = "cahit";
         String pw = "12345";
@@ -62,17 +62,7 @@ public class UserTest {
     }
     
     @Test (expected = IllegalArgumentException.class)
-    public void TestCreateUserMethodDublicateUsername() {
-        //arrange
-        String brugerNavn = "cahit";
-        String pw = "12345";
-        String mail = "cph2@gmail.com";
-        //act
-        User.RegisterUser(brugerNavn, pw, pw, mail);
-    }
-    
-    @Test (expected = IllegalArgumentException.class)
-    public void TestCreateUserMethodDublicateEmail() {
+    public void testCreateUserMethodDublicateEmail() {
         //arrange
         String brugerNavn = "andreas";
         String pw = "12345";
@@ -82,7 +72,7 @@ public class UserTest {
     }
     
     @Test (expected = IllegalArgumentException.class)
-    public void TestCreateUserPasswordMismatch() {
+    public void testCreateUserPasswordMismatch() {
         //arrange
         String brugerNavn = "Marcus";
         String pw = "12345";
@@ -94,7 +84,7 @@ public class UserTest {
     }
     
     @Test
-    public void TestCreateNewUser() {
+    public void testCreateNewUser() {
         //arrange
         String brugerNavn = "michael";
         String pw = "12345";
@@ -110,7 +100,7 @@ public class UserTest {
     }
 
     @Test
-    public void TestCreateUserFromDb() {
+    public void testCreateUserFromDb() {
         //act
         User.createUsersFromDB();
         //assert
@@ -119,7 +109,7 @@ public class UserTest {
     }
     
     @Test
-    public void TestMultipleCreatUserFromDbCalls() {
+    public void testMultipleCreatUserFromDbCalls() {
         //act
         for (int i = 0; i < 10; i++) {
         User.createUsersFromDB();    
@@ -130,7 +120,7 @@ public class UserTest {
     }
     
     @Test (expected = LoginException.class)
-    public void TestWrongLoginPw() throws LoginException {
+    public void testWrongLoginPw() throws LoginException {
         //arrange
         String brugerNavn = "cahit";
         String pw = "12345";
@@ -142,7 +132,7 @@ public class UserTest {
     }
     
     @Test
-    public void TestCorrectLoginPw() throws LoginException {
+    public void testCorrectLoginPw() throws LoginException {
         //arrange
         String brugerNavn = "cahit";
         String pw = "12345";
@@ -150,12 +140,12 @@ public class UserTest {
         double funds = 0;
         User user = new User(brugerNavn, pw, mail, funds);
         //act
-        User result = User.LoginUser(brugerNavn, pw);
+        User result = User.LoginUser(mail, pw);
         assertEquals(user, result);
     }
     
     @Test (expected = LoginException.class)
-    public void TestNoMatchingUser() throws LoginException {
+    public void testNoMatchingUser() throws LoginException {
         //arrange
         String brugerNavn = "cahit";
         String pw = "12345";
@@ -166,5 +156,4 @@ public class UserTest {
         User result = new User(brugerNavn, pw, mail, funds);
         User.LoginUser("Hassan", pw);
     }
-
 }
