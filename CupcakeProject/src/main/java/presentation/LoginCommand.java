@@ -17,17 +17,16 @@ public class LoginCommand extends Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
         User.createUsersFromDB();
         String nextJspPage = "shoppage";
-        String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
         try {
-            User user = User.LoginUser(username, password);
+            User user = User.LoginUser(email, password);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
         } catch (LoginException exception) {
             request.setAttribute("LoginError", exception);
             nextJspPage = "login";
         }
-
         return nextJspPage;
     }
 }

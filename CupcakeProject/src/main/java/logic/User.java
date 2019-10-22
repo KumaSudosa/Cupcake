@@ -54,15 +54,15 @@ public class User {
 
     /**
      * @author Michael N. Korsgaard
-     * @param username
+     * @param email
      * @param password
      * @return
      * @throws LoginException
      */
     
-    public static User LoginUser(String username, String password) throws LoginException {
+    public static User LoginUser(String email, String password) throws LoginException {
         for (User user : userList) {
-            if (user.getUsername().toLowerCase().equals(username.toLowerCase())) {
+            if (user.getEmail().toLowerCase().equals(email.toLowerCase())) {
                 if (user.getPassword().equals(password)) {
                     return user;
                 } else {
@@ -70,7 +70,7 @@ public class User {
                 }
             }
         }
-        throw new LoginException("No Matching Username");
+        throw new LoginException("No Matching Email");
     }
     
     /**
