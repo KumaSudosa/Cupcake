@@ -3,26 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistence;
+package logic;
 
 import java.util.HashMap;
-import logic.Cupcake;
-import logic.LineItems;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Test;
+import persistence.FakeCupcakeMapper;
+import persistence.ICupcakeMapper;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author Michael N. Korsgaard
  */
-public class LineItemTest {
+public class CupcakeTest {
 
     @Before
     public void setup() {
         FakeCupcakeMapper fakeMapper = new FakeCupcakeMapper();
         HashMap<String, String> map = new HashMap();
-
+        
         String[][] bottoms = {
             {"1", "Chocolate", "5"},
             {"2", "Vanilla", "5"},
@@ -60,35 +60,8 @@ public class LineItemTest {
         }
 
         ICupcakeMapper cupcakeMapper = fakeMapper;
-        Cupcake.setupCupcakeMapper(cupcakeMapper);
-    }
-
-    @Test
-    public void testConstructer() {
-        //arrange
-        int cupcakeToppingID = 4;
-        int cupcakeBottomID = 2;
-        int amount = 4;
-
-        //act
-        LineItems result = new LineItems(cupcakeToppingID, cupcakeBottomID, amount);
-
-        //assert
-        double expectedSubtotalPrice = 44;
-        double expectedPrice = 11;
-        String expectedTopping = "Crispy";
-        String expectedBottom = "Vanilla";
-
-        assertEquals(amount, result.getAmount());
-        assertEquals(expectedSubtotalPrice, result.getSubTotalPrice(), 0);
-
-        //Check we got the right cupcake
-        assertTrue(expectedTopping.equals(result.getCupcake().getCupcakeTopping()));
-        assertEquals(cupcakeToppingID, result.getCupcake().getCupcakeToppingID());
-        assertTrue(expectedBottom.equals(result.getCupcake().getCupcakeBottom()));
-        assertEquals(cupcakeBottomID, result.getCupcake().getCupcakeBottomID());
-        assertEquals(expectedPrice, result.getCupcake().getPrice(), 0);
-
+        CupcakeTopping.setupMapper(cupcakeMapper);
+        CupcakeBottom.setupMapper(cupcakeMapper);
     }
 
 }

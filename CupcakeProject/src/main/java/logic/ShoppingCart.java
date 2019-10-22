@@ -7,7 +7,7 @@ public class ShoppingCart {
     private static ArrayList<ShoppingCart> shoppingCarts = new ArrayList();
     private static int highestInvoiceNr = 101;
     private int invoiceNr;
-    private ArrayList<LineItems> lineItems;
+    private ArrayList<LineItem> lineItems;
     private double totalPrice;
     private int cupcakeAmount;
 
@@ -35,9 +35,9 @@ public class ShoppingCart {
 
         //Check if an identical cupcake is already in a lineitem
         boolean identicalCupcakeFound = false;
-        for (LineItems lineItem : lineItems) {
-            boolean sameTopping = lineItem.getCupcake().getCupcakeToppingID() == cupcakeToppingID;
-            boolean sameBottom = lineItem.getCupcake().getCupcakeBottomID() == cupcakeBottomID;
+        for (LineItem lineItem : lineItems) {
+            boolean sameTopping = lineItem.getCupcakeTopping().getCupcakeToppingID() == cupcakeToppingID;
+            boolean sameBottom = lineItem.getCupcakeBottom().getCupcakeBottomID() == cupcakeBottomID;
 
             // If the same type of cupcake is found in a lineItem, increase the amount of the cupcake in that lineItem
             if (sameTopping && sameBottom) {
@@ -49,7 +49,7 @@ public class ShoppingCart {
 
         // If the same type of cupcake was not found in lineItems, a new lineItem is made
         if (!identicalCupcakeFound) {
-            LineItems lineitem = new LineItems(cupcakeToppingID, cupcakeBottomID, amount);
+            LineItem lineitem = new LineItem(cupcakeToppingID, cupcakeBottomID, amount);
             lineItems.add(lineitem);
         }
 
@@ -60,7 +60,7 @@ public class ShoppingCart {
 
     private void calculateTotalPrice() {
         int newTotalPrice = 0;
-        for (LineItems lineItem : lineItems) {
+        for (LineItem lineItem : lineItems) {
             newTotalPrice += lineItem.getSubTotalPrice();
         }
         this.totalPrice = newTotalPrice;
@@ -74,7 +74,7 @@ public class ShoppingCart {
         return invoiceNr;
     }
 
-    public ArrayList<LineItems> getLineItems() {
+    public ArrayList<LineItem> getLineItems() {
         return lineItems;
     }
 
