@@ -1,4 +1,4 @@
-package persistence;
+package logic;
 
 import java.util.HashMap;
 import javax.security.auth.login.LoginException;
@@ -8,6 +8,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import persistence.FakeUserMapper;
+import persistence.IUserMapper;
 import static org.junit.Assert.*;
 
 /**

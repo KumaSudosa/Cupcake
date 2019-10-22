@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistence;
+package logic;
 
 import java.util.HashMap;
-import logic.Cupcake;
 import logic.ShoppingCart;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import persistence.FakeCupcakeMapper;
+import persistence.ICupcakeMapper;
 
 /**
  *
@@ -60,7 +61,8 @@ public class ShoppingCartTest {
         }
 
         ICupcakeMapper cupcakeMapper = fakeMapper;
-        Cupcake.setupCupcakeMapper(cupcakeMapper);
+        CupcakeTopping.setupMapper(cupcakeMapper);
+        CupcakeBottom.setupMapper(cupcakeMapper);
     }
 
     @Test
@@ -92,20 +94,22 @@ public class ShoppingCartTest {
         //assert
         int expectedLineItemsSize = 1;
         int expectedAmount = 4;
-        int expectedTotalPrice = 44;
+        double expectedCupcakePrice = 11;
+        double expectedSubtotalPrice = 44;
+        double expectedTotalPrice = 44;
         assertEquals(expectedLineItemsSize, result.getLineItems().size());
         assertEquals(expectedAmount, result.getCupcakeAmount());
+        assertEquals(expectedCupcakePrice, result.getLineItems().get(0).getCupcakePrice(), 0);
+        assertEquals(expectedSubtotalPrice, result.getLineItems().get(0).getSubTotalPrice(), 0);
         assertEquals(expectedTotalPrice, result.getTotalPrice(), 0);
 
         //Check we got the right cupcake
-        double expectedPrice = 11;
         String expectedTopping = "Crispy";
         String expectedBottom = "Vanilla";
-        assertTrue(expectedTopping.equals(result.getLineItems().get(0).getCupcake().getCupcakeTopping()));
-        assertEquals(cupcakeToppingID, result.getLineItems().get(0).getCupcake().getCupcakeToppingID());
-        assertTrue(expectedBottom.equals(result.getLineItems().get(0).getCupcake().getCupcakeBottom()));
-        assertEquals(cupcakeBottomID, result.getLineItems().get(0).getCupcake().getCupcakeBottomID());
-        assertEquals(expectedPrice, result.getLineItems().get(0).getCupcake().getPrice(), 0);
+        assertTrue(expectedTopping.equals(result.getLineItems().get(0).getCupcakeTopping().getCupcakeToppingDescription()));
+        assertEquals(cupcakeToppingID, result.getLineItems().get(0).getCupcakeTopping().getCupcakeToppingID());
+        assertTrue(expectedBottom.equals(result.getLineItems().get(0).getCupcakeBottom().getCupcakeBottomDescription()));
+        assertEquals(cupcakeBottomID, result.getLineItems().get(0).getCupcakeBottom().getCupcakeBottomID());
 
     }
 

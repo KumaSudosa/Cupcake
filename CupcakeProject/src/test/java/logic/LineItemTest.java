@@ -3,25 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistence;
+package logic;
 
 import java.util.HashMap;
-import logic.Cupcake;
-import org.junit.Before;
+import logic.LineItem;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import persistence.FakeCupcakeMapper;
+import persistence.ICupcakeMapper;
 
 /**
  *
  * @author Michael N. Korsgaard
  */
-public class CupcakeTest {
+public class LineItemTest {
 
     @Before
     public void setup() {
         FakeCupcakeMapper fakeMapper = new FakeCupcakeMapper();
         HashMap<String, String> map = new HashMap();
-        
+
         String[][] bottoms = {
             {"1", "Chocolate", "5"},
             {"2", "Vanilla", "5"},
@@ -59,33 +61,35 @@ public class CupcakeTest {
         }
 
         ICupcakeMapper cupcakeMapper = fakeMapper;
-        Cupcake.setupCupcakeMapper(cupcakeMapper);
+        CupcakeTopping.setupMapper(cupcakeMapper);
+        CupcakeBottom.setupMapper(cupcakeMapper);
     }
 
     @Test
-    public void testCupcakeIDConstructor() {
+    public void testConstructer() {
         //arrange
-        int cupcakeToppingID = 9;
-        int cupcakeBottomID = 4;
+        int cupcakeToppingID = 4;
+        int cupcakeBottomID = 2;
+        int amount = 4;
 
         //act
-        Cupcake result = new Cupcake(cupcakeToppingID, cupcakeBottomID);
+        LineItem result = new LineItem(cupcakeToppingID, cupcakeBottomID, amount);
 
         //assert
-        int expectedTotalPrice = 15;
-        int expectedToppingPrice = 9;
-        int expectedBottomPrice = 6;
-        String expectedTopping = "Blue cheese";
-        String expectedBottom = "Pistacio";
+        double expectedSubtotalPrice = 44;
+        double expectedPrice = 11;
+        String expectedToppingDescription = "Crispy";
+        String expectedBottomDescription = "Vanilla";
 
-        assertEquals(expectedBottomPrice, result.getPriceBottom(), 0);
-        assertEquals(expectedToppingPrice, result.getPriceTopping(), 0);
-        assertEquals(expectedTotalPrice, result.getPrice(), 0);
-        assertEquals(cupcakeToppingID, result.getCupcakeToppingID());
-        assertEquals(cupcakeBottomID, result.getCupcakeBottomID());
-        assertTrue(expectedTopping.equals(result.getCupcakeTopping()));
-        assertTrue(expectedBottom.equals(result.getCupcakeBottom()));
+        assertEquals(amount, result.getAmount());
+        assertEquals(expectedSubtotalPrice, result.getSubTotalPrice(), 0);
+        assertEquals(expectedPrice, result.getCupcakePrice(), 0);
 
+        //Check we got the right cupcake
+        assertTrue(expectedToppingDescription.equals(result.getCupcakeTopping().getCupcakeToppingDescription()));
+        assertEquals(cupcakeToppingID, result.getCupcakeTopping().getCupcakeToppingID());
+        assertTrue(expectedBottomDescription.equals(result.getCupcakeBottom().getCupcakeBottomDescription()));
+        assertEquals(cupcakeBottomID, result.getCupcakeBottom().getCupcakeBottomID());
     }
 
 }
