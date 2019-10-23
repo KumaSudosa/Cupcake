@@ -44,7 +44,7 @@ public class UserTest {
     public void testCreateUserConstructor() {
         //arrange
         String brugerNavn = "cahit";
-        String pw = "12345";
+        String pw = "and51Ae";
         String mail = "cph@gmail.com";
         double funds = 100;
         
@@ -65,7 +65,7 @@ public class UserTest {
     public void testCreateUserMethodDublicateEmail() {
         //arrange
         String brugerNavn = "andreas";
-        String pw = "12345";
+        String pw = "and51Ae";
         String mail = "cph@gmail.com";
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);
@@ -75,8 +75,8 @@ public class UserTest {
     public void testCreateUserPasswordMismatch() {
         //arrange
         String brugerNavn = "Marcus";
-        String pw = "12345";
-        String pw2 = "1234";
+        String pw = "and51Ae";
+        String pw2 = "and51AE";
         String mail = "marc@hotmail.com";
         //act
         User.RegisterUser (brugerNavn, pw, pw2, mail);
@@ -123,19 +123,19 @@ public class UserTest {
     public void testWrongLoginPw() throws LoginException {
         //arrange
         String brugerNavn = "cahit";
-        String pw = "12345";
+        String pw = "and51Ae";
         String mail = "cph2@gmail.com";
         double funds = 0;
         User result = new User(brugerNavn, pw, mail, funds);
         //act
-        User.LoginUser(brugerNavn, "3214");
+        User.LoginUser(mail, "and63Jm");
     }
     
     @Test
     public void testCorrectLoginPw() throws LoginException {
         //arrange
         String brugerNavn = "cahit";
-        String pw = "12345";
+        String pw = "and51Ae";
         String mail = "cph2@gmail.com";
         double funds = 0;
         User user = new User(brugerNavn, pw, mail, funds);
@@ -148,7 +148,7 @@ public class UserTest {
     public void testNoMatchingUser() throws LoginException {
         //arrange
         String brugerNavn = "cahit";
-        String pw = "12345";
+        String pw = "and51Ae";
         String mail = "cph2@gmail.com";
         double funds = 0;
         User user = new User(brugerNavn, pw, mail, funds);
@@ -156,4 +156,55 @@ public class UserTest {
         User result = new User(brugerNavn, pw, mail, funds);
         User.LoginUser("Hassan", pw);
     }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateUserNoUppercaseInPw() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "hej123";
+        String mail = "cph@gmail.com";
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateUserNoLowercaseInPw() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "HEJ123";
+        String mail = "cph@gmail.com";
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateUserNoNumbersInPw() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "hejHej";
+        String mail = "cph@gmail.com";
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateUserWithNoPw() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "      ";
+        String mail = "cph@gmail.com";
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testCreateUserPwToLong() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "D3tteEr21TegnLangt1kk";
+        String mail = "cph@gmail.com";
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+
 }

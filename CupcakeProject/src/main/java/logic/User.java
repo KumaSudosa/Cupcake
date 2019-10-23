@@ -62,7 +62,7 @@ public class User {
     
     public static User LoginUser(String email, String password) throws LoginException {
         for (User user : userList) {
-            if (user.getEmail().toLowerCase().equals(email.toLowerCase())) {
+            if (user.getEmail().equals(email)) {
                 if (user.getPassword().equals(password)) {
                     return user;
                 } else {
@@ -101,7 +101,7 @@ public class User {
                 throw new IllegalArgumentException("email is already in use.");
             }
         }
-        if (!password2.toLowerCase().equals(password.toLowerCase())) {
+        if (!password2.equals(password)) {
                 throw new IllegalArgumentException("passwords do not match.");
             }
         User newUser = new User(username, password, email, 0.0);
