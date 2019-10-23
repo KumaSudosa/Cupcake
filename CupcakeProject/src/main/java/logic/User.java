@@ -141,11 +141,11 @@ public class User {
 
             //Tjekker at alt er som det skal være ellers kaster den en fejl
             if (!lowerLetter || !upperLetter || !number || !letter) {
-                throw new IllegalArgumentException("1st else Your password needs to contain at least an "
+                throw new IllegalArgumentException("Your password needs to contain at least an "
                         + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
             }
         } else{
-            throw new IllegalArgumentException("Sidste elseYour password needs to contain at least a "
+            throw new IllegalArgumentException("Your password needs to contain at least a "
                         + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
         }
     }
