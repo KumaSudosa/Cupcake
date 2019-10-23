@@ -87,7 +87,7 @@ public class UserTest {
     public void testCreateNewUser() {
         //arrange
         String brugerNavn = "michael";
-        String pw = "12345";
+        String pw = "and51Ae";
         String mail = "cphmichael@mail.com";
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);

@@ -92,20 +92,65 @@ public class User {
         if(noUsername || noPassword || noEmail){
             throw new IllegalArgumentException("remember to fill out all fields");
         }
-        
+        pwCheck(password);
         
         for (HashMap<String, String> map : userMapper.getUserList()) {
             String dbEmail = map.get("email");
-            if (!password2.toLowerCase().equals(password.toLowerCase())) {
-                throw new IllegalArgumentException("passwords do not match.");
-            }
+            
             if (email.toLowerCase().equals(dbEmail.toLowerCase())) {
                 throw new IllegalArgumentException("email is already in use.");
             }
         }
+        if (!password2.toLowerCase().equals(password.toLowerCase())) {
+                throw new IllegalArgumentException("passwords do not match.");
+            }
         User newUser = new User(username, password, email, 0.0);
         userMapper.insertUser(newUser);
     }
+    
+
+    public static void pwCheck(String password) {
+        boolean letter = false;
+        boolean upperLetter = false;
+        boolean lowerLetter = false;
+        boolean number = false;
+
+        //Skal være mellem 6 og 20 karaktere for at overhovedet at komme ind i if statement
+        if (password.length() >= 6 && 20 >= password.length()) {
+
+            for (int i = 0; i < password.length(); i++) {
+                char s = password.charAt(i);
+
+                if (Character.isLetter(s)) {
+                    letter = true;
+                    //Bliver true hvis den møder minimum et bogstav
+                }
+                if (Character.isUpperCase(s)) {
+                    upperLetter = true;
+                    //Bliver true hvis den minimum et UpperCase bogstav
+                }
+                if (Character.isLowerCase(s)) {
+                    lowerLetter = true;
+                    //Bliver true hvis den møder minimum et LowerCase bogstav
+                }
+                if (Character.isDigit(s)) {
+                    number = true;
+                    //Bliver true hvis den møder minimum et tal
+                }
+            }
+
+            //Tjekker at alt er som det skal være ellers kaster den en fejl
+            if (!lowerLetter || !upperLetter || !number || !letter) {
+                throw new IllegalArgumentException("1st else Your password needs to contain at least an "
+                        + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
+            }
+        } else{
+            throw new IllegalArgumentException("Sidste elseYour password needs to contain at least a "
+                        + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
+        }
+    }
+
+
 
     
     public double getBalance() {
