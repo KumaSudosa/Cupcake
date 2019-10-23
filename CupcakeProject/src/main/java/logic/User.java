@@ -150,8 +150,6 @@ public class User {
         }
     }
 
-
-
     
     public double getBalance() {
         return balance;

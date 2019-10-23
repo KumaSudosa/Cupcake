@@ -4,6 +4,7 @@
     Author     : 
 --%>
 
+<%@page import="logic.CupcakeBottom"%>
 <%@page import="logic.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,8 +14,7 @@
         <title>Shop page</title>
     </head>
     <body>
-        <h1 align="center"></h1>
-        <br>
+        
         <%
             User user = (User) session.getAttribute("user");
         %>
@@ -27,5 +27,48 @@
             Your balance is:
             <%=user.getBalance()%> DKK
         </h5>
+        
+        
+        <table border = "1">
+                <thead>
+                    <tr bgcolor = "#87E187">
+                        <td>Bottoms</td>
+                        <td>Price</td>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td>Chocolate</td>
+                        <td>5.0</td>
+                        <td align="center"><input type="text" name=AmountOf value="1" size="1" style="text-align:center;"></td>
+                        <td align="center"><input type="checkbox" name=id value=""></td>
+                    </tr>
+                </tbody>
+                
+        </table>
+        <br>
+        <table border = "1">
+                <thead>
+                    <tr bgcolor = "#87E187">
+                        <td>Toppings</td>
+                        <td>Price</td>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td>Chocolate</td>
+                        <td>5.0</td>
+                        <td align="center"><input type="text" name=AmountOf value="1" size="1" style="text-align:center;"></td>
+                        <td align="center"><input type="checkbox" name=id value=""></td>
+                    </tr>
+                </tbody>
+        </table>
+        
+        
+        
+        
+        
     </body>
 </html>
