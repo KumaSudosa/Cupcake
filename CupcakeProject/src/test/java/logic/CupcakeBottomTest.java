@@ -49,4 +49,16 @@ public class CupcakeBottomTest {
         assertTrue(expectedCupcakeDescription.equals(result.getCupcakeBottomDescription()));
         assertEquals(expectedCupcakePrice, result.getPriceBottom(), 0);
     }
+
+ 
+    
+    @Test (expected = IllegalArgumentException.class)
+    
+    public void negativeTestCupcakeBottomIdNotFound(){
+  
+    int expectedCupcakeBottomId = 10;     
+     
+    CupcakeBottom.getCupcakeBottomFromID(expectedCupcakeBottomId);
+}
+   
 }
