@@ -1,8 +1,9 @@
-package presentation;
+package presentation.commands;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.User;
+import presentation.Command;
 
 /**
  * @author Marcus

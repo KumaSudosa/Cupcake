@@ -3,7 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.security.auth.login.LoginException;
-import persistence.IUserMapper;
+import persistence.mappers.IUserMapper;
 
 /**
  *

@@ -1,10 +1,11 @@
-package presentation;
+package presentation.commands;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.User;
+import presentation.Command;
 
 /**
  * 

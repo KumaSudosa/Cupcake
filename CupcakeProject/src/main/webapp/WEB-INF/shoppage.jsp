@@ -31,63 +31,29 @@
             Your balance is:
             <%=user.getBalance()%> DKK
         </h5>
-
-        
-        <table border = "1" width = "15%">
-                <thead>
-                    <tr bgcolor = "#87E187">
-                        <td>Bottoms</td>
-                        <td>Price</td>
-                    </tr>
-                </thead>
-        
-                <tbody>
-                <%
-                ArrayList<CupcakeBottom> cupcakeBottomList = (ArrayList<CupcakeBottom>) CupcakeBottom.getCupcakeBottomsList();
-                for (CupcakeBottom cupcakeBottom : cupcakeBottomList) {
-                String description = cupcakeBottom.getCupcakeBottomDescription();
-                double price = cupcakeBottom.getPriceBottom();
-                %>        
-                    <tr>
-                        <td> <%=description%> </td>
-                        <td align="center"> <%=price+",-"%> </td>
-                      <td align="center"><input type="radio" name=bottomchoice value=""></td>
-                    </tr>
-                </tbody>
-                <% } %>
-        </table>
+        <h5 align="right">
+            <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="login" />
+            <input type="submit" value="Logout"/>
+            </form>
+        </h5>
         
         <br>
+        <br>
         
-        <table border = "1" width = "15%">
-                <thead>
-                    <tr bgcolor = "#87E187">
-                        <td>Toppings</td>
-                        <td>Price</td>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                <%
-                ArrayList<CupcakeTopping> cupcakeToppingList = (ArrayList<CupcakeTopping>) CupcakeTopping.getCupcakeToppingsList();
-                for (CupcakeTopping cupcakeTopping : cupcakeToppingList) {
-                String description = cupcakeTopping.getCupcakeToppingDescription();
-                double price = cupcakeTopping.getPriceTopping();
-                %>
-                    <tr>
-                        <td><%=description%></td>
-                        <td align="center"><%=price+",-"%></td>
-                       <td align="center"><input type="radio" name=toppingchoice value=""></td>
-                    </tr>
-                </tbody>
-                <% } %>
-                
-        </table>
-                <br>
-                <p> Insert your quantity here: <td align="center"><input type="text" name=AmountOf value="1" size="1" style="text-align:center;"><input type="submit" value="Add"/></p></td></p>
-                
-                <br>
-                
-                <p><input type="submit" value="Go to checkout"/></p>
+        <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="shoppage" />
+            <p align="center"><input type="submit" value="Go to products page" style="height:50px; width:150px" /></p>
+        </form>
+        
+        <br>
+        <br>
+        
+        <!-- Ved godt den ikke virker korrekt! -->
+        <form action="FrontController" method="POST">
+        <input type="hidden" name="command" value="shoppage" />
+        <p align="center"><input type="submit" value="Go to purchase history" style="height:50px; width:150px" /></p>
+        </form>
+        
     </body>
 </html>

@@ -2,7 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import persistence.ICupcakeMapper;
+import persistence.mappers.ICupcakeMapper;
 
 /**
  *

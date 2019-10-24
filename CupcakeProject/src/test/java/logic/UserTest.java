@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import persistence.FakeUserMapper;
-import persistence.IUserMapper;
+import persistence.mappers.IUserMapper;
 import static org.junit.Assert.*;
 
 /**

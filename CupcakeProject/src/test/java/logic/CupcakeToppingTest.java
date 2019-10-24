@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import persistence.FakeCupcakeMapper;
-import persistence.ICupcakeMapper;
+import persistence.mappers.ICupcakeMapper;
 
 public class CupcakeToppingTest {
     
