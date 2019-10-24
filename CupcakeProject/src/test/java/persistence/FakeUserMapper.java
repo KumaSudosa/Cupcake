@@ -1,15 +1,15 @@
 package persistence;
 
-import persistence.mappers.IUserMapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import logic.User;
+import persistence.mappers.UserMapperInterface;
 
 /**
  *
  * @author cahit
  */
-public class FakeUserMapper implements IUserMapper {
+public class FakeUserMapper implements UserMapperInterface {
 
     ArrayList<HashMap<String, String>> userInfo = new ArrayList();
 

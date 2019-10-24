@@ -14,7 +14,7 @@ import persistence.DB;
  *
  * @author Gruppe 3
  */
-public class UserMapper implements IUserMapper {
+public class UserMapper implements UserMapperInterface {
     
    
     public ArrayList<HashMap<String, String>> getUserList() {

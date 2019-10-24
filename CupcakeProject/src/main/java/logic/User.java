@@ -3,7 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.security.auth.login.LoginException;
-import persistence.mappers.IUserMapper;
+import persistence.mappers.UserMapperInterface;
 
 /**
  *
@@ -15,10 +15,10 @@ public class User {
     private String password;
     private String email;
     private double balance;
-    private static IUserMapper userMapper;
+    private static UserMapperInterface userMapper;
     private static ArrayList<User> userList = new ArrayList();
 
-    public static void setupMapper(IUserMapper mapper) {
+    public static void setupMapper(UserMapperInterface mapper) {
         User.userMapper = mapper;
     }
 

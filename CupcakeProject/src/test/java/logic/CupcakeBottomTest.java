@@ -4,8 +4,8 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 import persistence.FakeCupcakeMapper;
-import persistence.mappers.ICupcakeMapper;
 import static org.junit.Assert.*;
+import persistence.mappers.CupcakeMapperInterface;
 
 public class CupcakeBottomTest {
 
@@ -29,7 +29,7 @@ public class CupcakeBottomTest {
             map.put("price", bottom[2]);
             fakeMapper.addBottomInfo(map);
         }
-        ICupcakeMapper cupcakeMapper = fakeMapper;
+        CupcakeMapperInterface cupcakeMapper = fakeMapper;
         CupcakeBottom.setupMapper(cupcakeMapper);
     }
     

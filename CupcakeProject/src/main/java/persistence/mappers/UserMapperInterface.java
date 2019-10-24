@@ -9,7 +9,7 @@ import logic.User;
  *
  * @author gruppe 3
  */
-public interface IUserMapper {
+public interface UserMapperInterface {
  
 public ArrayList<HashMap<String, String>> getUserList(); 
 

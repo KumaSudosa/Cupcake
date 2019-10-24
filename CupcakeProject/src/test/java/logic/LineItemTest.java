@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import persistence.FakeCupcakeMapper;
-import persistence.mappers.ICupcakeMapper;
+import persistence.mappers.CupcakeMapperInterface;
 
 /**
  *
@@ -60,7 +60,7 @@ public class LineItemTest {
             fakeMapper.addToppingInfo(map);
         }
 
-        ICupcakeMapper cupcakeMapper = fakeMapper;
+        CupcakeMapperInterface cupcakeMapper = fakeMapper;
         CupcakeTopping.setupMapper(cupcakeMapper);
         CupcakeBottom.setupMapper(cupcakeMapper);
     }

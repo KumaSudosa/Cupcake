@@ -7,7 +7,7 @@ import java.util.HashMap;
  * @author Gruppe 3
  */
 
-public interface ICupcakeMapper {
+public interface CupcakeMapperInterface {
     
     public ArrayList<HashMap<String, String>> getCupcakeToppings();
     

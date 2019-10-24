@@ -20,7 +20,7 @@ import persistence.DB;
  *
  * @author Michael N. Korsgaard
  */
-public class InvoiceMapper implements IInvoiceMapper {
+public class InvoiceMapper implements InvoiceMapperInterface {
 
     @Override
     public int getNewHighestInvoiceNumber() {

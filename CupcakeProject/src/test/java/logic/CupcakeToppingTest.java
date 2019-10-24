@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import persistence.FakeCupcakeMapper;
-import persistence.mappers.ICupcakeMapper;
+import persistence.mappers.CupcakeMapperInterface;
 
 public class CupcakeToppingTest {
     
@@ -34,7 +34,7 @@ public class CupcakeToppingTest {
             map.put("price", topping[2]);
             fakeMapper.addToppingInfo(map);
         }
-        ICupcakeMapper cupcakeMapper = fakeMapper;
+        CupcakeMapperInterface cupcakeMapper = fakeMapper;
         CupcakeTopping.setupMapper(cupcakeMapper);
     }
     

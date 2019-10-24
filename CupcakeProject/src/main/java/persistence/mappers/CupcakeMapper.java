@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistence.DB;
 
-public class CupcakeMapper implements ICupcakeMapper {
+public class CupcakeMapper implements CupcakeMapperInterface {
 
     @Override
     public ArrayList<HashMap<String, String>> getCupcakeBottoms() {

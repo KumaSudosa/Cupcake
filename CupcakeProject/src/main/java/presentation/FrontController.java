@@ -10,9 +10,9 @@ import logic.CupcakeBottom;
 import logic.CupcakeTopping;
 import logic.User;
 import persistence.mappers.CupcakeMapper;
-import persistence.mappers.ICupcakeMapper;
-import persistence.mappers.IUserMapper;
 import persistence.mappers.UserMapper;
+import persistence.mappers.CupcakeMapperInterface;
+import persistence.mappers.UserMapperInterface;
 
  /*
  @author Gruppe 3
@@ -23,10 +23,10 @@ public class FrontController extends HttpServlet {
     private static boolean needSetup = true;
     
     public static void setup(){
-        IUserMapper userMapper = new UserMapper();
+        UserMapperInterface userMapper = new UserMapper();
         User.setupMapper(userMapper);
         
-        ICupcakeMapper cupcakeMapper = new CupcakeMapper();
+        CupcakeMapperInterface cupcakeMapper = new CupcakeMapper();
         CupcakeBottom.setupMapper(cupcakeMapper);
         CupcakeTopping.setupMapper(cupcakeMapper);
         

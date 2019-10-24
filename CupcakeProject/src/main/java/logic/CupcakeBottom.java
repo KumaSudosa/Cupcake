@@ -2,7 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import persistence.mappers.ICupcakeMapper;
+import persistence.mappers.CupcakeMapperInterface;
 
 /**
  *
@@ -14,7 +14,7 @@ public class CupcakeBottom {
     private String cupcakeBottomDescription;
     private double priceBottom;
     private static ArrayList<CupcakeBottom> cupcakeBottomsList = new ArrayList();
-    private static ICupcakeMapper cupcakeMapper;
+    private static CupcakeMapperInterface cupcakeMapper;
 
     private CupcakeBottom(String cupcakeBottom, double priceBottom, int cupcakeBottomID) {
         this.cupcakeBottomID = cupcakeBottomID;
@@ -22,7 +22,7 @@ public class CupcakeBottom {
         this.priceBottom = priceBottom;
     }
 
-    public static void setupMapper(ICupcakeMapper mapper) {
+    public static void setupMapper(CupcakeMapperInterface mapper) {
         cupcakeMapper = mapper;
         setupBottomsFromDB();
     }

@@ -2,9 +2,9 @@ package persistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import persistence.mappers.ICupcakeMapper;
+import persistence.mappers.CupcakeMapperInterface;
 
-public class FakeCupcakeMapper implements ICupcakeMapper {
+public class FakeCupcakeMapper implements CupcakeMapperInterface {
 
     ArrayList<HashMap<String, String>> bottomInfo = new ArrayList();
     ArrayList<HashMap<String, String>> toppingInfo = new ArrayList();

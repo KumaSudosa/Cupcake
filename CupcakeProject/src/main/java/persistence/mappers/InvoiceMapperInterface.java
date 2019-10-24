@@ -14,7 +14,7 @@ import logic.User;
  *
  * @author Michael N. Korsgaard
  */
-public interface IInvoiceMapper {
+public interface InvoiceMapperInterface {
     
     public int getNewHighestInvoiceNumber();
     
