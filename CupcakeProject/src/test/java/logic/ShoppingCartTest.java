@@ -174,8 +174,16 @@ public class ShoppingCartTest {
         int cupcakeToppingID2 = 3;
         int cupcakeBottomID2 = 1;
         int amount2 = 3;
-       
-       
+        
+        result.addLineItemsToShoppingCart(cupcakeToppingID1, cupcakeBottomID1, amount1);
+        result.addLineItemsToShoppingCart(cupcakeToppingID2, cupcakeBottomID2, amount2);
+        result.removeLineItemFromShoppingCart(cupcakeToppingID1, cupcakeBottomID1);
+        int expectedChoppingCartSize = 1;
+        int expectedCupcakeToppingID1 = 4;
+        int expectedCupcakeBottomID1 = 2;
+        
+      
+        assertEquals(result.getLineItems().size(), expectedChoppingCartSize);
    
     }
 }

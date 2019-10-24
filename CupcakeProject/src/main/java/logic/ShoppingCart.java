@@ -58,7 +58,7 @@ public class ShoppingCart {
 
     }
     
-    public void removeLineItemFromShoppingCart( int bottomID, int toppingID){
+    public void removeLineItemFromShoppingCart( int toppingID, int bottomID){
     
         for (LineItem lineItem : lineItems) {
             boolean matchingBottom = lineItem.getCupcakeBottom().getCupcakeBottomID() == bottomID;
