@@ -21,6 +21,15 @@ public class User {
     public static void setupMapper(UserMapperInterface mapper) {
         User.userMapper = mapper;
     }
+    
+    public static User getUserFromUserList(String email){
+        for (User user : userList) {
+            if(user.getEmail() == email){
+                return user;
+            }
+        }
+        throw new IllegalArgumentException("User not found in userList");
+    }
 
     public User(String username, String password, String email, double balance) {
         this.username = username;

@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.CupcakeBottom;
 import logic.CupcakeTopping;
+import logic.Invoice;
 import logic.User;
 import persistence.mappers.CupcakeMapper;
 import persistence.mappers.UserMapper;
 import persistence.mappers.CupcakeMapperInterface;
+import persistence.mappers.InvoiceMapper;
+import persistence.mappers.InvoiceMapperInterface;
 import persistence.mappers.UserMapperInterface;
 
  /*
@@ -29,6 +32,9 @@ public class FrontController extends HttpServlet {
         CupcakeMapperInterface cupcakeMapper = new CupcakeMapper();
         CupcakeBottom.setupMapper(cupcakeMapper);
         CupcakeTopping.setupMapper(cupcakeMapper);
+        
+        InvoiceMapperInterface invoiceMapper = new InvoiceMapper();
+        Invoice.setupInvoiceMapper(invoiceMapper);
         
         needSetup = false;
     }
