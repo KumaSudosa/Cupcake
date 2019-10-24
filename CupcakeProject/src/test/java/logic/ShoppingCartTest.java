@@ -161,4 +161,21 @@ public class ShoppingCartTest {
         assertEquals(expectedTotalPrice, result.getTotalPrice(), 0);
     }
 
+    
+    
+    @Test
+    public void testRemoveLineItemFromShoppingCart(){
+    
+       ShoppingCart result = new ShoppingCart();
+       
+        int cupcakeToppingID1 = 4;
+        int cupcakeBottomID1 = 2;
+        int amount1 = 4;
+        int cupcakeToppingID2 = 3;
+        int cupcakeBottomID2 = 1;
+        int amount2 = 3;
+       
+       
+   
+    }
 }

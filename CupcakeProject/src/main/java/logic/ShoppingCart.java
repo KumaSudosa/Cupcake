@@ -7,7 +7,7 @@ public class ShoppingCart {
     private static ArrayList<ShoppingCart> shoppingCarts = new ArrayList();
     private static int highestInvoiceNr = 101;
     private int invoiceNr;
-    private ArrayList<LineItem> lineItems;
+    private static ArrayList<LineItem> lineItems;
     private double totalPrice;
     private int cupcakeAmount;
 
@@ -32,7 +32,7 @@ public class ShoppingCart {
      * @param amount int the amount of the cupcake that should be added to the shoppingCart
      */
     public void addLineItemsToShoppingCart(int cupcakeToppingID, int cupcakeBottomID, int amount) {
-
+            
         //Check if an identical cupcake is already in a lineitem
         boolean identicalCupcakeFound = false;
         for (LineItem lineItem : lineItems) {
@@ -44,12 +44,12 @@ public class ShoppingCart {
                 lineItem.increaseAmount(amount);
                 identicalCupcakeFound = true;
                 break;
-            }
+            }     
         }
 
         // If the same type of cupcake was not found in lineItems, a new lineItem is made
         if (!identicalCupcakeFound) {
-            LineItem lineitem = new LineItem(cupcakeToppingID, cupcakeBottomID, amount);
+            LineItem lineitem = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
             lineItems.add(lineitem);
         }
 
@@ -57,7 +57,27 @@ public class ShoppingCart {
         cupcakeAmount += amount;
 
     }
-
+    
+    public void removeLineItemFromShoppingCart( int bottomID, int toppingID){
+    
+        for (LineItem lineItem : lineItems) {
+            boolean matchingBottom = lineItem.getCupcakeBottom().getCupcakeBottomID() == bottomID;
+            boolean matchingTopping = lineItem.getCupcakeTopping().getCupcakeToppingID() == toppingID;
+            if(matchingBottom && matchingTopping){
+                lineItems.remove(lineItem);
+                
+                break;
+            }
+        
+            if(!matchingBottom || !matchingTopping){
+                
+               throw new IllegalArgumentException("Can't find the line-item.");
+                
+            }
+        }
+    }
+    
+    
     private void calculateTotalPrice() {
         int newTotalPrice = 0;
         for (LineItem lineItem : lineItems) {
