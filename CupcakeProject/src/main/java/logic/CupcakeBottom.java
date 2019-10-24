@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package logic;
 
 import java.util.ArrayList;
@@ -21,7 +16,7 @@ public class CupcakeBottom {
     private static ArrayList<CupcakeBottom> cupcakeBottomsList = new ArrayList();
     private static ICupcakeMapper cupcakeMapper;
 
-    private CupcakeBottom(int cupcakeBottomID, String cupcakeBottom, double priceBottom) {
+    private CupcakeBottom(String cupcakeBottom, double priceBottom, int cupcakeBottomID) {
         this.cupcakeBottomID = cupcakeBottomID;
         this.cupcakeBottomDescription = cupcakeBottom;
         this.priceBottom = priceBottom;
@@ -35,10 +30,10 @@ public class CupcakeBottom {
     public static void setupBottomsFromDB() {
         cupcakeBottomsList.clear();
         for (HashMap<String, String> cupcakeBottomMap : cupcakeMapper.getCupcakeBottoms()) {
-            int cupcakeBottomID = Integer.parseInt(cupcakeBottomMap.get("id"));
             String cupcakeBottomDescription = cupcakeBottomMap.get("bottom");
             double priceBottom = Double.parseDouble(cupcakeBottomMap.get("price"));
-            CupcakeBottom cupcakeBottom = new CupcakeBottom(cupcakeBottomID, cupcakeBottomDescription, priceBottom);
+            int cupcakeBottomID = Integer.parseInt(cupcakeBottomMap.get("id"));
+            CupcakeBottom cupcakeBottom = new CupcakeBottom(cupcakeBottomDescription, priceBottom, cupcakeBottomID);
             cupcakeBottomsList.add(cupcakeBottom);
         }
     }
@@ -67,5 +62,4 @@ public class CupcakeBottom {
     public static ArrayList<CupcakeBottom> getCupcakeBottomsList() {
         return cupcakeBottomsList;
     }
-
 }
