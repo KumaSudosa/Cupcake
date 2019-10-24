@@ -1,5 +1,12 @@
 package presentation;
 
+import presentation.commands.ConfirmationCommand;
+import presentation.commands.RegistrationCommand;
+import presentation.commands.ProductsCommand;
+import presentation.commands.EntryCommand;
+import presentation.commands.ShoppageCommand;
+import presentation.commands.LoginCommand;
+import presentation.commands.UnknownCommand;
 import java.util.HashMap;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;

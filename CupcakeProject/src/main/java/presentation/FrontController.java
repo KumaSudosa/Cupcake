@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import logic.CupcakeBottom;
 import logic.CupcakeTopping;
 import logic.User;
-import persistence.CupcakeMapper;
-import persistence.ICupcakeMapper;
-import persistence.IUserMapper;
-import persistence.UserMapper;
+import persistence.mappers.CupcakeMapper;
+import persistence.mappers.ICupcakeMapper;
+import persistence.mappers.IUserMapper;
+import persistence.mappers.UserMapper;
 
  /*
  @author Gruppe 3

@@ -1,4 +1,4 @@
-package persistence;
+package persistence.mappers;
 
 import java.util.ArrayList;
 import java.util.HashMap;

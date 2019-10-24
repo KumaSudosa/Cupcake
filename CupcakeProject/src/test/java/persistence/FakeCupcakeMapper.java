@@ -2,7 +2,7 @@ package persistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import persistence.ICupcakeMapper;
+import persistence.mappers.ICupcakeMapper;
 
 public class FakeCupcakeMapper implements ICupcakeMapper {
 

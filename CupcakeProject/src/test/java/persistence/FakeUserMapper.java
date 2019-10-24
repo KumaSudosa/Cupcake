@@ -1,5 +1,6 @@
 package persistence;
 
+import persistence.mappers.IUserMapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import logic.User;

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 import persistence.FakeCupcakeMapper;
-import persistence.ICupcakeMapper;
+import persistence.mappers.ICupcakeMapper;
 import static org.junit.Assert.*;
 
 public class CupcakeBottomTest {
