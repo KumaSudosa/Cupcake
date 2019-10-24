@@ -66,14 +66,14 @@ public class LineItemTest {
     }
 
     @Test
-    public void testConstructer() {
+    public void testCreateLineItem() {
         //arrange
         int cupcakeToppingID = 4;
         int cupcakeBottomID = 2;
         int amount = 4;
 
         //act
-        LineItem result = new LineItem(cupcakeToppingID, cupcakeBottomID, amount);
+        LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
 
         //assert
         double expectedSubtotalPrice = 44;
@@ -92,6 +92,118 @@ public class LineItemTest {
         assertEquals(cupcakeBottomID, result.getCupcakeBottom().getCupcakeBottomID());
     }
 
-    
+    @Test
+    public void testIncreaseAmount() {
 
+        int bottomID = 2;
+        int toppingID = 2;
+        int amount = 5;
+
+        LineItem result = LineItem.createLineItem(toppingID, bottomID, amount);
+
+        result.increaseAmount(amount);
+
+        int expectedAmount = 10;
+
+        assertEquals(expectedAmount, result.getAmount());
+    }
+
+    
+    //Test til amount
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestZeroAmountToppingInput() {
+
+        int cupcakeToppingID = 2;
+        int cupcakeBottomID = 2;
+        int amount = 0;
+
+        LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestMaxOfToppingInputExceeded() {
+
+        int cupcakeToppingID = 2;
+        int cupcakeBottomID = 2;
+        int amount = 1000;
+
+        LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
+
+    }
+
+    //Test til cupcakeBottomID
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestCupcakeBottomIDZero() {
+
+        int cupcakeToppingID = 2;
+        int cupcakeBottomID = 0;
+        int amount = 5;
+
+        LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestCupcakeBottomIDSizeOvershoot() {
+
+        int cupcakeToppingID = 2;
+        int cupcakeBottomID = 10;
+        int amount = 5;
+
+        LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
+
+    }
+
+    //Tests til cupcakeToppingID
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestCupcakeToppingIDZero() {
+
+        int cupcakeToppingID = 0;
+        int cupcakeBottomID = 2;
+        int amount = 5;
+
+        LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestCupcakeToppingIDSizeOvershoot() {
+
+        int cupcakeToppingID = 10;
+        int cupcakeBottomID = 2;
+        int amount = 5;
+
+        LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestIncreaseAmountOverMaxAmount() {
+
+        int bottomID = 2;
+        int toppingID = 2;
+        int amount = 5;
+        int newAmount = 1000;
+
+        LineItem result = LineItem.createLineItem(toppingID, bottomID, amount);
+
+        result.increaseAmount(newAmount);
+
+    }
+
+     @Test(expected = IllegalArgumentException.class)
+     public void negativeTestIncreaseNegativeAmount() {
+
+        int bottomID = 2;
+        int toppingID = 2;
+        int amount = 5;
+        int newAmount = -20;
+
+        LineItem result = LineItem.createLineItem(toppingID, bottomID, amount);
+
+        result.increaseAmount(newAmount);
+
+    }
+    
 }
