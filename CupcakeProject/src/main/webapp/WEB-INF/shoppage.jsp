@@ -6,7 +6,7 @@
 
 <%@page import="logic.CupcakeTopping"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="persistence.CupcakeMapper"%>
+<%@page import="persistence.mappers.CupcakeMapper"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="logic.CupcakeBottom"%>
 <%@page import="logic.User"%>
@@ -33,8 +33,15 @@
         </h5>
         <h5 align="right">
             <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="login" />
-            <input type="submit" value="Logout"/>
+            <input type="hidden" name="command" value="frontpage" />
+            
+            <button onclick="myFunction()">Logout</button>
+            <script>
+            function myFunction() {
+                alert("Logging you out now");
+            }
+            </script>
+
             </form>
         </h5>
         
