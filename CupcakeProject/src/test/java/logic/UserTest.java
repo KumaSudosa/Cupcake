@@ -25,7 +25,7 @@ public class UserTest {
         FakeUserMapper fakeMapper = new FakeUserMapper();
         User.getUserList().clear();
         String[][] users = {
-            {"cahit", "12345", "cph@gmail.com", "100"},
+            {"cahit", "and51Ae", "cph@gmail.com", "100"},
         };
         for (String[] user : users) {
             HashMap<String, String> map = new HashMap();
@@ -154,7 +154,7 @@ public class UserTest {
         User user = new User(brugerNavn, pw, mail, funds);
         //act
         User result = new User(brugerNavn, pw, mail, funds);
-        User.LoginUser("Hassan", pw);
+        User.LoginUser("Hassan@gmail.com", pw);
     }
     
     @Test (expected = IllegalArgumentException.class)
@@ -162,7 +162,7 @@ public class UserTest {
         //arrange
         String brugerNavn = "Malte";
         String pw = "hej123";
-        String mail = "cph@gmail.com";
+        String mail = "cph2@gmail.com";
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);
     }
@@ -172,7 +172,7 @@ public class UserTest {
         //arrange
         String brugerNavn = "Malte";
         String pw = "HEJ123";
-        String mail = "cph@gmail.com";
+        String mail = "cph2@gmail.com";
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);
     }
@@ -182,7 +182,7 @@ public class UserTest {
         //arrange
         String brugerNavn = "Malte";
         String pw = "hejHej";
-        String mail = "cph@gmail.com";
+        String mail = "cph2@gmail.com";
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);
     }
@@ -192,7 +192,7 @@ public class UserTest {
         //arrange
         String brugerNavn = "Malte";
         String pw = "      ";
-        String mail = "cph@gmail.com";
+        String mail = "cph2@gmail.com";
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);
     }
@@ -202,7 +202,7 @@ public class UserTest {
         //arrange
         String brugerNavn = "Malte";
         String pw = "D3tteEr21TegnLangt1kk";
-        String mail = "cph@gmail.com";
+        String mail = "cph2@gmail.com";
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);
     }
