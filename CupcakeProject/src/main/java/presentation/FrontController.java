@@ -20,9 +20,9 @@ import persistence.UserMapper;
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
     
-    boolean needSetup = true;
+    private static boolean needSetup = true;
     
-    private void setup(){
+    public static void setup(){
         IUserMapper userMapper = new UserMapper();
         User.setupMapper(userMapper);
         
