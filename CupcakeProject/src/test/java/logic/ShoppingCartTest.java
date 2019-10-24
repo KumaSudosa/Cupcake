@@ -168,22 +168,89 @@ public class ShoppingCartTest {
     
        ShoppingCart result = new ShoppingCart();
        
-        int cupcakeToppingID1 = 4;
-        int cupcakeBottomID1 = 2;
-        int amount1 = 4;
-        int cupcakeToppingID2 = 3;
-        int cupcakeBottomID2 = 1;
-        int amount2 = 3;
+        int cupcakeToppingID1 = 1;
+        int cupcakeBottomID1 = 1;
+        int amount1 = 1;
+        int cupcakeToppingID2 = 2;
+        int cupcakeBottomID2 = 2;
+        int amount2 = 2;
+        int cupcakeToppingID3 = 3;
+        int cupcakeBottomID3 = 3;
+        int amount3 = 3;
         
         result.addLineItemsToShoppingCart(cupcakeToppingID1, cupcakeBottomID1, amount1);
         result.addLineItemsToShoppingCart(cupcakeToppingID2, cupcakeBottomID2, amount2);
-        result.removeLineItemFromShoppingCart(cupcakeToppingID1, cupcakeBottomID1);
-        int expectedChoppingCartSize = 1;
-        int expectedCupcakeToppingID1 = 4;
-        int expectedCupcakeBottomID1 = 2;
+        result.addLineItemsToShoppingCart(cupcakeToppingID3, cupcakeBottomID3, amount3);
         
+        result.removeLineItemFromShoppingCart(cupcakeToppingID1, cupcakeBottomID1);
+        
+        int expectedChoppingCartSize = 2;
+        int expectedCupcakeBottomID = 3;
+        int expectedCupcakeToppingID = 2;
       
         assertEquals(result.getLineItems().size(), expectedChoppingCartSize);
-   
+        assertEquals(result.getLineItems().get(1).getCupcakeBottom().getCupcakeBottomID(),expectedCupcakeBottomID);
+        assertEquals(result.getLineItems().get(0).getCupcakeTopping().getCupcakeToppingID(),expectedCupcakeToppingID);
     }
+
+    
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void negativeTestCannotFindToppingIDInLineItem(){
+      
+            ShoppingCart result = new ShoppingCart();
+       
+        int cupcakeToppingID1 = 1;
+        int cupcakeBottomID1 = 1;
+        int amount1 = 1;
+        int cupcakeToppingID2 = 2;
+        int cupcakeBottomID2 = 2;
+        int amount2 = 2;
+        int cupcakeToppingID3 = 3;
+        int cupcakeBottomID3 = 3;
+        int amount3 = 3;
+        
+       
+        int cupcakeToppingID2ToRemove = 5;
+        
+        result.addLineItemsToShoppingCart(cupcakeToppingID1, cupcakeBottomID1, amount1);
+        result.addLineItemsToShoppingCart(cupcakeToppingID2, cupcakeBottomID2, amount2);
+        result.addLineItemsToShoppingCart(cupcakeToppingID3, cupcakeBottomID3, amount3);
+        
+        result.removeLineItemFromShoppingCart(cupcakeToppingID2ToRemove, cupcakeBottomID1);
+
+        
+        
+    } 
+
+
+    @Test (expected = IllegalArgumentException.class)
+    public void negativeTestCannotFindBottomIDInLineItem(){
+      
+            ShoppingCart result = new ShoppingCart();
+       
+        int cupcakeToppingID1 = 1;
+        int cupcakeBottomID1 = 1;
+        int amount1 = 1;
+        int cupcakeToppingID2 = 2;
+        int cupcakeBottomID2 = 2;
+        int amount2 = 2;
+        int cupcakeToppingID3 = 3;
+        int cupcakeBottomID3 = 3;
+        int amount3 = 3;
+        
+        int cupcakeBottomIDToRemove = 5;
+        
+        
+        result.addLineItemsToShoppingCart(cupcakeToppingID1, cupcakeBottomID1, amount1);
+        result.addLineItemsToShoppingCart(cupcakeToppingID2, cupcakeBottomID2, amount2);
+        result.addLineItemsToShoppingCart(cupcakeToppingID3, cupcakeBottomID3, amount3);
+        
+        result.removeLineItemFromShoppingCart(cupcakeToppingID1, cupcakeBottomIDToRemove);
+
+        
+        
+    } 
+
+    
 }
