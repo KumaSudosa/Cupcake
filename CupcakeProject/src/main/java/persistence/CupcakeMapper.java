@@ -19,9 +19,9 @@ public class CupcakeMapper implements ICupcakeMapper {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
             while (rs.next()) {
                 HashMap<String, String> map = new HashMap();
-                map.put("id", rs.getString("id"));
                 map.put("bottom", rs.getString("bottom"));
                 map.put("price", rs.getString("price"));
+                map.put("id", rs.getString("id"));
                 bottoms.add(map);
             }
         } catch (SQLException ex) {
