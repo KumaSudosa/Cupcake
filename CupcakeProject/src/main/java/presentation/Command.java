@@ -14,7 +14,7 @@ public abstract class Command {
         commands.put("login", new LoginCommand());
         commands.put("registration", new RegistrationCommand());
         commands.put("products", new ProductsCommand());
-        commands.put("confirmation", new RegistrationCommand());
+        commands.put("confirmation", new ConfirmationCommand());
         commands.put("shoppage", new ShoppageCommand());
         commands.put("entry", new EntryCommand());
     }
