@@ -6,7 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.CupcakeBottom;
+import logic.CupcakeTopping;
 import logic.User;
+import persistence.CupcakeMapper;
+import persistence.ICupcakeMapper;
 import persistence.IUserMapper;
 import persistence.UserMapper;
 
@@ -21,6 +25,11 @@ public class FrontController extends HttpServlet {
     private void setup(){
         IUserMapper userMapper = new UserMapper();
         User.setupMapper(userMapper);
+        
+        ICupcakeMapper cupcakeMapper = new CupcakeMapper();
+        CupcakeBottom.setupMapper(cupcakeMapper);
+        CupcakeTopping.setupMapper(cupcakeMapper);
+        
         needSetup = false;
     }
 
