@@ -8,6 +8,7 @@ import presentation.commands.ShoppageCommand;
 import presentation.commands.LoginCommand;
 import presentation.commands.UnknownCommand;
 import presentation.commands.InvoiceCommand;
+import presentation.commands.FrontpageCommand;
 import java.util.HashMap;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ public abstract class Command {
         commands.put("shoppage", new ShoppageCommand());
         commands.put("entry", new EntryCommand());
         commands.put("invoice", new InvoiceCommand());
+        commands.put("frontpage", new FrontpageCommand());
     }
 
     public static Command from(HttpServletRequest request) {

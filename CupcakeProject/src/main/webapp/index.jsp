@@ -34,7 +34,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     
-    <body bgcolor="#f27ef0">
+    <body bgcolor="#fffef2">
         <h1 align="center"><font face="Tangerine" color="#00000">Cupcake shop</font></h1>
     <div align="center">
         <div>

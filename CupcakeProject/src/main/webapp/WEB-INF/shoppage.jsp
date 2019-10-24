@@ -33,8 +33,15 @@
         </h5>
         <h5 align="right">
             <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="login" />
-            <input type="submit" value="Logout"/>
+            <input type="hidden" name="command" value="frontpage" />
+            
+            <button onclick="myFunction()">Logout</button>
+            <script>
+            function myFunction() {
+                alert("Logging you out now");
+            }
+            </script>
+
             </form>
         </h5>
         
