@@ -17,11 +17,6 @@ public class ShoppingCart {
         this.cupcakeAmount = 0;
     }
 
-    // TODO: pull down invoices from DB, and make a new private constructer for this process.
-    private static void setup() {
-
-    }
-
     /**
      * @author Michael N. Korsgaard
      * @version alpha 1.0, first draft
@@ -75,6 +70,10 @@ public class ShoppingCart {
         }
     }
     
+    public void emptyShoppingCart(){
+        this.lineItems = new ArrayList();
+    }
+    
     
     private void calculateTotalPrice() {
         int newTotalPrice = 0;
@@ -103,6 +102,13 @@ public class ShoppingCart {
 
     public int getCupcakeAmount() {
         return cupcakeAmount;
+    }
+    
+    public boolean isEmpty(){
+        if(this.lineItems.size() > 0){
+            return false;
+        }
+        return true;
     }
     
     

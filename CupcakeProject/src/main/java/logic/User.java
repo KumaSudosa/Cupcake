@@ -121,6 +121,13 @@ public class User {
         userMapper.insertUser(newUser);
     }
     
+    public boolean canBalanceCoverPayment() {
+        if(this.shoppingCart.getTotalPrice() > this.balance){
+            return false;
+        }
+        return true;
+    }
+    
 
     public static void pwCheck(String password) {
         boolean letter = false;
@@ -183,6 +190,5 @@ public class User {
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
-    
     
 }

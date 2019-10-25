@@ -5,6 +5,9 @@
  */
 package logic;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +31,25 @@ public class Invoice {
         this.user = user;
         this.date = date;
         this.lineItems = new ArrayList();
+    }
+    
+    private Invoice(int invoiceID, User user, String date, ArrayList<LineItem> lineItems) {
+        this.invoiceID = invoiceID;
+        this.user = user;
+        this.date = date;
+        this.lineItems = lineItems;
+    }
+    
+    public static Invoice convertShoppingCartToNewInvoiceFromUser(User user){
+        Invoice newInvoice;
+        int invoiceID = invoiceMapper.getNewHighestInvoiceNumber();
+        String date = DateTimeFormatter.ofPattern("dd-MM-YYYY").format(LocalDate.now(ZoneId.of("Europe/Copenhagen")));
+        ArrayList<LineItem> lineItems = user.getShoppingCart().getLineItems();
+        newInvoice = new Invoice(invoiceID, user, date, lineItems);
+        user.getShoppingCart().emptyShoppingCart();
+        invoiceMapper.uploadInvoice(newInvoice);
+        invoices.add(newInvoice);
+        return newInvoice;
     }
 
     public static ArrayList<Invoice> createCustomerInvoicesFromDB(String email) {
