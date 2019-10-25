@@ -17,6 +17,7 @@ Author     : Michael
         <h1 align="center"> Login page</h1>
 
         <br>
+        
         <form action="FrontController" method="POST">
             <p align="center"> 
                 Email
@@ -26,19 +27,21 @@ Author     : Michael
                 Password 
                 <br>
                 <input type="password" name="password" value="" /></p>
+            
             <br>
+            
             <input type="hidden" name="command" value="login" />
             <p align="center"> <input type="submit" value="Login" /></p>
-        </form>
 
+        </form>
+            
         <%if (request.getAttribute("LoginError") != null) {
         LoginException loginError = (LoginException) request.getAttribute("LoginError");
         String errorMessage = loginError.getMessage();
         %>
         <br>
         <h2 align="center"><%=errorMessage%></h2>
+        <% } %>
         
-        <%}%>
-
     </body>
 </html>

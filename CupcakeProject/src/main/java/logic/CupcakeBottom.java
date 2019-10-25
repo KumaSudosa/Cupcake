@@ -45,13 +45,7 @@ public class CupcakeBottom {
             }
         }
         throw new IllegalArgumentException("No cupcakebottom for cupcake with the given ID. You must choose an ID-number between 1 and " + cupcakeBottomsList.size());
-    
-        
     }
-
-   
-    
-
     
     public int getCupcakeBottomID() {
         return cupcakeBottomID;

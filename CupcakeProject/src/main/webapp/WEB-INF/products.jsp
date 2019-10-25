@@ -4,6 +4,7 @@
     Author     : Marcus
 --%>
 
+<%@page import="logic.ShoppingCart"%>
 <%@page import="logic.User"%>
 <%@page import="logic.CupcakeTopping"%>
 <%@page import="logic.CupcakeBottom"%>
@@ -17,9 +18,9 @@
     </head>
     <body>
         
-        
         <%
             User user = (User) session.getAttribute("user");
+            ShoppingCart cart = user.getShoppingCart();
         %>
         <h5 align="right">
             You are logged in as:
@@ -29,9 +30,16 @@
         <h5 align="right">
             Your balance is:
             <%=user.getBalance()%> DKK
+            <br>
+            Shopping cart:
+            <%=cart.getCupcakeAmount() %> Cupcakes
+            <br>
+            Shopping cart Total Price:
+            <%=cart.getTotalPrice()%> Kr.
         </h5>
         
-        
+        <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="shoppage" />
         <table align="center" border = "1" width = "15%">
                 <thead>
                     <tr bgcolor = "#87E187">
@@ -45,12 +53,13 @@
                 ArrayList<CupcakeBottom> cupcakeBottomList = (ArrayList<CupcakeBottom>) CupcakeBottom.getCupcakeBottomsList();
                 for (CupcakeBottom cupcakeBottom : cupcakeBottomList) {
                 String description = cupcakeBottom.getCupcakeBottomDescription();
+                int bottomID = cupcakeBottom.getCupcakeBottomID();
                 double price = cupcakeBottom.getPriceBottom();
                 %>        
                     <tr>
                         <td> <%=description%> </td>
                         <td align="center"> <%=price+",-"%> </td>
-                      <td align="center"><input type="radio" name=bottomchoice value=""></td>
+                      <td align="center"><input type="radio" name=bottomchoice value="<%=bottomID%>"></td>
                     </tr>
                 </tbody>
                 <% } %>
@@ -71,20 +80,23 @@
                 ArrayList<CupcakeTopping> cupcakeToppingList = (ArrayList<CupcakeTopping>) CupcakeTopping.getCupcakeToppingsList();
                 for (CupcakeTopping cupcakeTopping : cupcakeToppingList) {
                 String description = cupcakeTopping.getCupcakeToppingDescription();
+                int toppingID = cupcakeTopping.getCupcakeToppingID();
                 double price = cupcakeTopping.getPriceTopping();
                 %>
                     <tr>
                         <td><%=description%></td>
                         <td align="center"><%=price+",-"%></td>
-                       <td align="center"><input type="radio" name=toppingchoice value=""></td>
+                       <td align="center"><input type="radio" name=toppingchoice value="<%=toppingID%>"></td>
                     </tr>
                 </tbody>
-                <% } %>
+                <%}%>
                 
         </table>
-                <br>
-                <p align="center"> Insert your quantity here: <td align="center"><input type="text" name=AmountOf value="1" size="1" style="text-align:center;"><input type="submit" value="Add"/></p></td></p>
                 
+        <br>
+        <br>
+                <p align="center"> Insert your quantity here: <td align="center"><input type="text" name=AmountOf value="1" size="1" style="text-align:center;"><input type="submit" value="Add"/></p></td></p>
+    </form>
                 <br>
                 
                 <form action="FrontController" method="POST">

@@ -1,6 +1,8 @@
 package logic;
 
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ShoppingCart {
 
@@ -25,7 +27,7 @@ public class ShoppingCart {
      * @param amount int the amount of the cupcake that should be added to the shoppingCart
      */
     public void addLineItemsToShoppingCart(int cupcakeToppingID, int cupcakeBottomID, int amount) {
-            
+
         //Check if an identical cupcake is already in a lineitem
         boolean identicalCupcakeFound = false;
         for (LineItem lineItem : lineItems) {
@@ -37,7 +39,7 @@ public class ShoppingCart {
                 lineItem.increaseAmount(amount);
                 identicalCupcakeFound = true;
                 break;
-            }     
+            }
         }
 
         // If the same type of cupcake was not found in lineItems, a new lineItem is made
@@ -48,39 +50,49 @@ public class ShoppingCart {
 
         // increase the cupcakeAmount by the new int amount
         cupcakeAmount += amount;
-
     }
-    
-    public void removeLineItemFromShoppingCart( int toppingID, int bottomID){
-    
+
+    public void removeLineItemFromShoppingCart(int toppingID, int bottomID) {
+
         for (LineItem lineItem : lineItems) {
             boolean matchingBottom = lineItem.getCupcakeBottom().getCupcakeBottomID() == bottomID;
             boolean matchingTopping = lineItem.getCupcakeTopping().getCupcakeToppingID() == toppingID;
-            if(matchingBottom && matchingTopping){
+            if (matchingBottom && matchingTopping) {
                 lineItems.remove(lineItem);
-                
+
                 break;
             }
-        
-            if(!matchingBottom || !matchingTopping){
-                
-               throw new IllegalArgumentException("Can't find the line-item.");
-                
+
+            if (!matchingBottom || !matchingTopping) {
+
+                throw new IllegalArgumentException("Can't find the line-item.");
+
             }
         }
     }
-    
-    public void emptyShoppingCart(){
+
+    public void emptyShoppingCart() {
         this.lineItems = new ArrayList();
     }
-    
-    
+
     private void calculateTotalPrice() {
         int newTotalPrice = 0;
         for (LineItem lineItem : lineItems) {
             newTotalPrice += lineItem.getSubTotalPrice();
         }
         this.totalPrice = newTotalPrice;
+    }
+
+    private void displayOrderCupcakeAmount() {
+        int totalAmountCupcake = 0;
+        for (LineItem lineItem : lineItems) {
+            totalAmountCupcake += lineItem.getAmount();
+        }
+        this.cupcakeAmount = totalAmountCupcake;
+    }
+
+    private void displayShoppingCartTotalPrice() {
+
     }
 
     public static ArrayList<ShoppingCart> getShoppingCarts() {
@@ -103,14 +115,12 @@ public class ShoppingCart {
     public int getCupcakeAmount() {
         return cupcakeAmount;
     }
-    
-    public boolean isEmpty(){
-        if(this.lineItems.size() > 0){
+
+    public boolean isEmpty() {
+        if (this.lineItems.size() > 0) {
             return false;
         }
         return true;
     }
-    
-    
 
 }

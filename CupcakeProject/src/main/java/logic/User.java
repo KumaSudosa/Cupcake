@@ -22,10 +22,10 @@ public class User {
     public static void setupMapper(UserMapperInterface mapper) {
         User.userMapper = mapper;
     }
-    
-    public static User getUserFromUserList(String email){
+
+    public static User getUserFromUserList(String email) {
         for (User user : userList) {
-            if(user.getEmail() == email){
+            if (user.getEmail().equals(email)) {
                 return user;
             }
         }
@@ -69,12 +69,11 @@ public class User {
      * @return
      * @throws LoginException
      */
-    
     public static User LoginUser(String email, String password) throws LoginException {
         for (User user : userList) {
             if (user.getEmail().equals(email)) {
                 if (user.getPassword().equals(password)) {
-                    if(user.shoppingCart == null){
+                    if (user.shoppingCart == null) {
                         user.shoppingCart = new ShoppingCart();
                     }
                     return user;
@@ -85,49 +84,47 @@ public class User {
         }
         throw new LoginException("No Matching Email");
     }
-    
+
     /**
      * @author Marcus & Cahit
      * @param username
      * @param password
      * @param password2
      * @param email
-     * @throws IllegalArgumentException 
+     * @throws IllegalArgumentException
      */
-
     public static void RegisterUser(String username, String password, String password2, String email) throws IllegalArgumentException {
-        
+
         //check for unfilled forms in registration
         boolean noUsername = username.length() < 1;
         boolean noPassword = password.length() < 1;
         boolean noEmail = email.length() < 1;
-        
-        if(noUsername || noPassword || noEmail){
+
+        if (noUsername || noPassword || noEmail) {
             throw new IllegalArgumentException("remember to fill out all fields");
         }
         pwCheck(password);
-        
+
         for (HashMap<String, String> map : userMapper.getUserList()) {
             String dbEmail = map.get("email");
-            
+
             if (email.toLowerCase().equals(dbEmail.toLowerCase())) {
                 throw new IllegalArgumentException("email is already in use.");
             }
         }
         if (!password2.equals(password)) {
-                throw new IllegalArgumentException("passwords do not match.");
-            }
+            throw new IllegalArgumentException("passwords do not match.");
+        }
         User newUser = new User(username, password, email, 0.0);
         userMapper.insertUser(newUser);
     }
-    
+
     public boolean canBalanceCoverPayment() {
-        if(this.shoppingCart.getTotalPrice() > this.balance){
+        if (this.shoppingCart.getTotalPrice() > this.balance) {
             return false;
         }
         return true;
     }
-    
 
     public static void pwCheck(String password) {
         boolean letter = false;
@@ -164,13 +161,12 @@ public class User {
                 throw new IllegalArgumentException("Your password needs to contain at least an "
                         + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
             }
-        } else{
+        } else {
             throw new IllegalArgumentException("Your password needs to contain at least a "
-                        + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
+                    + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
         }
     }
 
-    
     public double getBalance() {
         return balance;
     }
@@ -190,5 +186,4 @@ public class User {
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
-    
 }

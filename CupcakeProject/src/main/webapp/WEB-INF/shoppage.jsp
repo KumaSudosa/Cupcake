@@ -4,6 +4,7 @@
     Author     : Marcus & Andreas
 --%>
 
+<%@page import="logic.ShoppingCart"%>
 <%@page import="logic.CupcakeTopping"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="persistence.mappers.CupcakeMapper"%>
@@ -21,6 +22,7 @@
         
         <%
             User user = (User) session.getAttribute("user");
+            ShoppingCart cart = user.getShoppingCart();
         %>
         <h5 align="right">
             You are logged in as:
@@ -30,6 +32,12 @@
         <h5 align="right">
             Your balance is:
             <%=user.getBalance()%> DKK
+            <br>
+            Shopping cart:
+            <%=cart.getCupcakeAmount() %> Cupcakes
+            <br>
+            Shopping cart Total Price:
+            <%=cart.getTotalPrice()%> Kr.
         </h5>
         <h5 align="right">
             <form action="FrontController" method="POST">
@@ -61,6 +69,5 @@
         <input type="hidden" name="command" value="invoice" />
         <p align="center"><input type="submit" value="Go to purchase history" style="height:50px; width:150px" /></p>
         </form>
-        
     </body>
 </html>
