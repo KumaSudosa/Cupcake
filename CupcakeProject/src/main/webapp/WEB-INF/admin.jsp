@@ -4,6 +4,7 @@
     Author     : Marcus
 --%>
 
+<%@page import="logic.User"%>
 <%@page import="persistence.mappers.InvoiceMapper"%>
 <%@page import="logic.Invoice"%>
 <%@page import="java.util.ArrayList"%>
@@ -15,7 +16,33 @@
         <title>admin page</title>
     </head>
     <body>
-        <h1 align='center'>U is admin, yaay</h1>
+        <h1 align='center'>Invoice list</h1>
+        
+        <%
+            User user = (User) session.getAttribute("user");
+        %>
+        <h5 align="right">
+            You are logged in as:
+            <br>
+            <%=user.getUsername()%>
+            <br> 
+            Admin account
+        </h5>
+        
+        <h5 align="right">
+            <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="frontpage" />
+            
+            <button onclick="myFunction()">Logout</button>
+            <script>
+            function myFunction() {
+                alert("Logging you out now");
+            }
+            </script>
+
+            </form>
+        </h5>
+                
 
         <table align="center" border = "1" width = "15%">
 
