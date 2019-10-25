@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package logic;
 
 import java.util.ArrayList;
@@ -11,12 +6,11 @@ import java.util.List;
 import persistence.mappers.InvoiceMapperInterface;
 
 /**
- *
- * @author Michael N. Korsgaard
+ * @author Michael & Marcus
  */
 public class Invoice {
 
-    private static ArrayList<Invoice> invoices;
+    private static ArrayList<Invoice> invoices = new ArrayList();
     private int invoiceID;
     private User user;
     private static ArrayList<LineItem> lineItems;
@@ -37,8 +31,9 @@ public class Invoice {
             int invoiceID = Integer.parseInt(map.get("id_invoice"));
             Invoice invoice = findInvoiceInsideListFromID(result, invoiceID);
             if (invoice == null) {
+                String date = map.get("date");
                 User user = User.getUserFromUserList(email);
-                invoice = new Invoice(invoiceID, user, email);
+                invoice = new Invoice(invoiceID, user, date);
                 result.add(invoice);
             }
             int cupcakeToppingID = Integer.parseInt(map.get("id_topping"));
@@ -47,6 +42,26 @@ public class Invoice {
             invoice.addLineItemToInvoice(LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount));
         }
         return result;
+    }
+    
+    public static void createAdminInvoicesFromDB() {
+        invoices.clear();
+        ArrayList<HashMap<String, String>> list = invoiceMapper.getInvoicesForAdmin();
+        for (HashMap<String, String> map : list) {
+            int invoiceID = Integer.parseInt(map.get("id_invoice"));
+            Invoice invoice = findInvoiceInsideListFromID(invoices, invoiceID);
+            if (invoice == null) {
+                String date = map.get("date");
+                String email = map.get("email");
+                User user = User.getUserFromUserList(email);
+                invoice = new Invoice(invoiceID, user, date);
+                invoices.add(invoice);
+            }
+            int cupcakeToppingID = Integer.parseInt(map.get("id_topping"));
+            int cupcakeBottomID = Integer.parseInt(map.get("id_bottom"));
+            int amount = Integer.parseInt(map.get("amount"));
+            invoice.addLineItemToInvoice(LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount));
+        }
     }
 
     private static Invoice findInvoiceInsideListFromID(List<Invoice> list, int invoiceID) {
@@ -67,6 +82,7 @@ public class Invoice {
     }
 
     public static ArrayList<Invoice> getInvoices() {
+        createAdminInvoicesFromDB();
         return invoices;
     }
 
@@ -85,5 +101,4 @@ public class Invoice {
     public String getDate() {
         return date;
     }
-
 }

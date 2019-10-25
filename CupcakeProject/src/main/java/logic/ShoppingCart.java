@@ -53,7 +53,6 @@ public class ShoppingCart {
 
         // increase the cupcakeAmount by the new int amount
         cupcakeAmount += amount;
-
     }
     
     public void removeLineItemFromShoppingCart( int toppingID, int bottomID){
@@ -74,7 +73,6 @@ public class ShoppingCart {
             }
         }
     }
-    
     
     private void calculateTotalPrice() {
         int newTotalPrice = 0;
@@ -104,7 +102,4 @@ public class ShoppingCart {
     public int getCupcakeAmount() {
         return cupcakeAmount;
     }
-    
-    
-
 }

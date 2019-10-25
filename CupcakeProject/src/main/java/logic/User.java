@@ -25,7 +25,7 @@ public class User {
     
     public static User getUserFromUserList(String email){
         for (User user : userList) {
-            if(user.getEmail() == email){
+            if(user.getEmail().equals(email)){
                 return user;
             }
         }
@@ -120,7 +120,6 @@ public class User {
         User newUser = new User(username, password, email, 0.0);
         userMapper.insertUser(newUser);
     }
-    
 
     public static void pwCheck(String password) {
         boolean letter = false;
@@ -183,6 +182,4 @@ public class User {
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
-    
-    
 }
