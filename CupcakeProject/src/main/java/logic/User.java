@@ -15,6 +15,7 @@ public class User {
     private String password;
     private String email;
     private double balance;
+    private ShoppingCart shoppingCart;
     private static UserMapperInterface userMapper;
     private static ArrayList<User> userList = new ArrayList();
 
@@ -73,6 +74,9 @@ public class User {
         for (User user : userList) {
             if (user.getEmail().equals(email)) {
                 if (user.getPassword().equals(password)) {
+                    if(user.shoppingCart == null){
+                        user.shoppingCart = new ShoppingCart();
+                    }
                     return user;
                 } else {
                     throw new LoginException("Wrong Password");
@@ -164,10 +168,6 @@ public class User {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -180,15 +180,9 @@ public class User {
         return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    
+    
 }
