@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class ShoppingCart {
 
     private static ArrayList<ShoppingCart> shoppingCarts = new ArrayList();
-    private static int highestInvoiceNr = 101;
     private int invoiceNr;
     private static ArrayList<LineItem> lineItems;
     private double totalPrice;
@@ -13,7 +12,6 @@ public class ShoppingCart {
 
     public ShoppingCart() {
         //TODO pull highest inVoiceNr from Mapper, and remove static variable HighestInvoiceNr
-        this.invoiceNr = highestInvoiceNr++;
         this.lineItems = new ArrayList();
         this.totalPrice = 0;
         this.cupcakeAmount = 0;
@@ -101,10 +99,6 @@ public class ShoppingCart {
     public double getTotalPrice() {
         calculateTotalPrice();
         return totalPrice;
-    }
-
-    public static int getHighestInvoiceNr() {
-        return highestInvoiceNr;
     }
 
     public int getCupcakeAmount() {
