@@ -4,6 +4,7 @@
     Author     : Marcus
 --%>
 
+<%@page import="logic.ShoppingCart"%>
 <%@page import="logic.User"%>
 <%@page import="logic.CupcakeTopping"%>
 <%@page import="logic.CupcakeBottom"%>
@@ -16,7 +17,6 @@
         <title>Purchasing cupcakes</title>
     </head>
     <body>
-        
         
         <%
             User user = (User) session.getAttribute("user");
@@ -74,15 +74,17 @@
                 double price = cupcakeTopping.getPriceTopping();
                 %>
                     <tr>
-                        <td><%=description%></td>
-                        <td align="center"><%=price+",-"%></td>
+                       <td><%= description %></td>
+                       <td align="center"><%= price+",-" %></td>
                        <td align="center"><input type="radio" name=toppingchoice value=""></td>
                     </tr>
                 </tbody>
-                <% } %>
+                <%}%>
                 
         </table>
-                <br>
+                
+        <br>
+        <br>
                 <p align="center"> Insert your quantity here: <td align="center"><input type="text" name=AmountOf value="1" size="1" style="text-align:center;"><input type="submit" value="Add"/></p></td></p>
                 
                 <br>
