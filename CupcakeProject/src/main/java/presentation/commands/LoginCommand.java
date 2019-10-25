@@ -20,6 +20,10 @@ public class LoginCommand extends Command {
         String nextJspPage = "shoppage";
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        
+        if (User == admin) {
+            
+        } else {
         try {
             User user = User.LoginUser(email, password);
             HttpSession session = request.getSession();
@@ -27,6 +31,7 @@ public class LoginCommand extends Command {
         } catch (LoginException exception) {
             request.setAttribute("LoginError", exception);
             nextJspPage = "login";
+        }
         }
         return nextJspPage;
     }
