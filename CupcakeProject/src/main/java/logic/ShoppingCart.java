@@ -1,6 +1,8 @@
 package logic;
 
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ShoppingCart {
 
@@ -83,7 +85,21 @@ public class ShoppingCart {
         }
         this.totalPrice = newTotalPrice;
     }
-
+    
+    private void displayOrderCupcakeAmount() {
+        int totalAmountCupcake = 0;
+        for (LineItem lineItem : lineItems) {
+            totalAmountCupcake += lineItem.getAmount();
+        }
+        this.cupcakeAmount = totalAmountCupcake;
+    }
+    
+    private void displayShoppingCartTotalPrice() {
+        
+        
+    }
+    
+    
     public static ArrayList<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
     }
