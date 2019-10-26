@@ -24,39 +24,55 @@
 
         <br>
 
-        <div align="center" style="float:left; width:25%; height:70%">
+        <div align="center" style="float:left; width:10%; height:70%">
             <p> </p>
         </div>
 
         <!-- This div will hold the table for the shopping cart -->
-        <div align="center" style="float:left; width:25%; height:70%">
-            <table align="center" border = "1" width = "15%">
+        <div align="center" style="float:left; width:40%; height:70%">
+            <table align="center" border = "1" style="float:right; width:65%">
                 <thead>
                     <tr bgcolor = "#87E187">
-                        <td>Toppings</td>
-                        <td>Price</td>
+                        <td>Cupcake</td>
+                        <td>Quantity</td>
+                        <td>Subtotal Price</td>
+                        <td>Remove</td>
                     </tr>
                 </thead>
 
                 <tbody>
                     <%
                         for (LineItem lineItem : shoppingCart.getLineItems()) {
+                            String lineItemTopping = Integer.toString(lineItem.getCupcakeTopping().getCupcakeToppingID());
+                            String lineItemBottom = Integer.toString(lineItem.getCupcakeBottom().getCupcakeBottomID());
+                            String lineItemToppingAndBottomID = lineItemBottom + ":" + lineItemTopping;
+                            int qty = lineItem.getAmount();
+                            double subtotalPrice = lineItem.getSubTotalPrice();
 
                     %>
                     <tr>
-                        <td></td>
-                        <td align="center"></td>
-                        <td align="center"><input type="radio" name=toppingchoice value=""></td>
+                        <td><%=lineItem.toString()%></td>
+                        <td align="center"><%=qty%></td>
+                        <td align="center"><%=subtotalPrice%>,-</td>
+                        <td align="center">
+                            <form action="FrontController" method="POST">
+                                <input type="hidden" name="command" value="products" />
+                                <input type="hidden" name="removeCupcakeTopAndBottomID" value="<%=lineItemToppingAndBottomID%>" />
+                                <input type="submit" value="X"/>
+                            </form>
+                        </td>
                     </tr>
                     <% }%>
                 </tbody>
-                
+
             </table>
         </div>
 
         <!-- This div will hold the information -->
         <div align="center" style="float:left; width:25%; height:70%">
-            <h1>Right</h1>
+            <h2>Shoppingcart Info</h2><br>
+            <b><%=shoppingCart.getCupcakeAmount()%> cupcakes</b> <br>
+            <b>Totalpris: <%=shoppingCart.getTotalPrice()%>,-</b>
             <form action="FrontController" method="POST">
                 <input type="hidden" name="command" value="confirmation" />
                 <p align="center"> <input type="submit" value="Confirm Order"/></p>

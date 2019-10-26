@@ -16,7 +16,7 @@ public class Invoice {
     private static ArrayList<Invoice> invoices = new ArrayList();
     private int invoiceID;
     private User user;
-    private static ArrayList<LineItem> lineItems;
+    private ArrayList<LineItem> lineItems;
     private String date;
     private static InvoiceMapperInterface invoiceMapper;
 
@@ -35,11 +35,11 @@ public class Invoice {
     }
     
     public static Invoice convertShoppingCartToNewInvoiceFromUser(User user){
-        Invoice newInvoice;
         int invoiceID = invoiceMapper.getNewHighestInvoiceNumber();
         String date = DateTimeFormatter.ofPattern("dd-MM-YYYY").format(LocalDate.now(ZoneId.of("Europe/Copenhagen")));
         ArrayList<LineItem> lineItems = user.getShoppingCart().getLineItems();
-        newInvoice = new Invoice(invoiceID, user, date, lineItems);
+        Invoice newInvoice = new Invoice(invoiceID, user, date, lineItems);
+        user.payForShoppingCart();
         user.getShoppingCart().emptyShoppingCart();
         invoiceMapper.uploadInvoice(newInvoice);
         invoices.add(newInvoice);
@@ -95,6 +95,14 @@ public class Invoice {
         return null;
     }
     
+    public Double getTotalPrice(){
+        double totalPrice = 0;
+        for (LineItem lineItem : lineItems) {
+            totalPrice += lineItem.getSubTotalPrice();
+        }
+        return totalPrice;
+    }
+    
     private void addLineItemToInvoice(LineItem lineItem){
         lineItems.add(lineItem);
     }
@@ -112,7 +120,7 @@ public class Invoice {
         return user;
     }
 
-    public static ArrayList<LineItem> getLineItems() {
+    public ArrayList<LineItem> getLineItems() {
         return lineItems;
     }
 

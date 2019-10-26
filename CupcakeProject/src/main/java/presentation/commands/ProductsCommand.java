@@ -15,6 +15,13 @@ public class ProductsCommand extends Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
         String NextJspPage = "confirmation";
         User user = (User) request.getSession().getAttribute("user");
+        String removeLineItemID = request.getParameter("removeCupcakeTopAndBottomID");
+        if(removeLineItemID != null){
+            String[] lineItemIDs = removeLineItemID.split(":");
+            int removeBottomID = Integer.parseInt(lineItemIDs[0]);
+            int removeToppingID = Integer.parseInt(lineItemIDs[1]);
+            user.getShoppingCart().removeLineItemFromShoppingCart(removeToppingID, removeBottomID);
+        }
 //        if(user.getShoppingCart().isEmpty()){
 //            request.setAttribute("error", "Nothing in shoppingcart to buy");
 //            NextJspPage = "products";

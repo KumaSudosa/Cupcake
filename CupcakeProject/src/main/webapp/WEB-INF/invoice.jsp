@@ -4,6 +4,7 @@
     Author     : Michael N. Korsgaard
 --%>
 
+<%@page import="logic.LineItem"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="logic.Invoice"%>
 <%@page import="logic.User"%>
@@ -21,21 +22,56 @@
             String username = user.getUsername();
         %>
 
-        <h1>Hello <%=username%></h1>
+        <h1 align="center">Hello <%=username%></h1>
         <br>
-        <table style="width:100%">
-            <tr>
-                <th>Firstname</th>
-            </tr>
-            <%
-                for (Invoice invoice : invoiceList) {
-                    String id = Integer.toString(invoice.getInvoiceID());
-            %>
-            <tr>
-                <td><%=id%></td>
-            </tr>
-            <%}%>
-        </table> 
+        <table border = "1" align = "center" style="width:40%">
+            <thead>
+                <tr bgcolor = "#87E187">
+                    <th style="width:15%">Invoices</th>
+                    <th style="width:55%">Details</th>
+                    <th style="width:15%">Order Date</th>
+                    <th style="width:15%">Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    for (Invoice invoice : invoiceList) {
+                        String id = Integer.toString(invoice.getInvoiceID());
+                        String date = invoice.getDate();
+                        String totalPrice = Double.toString(invoice.getTotalPrice());
+                %>
+                <tr>
+                    <td align="center"><%=id%></td>
+                    <td align="center">
+                        <table style="width:100%">
+                            <tbody>
+                                <%
+                                    for (LineItem lineItem : invoice.getLineItems()) {
+                                        String cupcakeDescription = lineItem.toString();
+                                        int qty = lineItem.getAmount();
+                                        double price = lineItem.getSubTotalPrice();
+                                %>
+                                <tr>
+                                    <td align="right" style="width:20%"><%=qty%>x  </td>
+                                    <td align="left" style="width:60%"><%=cupcakeDescription%></td>
+                                    <td align="left" style="width:20%"><%=price%>,-</td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td align="center"><%=date%></td>
+                    <td align="center"><%=totalPrice%>,-</td>
+                </tr>
+                <%}%>
+            </tbody>
+        </table>
+        <br>
+        <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="goToShoppage" />
+            <p align="center"> <input type="submit" value="Go back to shoppage"/></p>
+        </form>
+
 
 
     </body>

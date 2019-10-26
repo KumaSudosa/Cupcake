@@ -19,7 +19,7 @@ public class InvoiceMapper implements InvoiceMapperInterface {
     @Override
     public int getNewHighestInvoiceNumber() {
         int highestInvoiceNumber = 100001;
-        String sql = "SELECT MAX(id_invoice) FROM invoice";
+        String sql = "SELECT MAX(id_invoice) as id_invoice FROM invoice";
         try {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
             while (rs.next()) {
@@ -79,7 +79,7 @@ public class InvoiceMapper implements InvoiceMapperInterface {
     @Override
     public void uploadInvoice(Invoice invoice) {
         // add the invoice
-        String sql = "INSERT INTO invoice (id_invoice, email, date) VALUES (" + invoice.getInvoiceID() + ", '"
+        String sql = "INSERT INTO invoice (id_invoice, email, order_date) VALUES (" + invoice.getInvoiceID() + ", '"
                 + invoice.getUser().getEmail() + "', '" + invoice.getDate() + "')";
         try {
             DB.getConnection().prepareStatement(sql).executeUpdate();

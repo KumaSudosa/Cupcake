@@ -59,9 +59,6 @@ public class LineItem {
         
         this.amount += increaseAmount;
         this.subTotalPrice += increaseAmount * cupcakePrice;
-    
-
-        
     }
 
     public int getAmount() {
@@ -83,4 +80,11 @@ public class LineItem {
     public double getCupcakePrice() {
         return cupcakePrice;
     }
+
+    @Override
+    public String toString() {
+        return cupcakeBottom.getCupcakeBottomDescription() + " with " + cupcakeTopping.getCupcakeToppingDescription();
+    }
+    
+    
 }

@@ -167,6 +167,16 @@ public class User {
         }
     }
 
+    public void payForShoppingCart() {
+        if (this.canBalanceCoverPayment()) {
+            double payment = shoppingCart.getTotalPrice();
+            this.balance -= payment;
+            userMapper.updateBalance(this);
+        } else {
+            // TODO: Throw error
+        }
+    }
+
     public double getBalance() {
         return balance;
     }
@@ -186,4 +196,5 @@ public class User {
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
+
 }

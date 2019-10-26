@@ -19,5 +19,7 @@ public ArrayList<HashMap<String, String>> getEmail();
 
 public void insertUser(User user);
 
+public void updateBalance(User user);
+
     
 }

@@ -43,4 +43,9 @@ public class FakeUserMapper implements UserMapperInterface {
         userInfo.add(map);
     }
 
+    @Override
+    public void updateBalance(User user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

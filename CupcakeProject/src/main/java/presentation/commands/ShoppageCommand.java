@@ -13,7 +13,7 @@ public class ShoppageCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
-        
+
         User user = (User) request.getSession().getAttribute("user");
         String nextJspPage = "products";
         String toppingString = request.getParameter("toppingchoice");
@@ -23,7 +23,11 @@ public class ShoppageCommand extends Command {
             int topping = Integer.parseInt(toppingString);
             int bottom = Integer.parseInt(bottomString);
             int amount = Integer.parseInt(amountString);
-            user.getShoppingCart().addLineItemsToShoppingCart(topping, bottom, amount);
+            try {
+                user.getShoppingCart().addLineItemsToShoppingCart(topping, bottom, amount);
+            } catch (IllegalArgumentException ex) {
+                request.setAttribute("error", ex.getMessage());
+            }
         }
 
         return nextJspPage;

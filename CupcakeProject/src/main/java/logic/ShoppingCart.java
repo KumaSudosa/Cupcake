@@ -1,13 +1,10 @@
 package logic;
 
 import java.util.ArrayList;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class ShoppingCart {
 
     private static ArrayList<ShoppingCart> shoppingCarts = new ArrayList();
-    private int invoiceNr;
     private static ArrayList<LineItem> lineItems;
     private double totalPrice;
     private int cupcakeAmount;
@@ -26,7 +23,7 @@ public class ShoppingCart {
      * @param cupcakeBottomID int from the selection from jsp mathcing a bottomID in the database.
      * @param amount int the amount of the cupcake that should be added to the shoppingCart
      */
-    public void addLineItemsToShoppingCart(int cupcakeToppingID, int cupcakeBottomID, int amount) {
+    public void addLineItemsToShoppingCart(int cupcakeToppingID, int cupcakeBottomID, int amount) throws IllegalArgumentException {
 
         //Check if an identical cupcake is already in a lineitem
         boolean identicalCupcakeFound = false;
@@ -53,21 +50,18 @@ public class ShoppingCart {
     }
 
     public void removeLineItemFromShoppingCart(int toppingID, int bottomID) {
-
+        boolean matchingBottom = false;
+        boolean matchingTopping = false;
         for (LineItem lineItem : lineItems) {
-            boolean matchingBottom = lineItem.getCupcakeBottom().getCupcakeBottomID() == bottomID;
-            boolean matchingTopping = lineItem.getCupcakeTopping().getCupcakeToppingID() == toppingID;
+            matchingBottom = lineItem.getCupcakeBottom().getCupcakeBottomID() == bottomID;
+            matchingTopping = lineItem.getCupcakeTopping().getCupcakeToppingID() == toppingID;
             if (matchingBottom && matchingTopping) {
                 lineItems.remove(lineItem);
-
                 break;
             }
-
-            if (!matchingBottom || !matchingTopping) {
-
-                throw new IllegalArgumentException("Can't find the line-item.");
-
-            }
+        }
+        if (!matchingBottom || !matchingTopping) {
+            throw new IllegalArgumentException("Can't find the line-item.");
         }
     }
 
@@ -97,10 +91,6 @@ public class ShoppingCart {
 
     public static ArrayList<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
-    }
-
-    public int getInvoiceNr() {
-        return invoiceNr;
     }
 
     public ArrayList<LineItem> getLineItems() {
