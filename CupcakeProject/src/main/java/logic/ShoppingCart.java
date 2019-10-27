@@ -13,7 +13,6 @@ public class ShoppingCart {
         //TODO pull highest inVoiceNr from Mapper, and remove static variable HighestInvoiceNr
         this.lineItems = new ArrayList();
         this.totalPrice = 0;
-        this.cupcakeAmount = 0;
     }
 
     /**
@@ -44,9 +43,6 @@ public class ShoppingCart {
             LineItem lineitem = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
             lineItems.add(lineitem);
         }
-
-        // increase the cupcakeAmount by the new int amount
-        cupcakeAmount += amount;
     }
 
     public void removeLineItemFromShoppingCart(int toppingID, int bottomID) {
@@ -77,14 +73,6 @@ public class ShoppingCart {
         this.totalPrice = newTotalPrice;
     }
 
-    private void displayOrderCupcakeAmount() {
-        int totalAmountCupcake = 0;
-        for (LineItem lineItem : lineItems) {
-            totalAmountCupcake += lineItem.getAmount();
-        }
-        this.cupcakeAmount = totalAmountCupcake;
-    }
-
     private void displayShoppingCartTotalPrice() {
 
     }
@@ -103,7 +91,11 @@ public class ShoppingCart {
     }
 
     public int getCupcakeAmount() {
-        return cupcakeAmount;
+        int totalAmountCupcake = 0;
+        for (LineItem lineItem : lineItems) {
+            totalAmountCupcake += lineItem.getAmount();
+        }
+        return totalAmountCupcake;
     }
 
     public boolean isEmpty() {

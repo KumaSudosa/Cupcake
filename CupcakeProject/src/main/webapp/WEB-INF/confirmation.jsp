@@ -73,10 +73,17 @@
             <h2>Shoppingcart Info</h2><br>
             <b><%=shoppingCart.getCupcakeAmount()%> cupcakes</b> <br>
             <b>Totalpris: <%=shoppingCart.getTotalPrice()%>,-</b>
+            <%
+            String error = (String) request.getAttribute("error");
+            if(error == null){
+            %>
             <form action="FrontController" method="POST">
                 <input type="hidden" name="command" value="confirmation" />
                 <p align="center"> <input type="submit" value="Confirm Order"/></p>
             </form>
+            <%} else {%>
+            <h3 style="color:Tomato"><%=error%></h3>
+            <%}%>
         </div>
 
         <div align="center" style="float:left; width:25%; height:70%">

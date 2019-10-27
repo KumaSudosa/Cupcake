@@ -10,11 +10,13 @@ public class FrontpageCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
+        // Get parameters and set initial nextJspPage String
         String NextJspPage = "index";
         
-        HttpSession session = request.getSession();
-        session.setAttribute("user", null);
+        // Logic calls
+        request.getSession().setAttribute("user", null);
         
+        // Set Attributes and go to next Page
         return NextJspPage;
     }
 }

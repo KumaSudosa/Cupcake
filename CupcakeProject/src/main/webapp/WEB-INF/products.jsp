@@ -99,13 +99,6 @@
         </form>
         <br>
 
-        <%
-            if (request.getAttribute("error") != null) {
-                String errorMsg = (String) request.getAttribute("error");
-        %>
-        <h2 align="center"><%=errorMsg%></h2>
-        <%}%>
-
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="products" />
             <p align="center"> <input type="submit" value="Go to checkout"/></p>

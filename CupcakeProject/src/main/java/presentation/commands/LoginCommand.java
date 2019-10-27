@@ -17,15 +17,18 @@ public class LoginCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
+        
         User.createUsersFromDB();
+        
+        // Get parameters and set initial nextJspPage String
         String nextJspPage = "";
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-   
+        
+        // Logic calls
         try {
             User user = User.LoginUser(email, password);
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
+            request.getSession().setAttribute("user", user);
             
             if (email.equals("Marcus.Marcus@Marcus.dk")) {
                 ArrayList<Invoice> invoices = Invoice.getInvoices();

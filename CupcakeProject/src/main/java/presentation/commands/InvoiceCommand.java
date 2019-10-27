@@ -18,7 +18,12 @@ public class InvoiceCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
+        // Get parameters and set initial nextJspPage String
         String jspPage = "invoice";
+        
+        // Logic calls
+        
+        // Set Attributes and go to next Page
         return jspPage;
     }
     

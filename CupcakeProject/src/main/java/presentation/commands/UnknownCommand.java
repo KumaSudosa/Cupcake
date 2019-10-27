@@ -9,6 +9,7 @@ public class UnknownCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
+        // Get parameters and set initial nextJspPage String
         String msg = "Unknown command. Contact IT";
         throw new LoginException(msg);
     }
