@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import logic.Customer;
 import logic.User;
 import persistence.DB;
 
@@ -80,7 +81,7 @@ public class UserMapper implements UserMapperInterface {
     }
 
     @Override
-    public void insertUser(User user) {
+    public void insertUser(Customer user) {
 
         // currently it's not possible to create a new admin account, therefore the user is automatically given the role "customer"
         String sql = "INSERT INTO users (username, login, email, balance, role) "
@@ -95,7 +96,7 @@ public class UserMapper implements UserMapperInterface {
     }
 
     @Override
-    public void updateBalance(User user) {
+    public void updateBalance(Customer user) {
         String sql = "UPDATE users set balance = " + user.getBalance() + " WHERE email='" + user.getEmail() + "'";
 
         try {

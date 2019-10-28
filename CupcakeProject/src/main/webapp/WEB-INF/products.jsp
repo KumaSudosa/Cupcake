@@ -4,6 +4,7 @@
     Author     : Marcus
 --%>
 
+<%@page import="logic.Customer"%>
 <%@page import="logic.ShoppingCart"%>
 <%@page import="logic.User"%>
 <%@page import="logic.CupcakeTopping"%>
@@ -20,16 +21,32 @@
 
         <%
             User user = (User) session.getAttribute("user");
-            ShoppingCart cart = user.getShoppingCart();
+            boolean userLoggedIn = true;
+            boolean userIsCustomer = false;
+            boolean userIsAdmin = false;
+            Customer customer = null;
+            ShoppingCart cart = null;
+            if (user == null) {
+                userLoggedIn = false;
+            } else if (User.isUserCustomer(user)) {
+                userIsCustomer = true;
+                customer = (Customer) user;
+                cart = customer.getShoppingCart();
+            } else if (User.isUserAdmin(user)) {
+                userIsAdmin = true;
+            }
+
         %>
+        <% if (userLoggedIn) {%>
         <h5 align="right">
             You are logged in as:
             <br>
             <%=user.getUsername()%>
         </h5>
+        <% if (userIsCustomer) {%>
         <h5 align="right">
             Your balance is:
-            <%=user.getBalance()%> DKK
+            <%=customer.getBalance()%> DKK
             <br>
             Shopping cart:
             <%=cart.getCupcakeAmount()%> Cupcakes
@@ -37,6 +54,8 @@
             Shopping cart Total Price:
             <%=cart.getTotalPrice()%> Kr.
         </h5>
+        <%}%>
+        <%}%>
 
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="shoppage" />
@@ -59,7 +78,9 @@
                     <tr>
                         <td> <%=description%> </td>
                         <td align="center"> <%=price + ",-"%> </td>
+                        <%if (userIsCustomer) {%>
                         <td align="center"><input type="radio" name=bottomchoice value="<%=bottomID%>"></td>
+                        <%}%>
                     </tr>
                 </tbody>
                 <% } %>
@@ -86,7 +107,9 @@
                     <tr>
                         <td><%=description%></td>
                         <td align="center"><%=price + ",-"%></td>
+                        <%if (userIsCustomer) {%>
                         <td align="center"><input type="radio" name=toppingchoice value="<%=toppingID%>"></td>
+                        <%}%>
                     </tr>
                 </tbody>
                 <%}%>
@@ -95,15 +118,19 @@
 
             <br>
             <br>
+            <%if (userIsCustomer) {%>
             <p align="center"> Insert your quantity here:<input type="text" name=AmountOf value="1" size="1" style="text-align:center;"/><input type="submit" value="Add"/></p>
+            <%}%>
         </form>
         <br>
 
+        <%if (userIsCustomer) {%>
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="products" />
             <p align="center"> <input type="submit" value="Go to checkout"/></p>
         </form>
-
+        <%}%>
+        
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="goToJsp" />
             <input type="hidden" name="goToJsp" value="shoppage" />

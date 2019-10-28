@@ -4,7 +4,7 @@
     Author     : Marcus
 --%>
 
-<%@page import="logic.User"%>
+<%@page import="logic.Admin"%>
 <%@page import="persistence.mappers.InvoiceMapper"%>
 <%@page import="logic.Invoice"%>
 <%@page import="java.util.ArrayList"%>
@@ -19,12 +19,12 @@
         <h1 align='center'>Invoice list</h1>
         
         <%
-            User user = (User) session.getAttribute("user");
+            Admin admin = (Admin) session.getAttribute("user");
         %>
         <h5 align="right">
             You are logged in as:
             <br>
-            <%=user.getUsername()%>
+            <%=admin.getUsername()%>
             <br> 
             Admin account
         </h5>

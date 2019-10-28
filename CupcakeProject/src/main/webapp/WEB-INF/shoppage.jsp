@@ -4,6 +4,7 @@
     Author     : Marcus & Andreas
 --%>
 
+<%@page import="logic.Customer"%>
 <%@page import="logic.ShoppingCart"%>
 <%@page import="logic.CupcakeTopping"%>
 <%@page import="java.util.HashMap"%>
@@ -22,23 +23,42 @@
         
         <%
             User user = (User) session.getAttribute("user");
-            ShoppingCart cart = user.getShoppingCart();
+            boolean userLoggedIn = true;
+            boolean userIsCustomer = false;
+            boolean userIsAdmin = false;
+            Customer customer = null;
+            ShoppingCart cart = null;
+            if (user == null) {
+                userLoggedIn = false;
+            } else if (User.isUserCustomer(user)) {
+                userIsCustomer = true;
+                customer = (Customer) user;
+                cart = customer.getShoppingCart();
+            } else if (User.isUserAdmin(user)) {
+                userIsAdmin = true;
+            }
+
         %>
+        <% if (userLoggedIn) {%>
         <h5 align="right">
             You are logged in as:
             <br>
             <%=user.getUsername()%>
         </h5>
+        <% if (userIsCustomer) {%>
         <h5 align="right">
             Your balance is:
-            <%=user.getBalance()%> DKK
+            <%=customer.getBalance()%> DKK
             <br>
             Shopping cart:
-            <%=cart.getCupcakeAmount() %> Cupcakes
+            <%=cart.getCupcakeAmount()%> Cupcakes
             <br>
             Shopping cart Total Price:
             <%=cart.getTotalPrice()%> Kr.
         </h5>
+        <%}%>
+        <%}%>
+        <% if(userLoggedIn){%>
         <h5 align="right">
             <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="frontpage" />
@@ -49,10 +69,11 @@
                 alert("Logging you out now");
             }
             </script>
+                    
 
             </form>
         </h5>
-        
+        <%}%>
         <br>
         <br>
         
@@ -64,10 +85,11 @@
         <br>
         <br>
         
-        <!-- Ved godt den ikke virker korrekt! -->
+        <% if(userLoggedIn){%>
         <form action="FrontController" method="POST">
         <input type="hidden" name="command" value="invoice" />
         <p align="center"><input type="submit" value="Go to purchase history" style="height:50px; width:150px" /></p>
         </form>
+        <%}%>
     </body>
 </html>

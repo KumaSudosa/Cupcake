@@ -34,13 +34,13 @@ public class Invoice {
         this.lineItems = lineItems;
     }
     
-    public static Invoice convertShoppingCartToNewInvoiceFromUser(User user){
+    public static Invoice convertShoppingCartToNewInvoiceFromUser(Customer customer){
         int invoiceID = invoiceMapper.getNewHighestInvoiceNumber();
         String date = DateTimeFormatter.ofPattern("dd-MM-YYYY").format(LocalDate.now(ZoneId.of("Europe/Copenhagen")));
-        ArrayList<LineItem> lineItems = user.getShoppingCart().getLineItems();
-        Invoice newInvoice = new Invoice(invoiceID, user, date, lineItems);
-        user.payForShoppingCart();
-        user.getShoppingCart().emptyShoppingCart();
+        ArrayList<LineItem> lineItems = customer.getShoppingCart().getLineItems();
+        Invoice newInvoice = new Invoice(invoiceID, customer, date, lineItems);
+        customer.payForShoppingCart();
+        customer.getShoppingCart().emptyShoppingCart();
         invoiceMapper.uploadInvoice(newInvoice);
         invoices.add(newInvoice);
         return newInvoice;

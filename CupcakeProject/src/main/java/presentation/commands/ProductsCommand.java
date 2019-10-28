@@ -3,6 +3,7 @@ package presentation.commands;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.Customer;
 import logic.User;
 import presentation.Command;
 
@@ -17,22 +18,26 @@ public class ProductsCommand extends Command {
         String NextJspPage = "confirmation";
         User user = (User) request.getSession().getAttribute("user");
         String removeLineItemID = request.getParameter("removeCupcakeTopAndBottomID");
-        
+
         // Logic calls
-        if(removeLineItemID != null){
-            String[] lineItemIDs = removeLineItemID.split(":");
-            int removeBottomID = Integer.parseInt(lineItemIDs[0]);
-            int removeToppingID = Integer.parseInt(lineItemIDs[1]);
-            user.getShoppingCart().removeLineItemFromShoppingCart(removeToppingID, removeBottomID);
-        }
-        
-        // Set Attributes and go to next Page
-        if(user.getShoppingCart().isEmpty()){
-            request.setAttribute("error", "Nothing in shoppingcart to buy");
+        if (User.isUserCustomer(user)) {
+            Customer customer = (Customer) user;
+            
+            if (removeLineItemID != null) {
+                String[] lineItemIDs = removeLineItemID.split(":");
+                int removeBottomID = Integer.parseInt(lineItemIDs[0]);
+                int removeToppingID = Integer.parseInt(lineItemIDs[1]);
+                customer.getShoppingCart().removeLineItemFromShoppingCart(removeToppingID, removeBottomID);
+            }
+
+            // Set Attributes and go to next Page
+            if (customer.getShoppingCart().isEmpty()) {
+                request.setAttribute("error", "Nothing in shoppingcart to buy");
 //            NextJspPage = "products";
-        } else if (!user.canBalanceCoverPayment()) {
-            request.setAttribute("error", "Balance do not cover the the total price in the shoppingcart");
+            } else if (!customer.canBalanceCoverPayment()) {
+                request.setAttribute("error", "Balance do not cover the the total price in the shoppingcart");
 //            NextJspPage = "products";
+            }
         }
 
         return NextJspPage;

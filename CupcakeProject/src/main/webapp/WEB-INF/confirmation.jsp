@@ -4,9 +4,9 @@
     Author     : Marcus
 --%>
 
+<%@page import="logic.Customer"%>
 <%@page import="logic.LineItem"%>
 <%@page import="logic.ShoppingCart"%>
-<%@page import="logic.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,8 +16,8 @@
     </head>
     <body>
         <%
-            User user = (User) session.getAttribute("user");
-            ShoppingCart shoppingCart = user.getShoppingCart();
+            Customer customer = (Customer) session.getAttribute("user");
+            ShoppingCart shoppingCart = customer.getShoppingCart();
         %>
 
         <h1 align="center">Please confirm your Order</h1>

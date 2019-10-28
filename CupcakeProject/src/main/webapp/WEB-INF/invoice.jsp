@@ -18,25 +18,36 @@
     <body>
         <%
             User user = (User) session.getAttribute("user");
-            ArrayList<Invoice> invoiceList = Invoice.createCustomerInvoicesFromDB(user.getEmail());
+            ArrayList<Invoice> invoiceList = null;
+            int tableSize = 40;
+            if (User.isUserCustomer(user)) {
+                invoiceList = Invoice.createCustomerInvoicesFromDB(user.getEmail());
+            } else if (User.isUserAdmin(user)) {
+                invoiceList = Invoice.getInvoices();
+                tableSize = 60;
+            }
             String username = user.getUsername();
         %>
 
         <h1 align="center">Hello <%=username%></h1>
         <br>
-        <table border = "1" align = "center" style="width:40%">
+        <table border = "1" align = "center" style="width:<%=tableSize%>%">
             <thead>
                 <tr bgcolor = "#87E187">
                     <th style="width:15%">Invoices</th>
                     <th style="width:55%">Details</th>
                     <th style="width:15%">Order Date</th>
                     <th style="width:15%">Total Price</th>
+                    <%if(User.isUserAdmin(user)) {%>
+                    <th style="width:15%">Customer</th>
+                    <%}%>
                 </tr>
             </thead>
             <tbody>
                 <%
                     for (Invoice invoice : invoiceList) {
                         String id = Integer.toString(invoice.getInvoiceID());
+                        String customer = invoice.getUser().getEmail();
                         String date = invoice.getDate();
                         String totalPrice = Double.toString(invoice.getTotalPrice());
                 %>
@@ -62,6 +73,9 @@
                     </td>
                     <td align="center"><%=date%></td>
                     <td align="center"><%=totalPrice%>,-</td>
+                    <%if(User.isUserAdmin(user)) {%>
+                    <td align="center"><%=customer%></td>
+                    <%}%>
                 </tr>
                 <%}%>
             </tbody>

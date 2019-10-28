@@ -2,6 +2,7 @@ package persistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import logic.Customer;
 import logic.User;
 import persistence.mappers.UserMapperInterface;
 
@@ -33,7 +34,7 @@ public class FakeUserMapper implements UserMapperInterface {
     }
 
     @Override
-    public void insertUser(User user) {
+    public void insertUser(Customer user) {
 
         HashMap<String, String> map = new HashMap();
         map.put("username", user.getUsername());
@@ -44,7 +45,7 @@ public class FakeUserMapper implements UserMapperInterface {
     }
 
     @Override
-    public void updateBalance(User user) {
+    public void updateBalance(Customer user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

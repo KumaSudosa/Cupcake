@@ -3,6 +3,7 @@ package presentation.commands;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.Customer;
 import logic.Invoice;
 import logic.User;
 import presentation.Command;
@@ -16,10 +17,10 @@ public class ConfirmationCommand extends Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
         // Get parameters and set initial nextJspPage String
         String NextJspPage = "invoice";
-        User user = (User) request.getSession().getAttribute("user");
+        Customer customer = (Customer) request.getSession().getAttribute("user");
         
         // Logic calls
-        Invoice invoice = Invoice.convertShoppingCartToNewInvoiceFromUser(user);
+        Invoice invoice = Invoice.convertShoppingCartToNewInvoiceFromUser(customer);
         
         // Set Attributes and go to next Page
         return NextJspPage;

@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.security.auth.login.LoginException;
 import persistence.mappers.UserMapperInterface;
+import logic.Customer;
 
 /**
  *
  * @author Gruppe 3
  */
-public class User {
+public abstract class User {
 
     private String username;
     private String password;
     private String email;
-    private double balance;
     private String role;
-    private ShoppingCart shoppingCart;
+    private static final double newUserBalance = 50;
+
     private static UserMapperInterface userMapper;
     private static ArrayList<User> userList = new ArrayList();
 
@@ -34,12 +35,10 @@ public class User {
         throw new IllegalArgumentException("User not found in userList");
     }
 
-    public User(String username, String password, String email, double balance, String role) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.balance = balance;
-        this.role = role;
         userList.add(this);
     }
 
@@ -60,10 +59,14 @@ public class User {
             String username = map.get("username");
             String password = map.get("login");
             String email = map.get("email");
-            
+
             Double balance = Double.parseDouble(map.get("balance"));
             String role = map.get("role");
-            User user = new User(username, password, email, balance, role);
+            if (role.equals("a")) {
+                User user = new Admin(username, password, email);
+            } else if (role.equals("c")) {
+                User user = new Customer(username, password, email, balance);
+            }
         }
     }
 
@@ -78,10 +81,15 @@ public class User {
         for (User user : userList) {
             if (user.getEmail().toLowerCase().equals(email.toLowerCase())) {
                 if (user.getPassword().equals(password)) {
-                    if (user.shoppingCart == null) {
-                        user.shoppingCart = new ShoppingCart();
+                    if (User.isUserCustomer(user)) {
+                        Customer customer = (Customer) user;
+                        if (customer.getShoppingCart() == null) {
+                            customer.setShoppingCart(new ShoppingCart());
+                        }
+                        return user;
+                    } else if (User.isUserAdmin(user)) {
+                        return user;
                     }
-                    return user;
                 } else {
                     throw new LoginException("Wrong Password");
                 }
@@ -120,15 +128,8 @@ public class User {
         if (!password2.equals(password)) {
             throw new IllegalArgumentException("passwords do not match.");
         }
-        User newUser = new User(username, password, email, 0.0, "c");
-        userMapper.insertUser(newUser);
-    }
-
-    public boolean canBalanceCoverPayment() {
-        if (this.shoppingCart.getTotalPrice() > this.balance) {
-            return false;
-        }
-        return true;
+        Customer newCustomer = new Customer(username, password, email, newUserBalance);
+        userMapper.insertUser(newCustomer);
     }
 
     public static void pwCheck(String password) {
@@ -172,18 +173,16 @@ public class User {
         }
     }
 
-    public void payForShoppingCart() {
-        if (this.canBalanceCoverPayment()) {
-            double payment = shoppingCart.getTotalPrice();
-            this.balance -= payment;
-            userMapper.updateBalance(this);
-        } else {
-            // TODO: Throw error
-        }
+    public static boolean isUserCustomer(User user) {
+        return user.getClass() == Customer.class;
     }
 
-    public double getBalance() {
-        return balance;
+    public static boolean isUserAdmin(User user) {
+        return user.getClass() == Admin.class;
+    }
+
+    public static ArrayList<User> getUserListArray() {
+        return userList;
     }
 
     public String getUsername() {
@@ -197,12 +196,13 @@ public class User {
     public String getEmail() {
         return email;
     }
-    
+
     public String getRole() {
         return role;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public static UserMapperInterface getUserMapper() {
+        return userMapper;
     }
+
 }
