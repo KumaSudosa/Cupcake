@@ -28,6 +28,7 @@ public class UserMapper implements UserMapperInterface {
                 map.put("login", rs.getString("login"));
                 map.put("email", rs.getString("email"));
                 map.put("balance", rs.getString("balance"));
+                map.put("role", rs.getString("role"));
                 users.add(map);
             }
         } catch (SQLException ex) {
@@ -81,9 +82,10 @@ public class UserMapper implements UserMapperInterface {
     @Override
     public void insertUser(User user) {
 
-        String sql = "INSERT INTO users (username, login, email, balance) "
+        // currently it's not possible to create a new admin account, therefore the user is automatically given the role "customer"
+        String sql = "INSERT INTO users (username, login, email, balance, role) "
                 + "VALUES('" + user.getUsername() + "', '" + user.getPassword() + "', '"
-                + user.getEmail() + "', " + user.getBalance() + ")";
+                + user.getEmail() + "', " + user.getBalance() + ", 'c')";
 
         try {
             DB.getConnection().prepareStatement(sql).executeUpdate();

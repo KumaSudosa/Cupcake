@@ -15,6 +15,7 @@ public class User {
     private String password;
     private String email;
     private double balance;
+    private String role;
     private ShoppingCart shoppingCart;
     private static UserMapperInterface userMapper;
     private static ArrayList<User> userList = new ArrayList();
@@ -32,11 +33,12 @@ public class User {
         throw new IllegalArgumentException("User not found in userList");
     }
 
-    public User(String username, String password, String email, double balance) {
+    public User(String username, String password, String email, double balance, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.balance = balance;
+        this.role = role;
         userList.add(this);
     }
 
@@ -58,7 +60,8 @@ public class User {
             String password = map.get("login");
             String email = map.get("email");
             Double balance = Double.parseDouble(map.get("balance"));
-            User user = new User(username, password, email, balance);
+            String role = map.get("role");
+            User user = new User(username, password, email, balance, role);
         }
     }
 
@@ -71,7 +74,7 @@ public class User {
      */
     public static User LoginUser(String email, String password) throws LoginException {
         for (User user : userList) {
-            if (user.getEmail().equals(email)) {
+            if (user.getEmail().toLowerCase().equals(email.toLowerCase())) {
                 if (user.getPassword().equals(password)) {
                     if (user.shoppingCart == null) {
                         user.shoppingCart = new ShoppingCart();
@@ -115,7 +118,7 @@ public class User {
         if (!password2.equals(password)) {
             throw new IllegalArgumentException("passwords do not match.");
         }
-        User newUser = new User(username, password, email, 0.0);
+        User newUser = new User(username, password, email, 0.0, "c");
         userMapper.insertUser(newUser);
     }
 
@@ -192,9 +195,12 @@ public class User {
     public String getEmail() {
         return email;
     }
+    
+    public String getRole() {
+        return role;
+    }
 
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
-
 }
