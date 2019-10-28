@@ -44,6 +44,7 @@ public class UserTest {
     @Test
     public void testCreateUserConstructor() {
         //arrange
+        User.getUserList().clear();
         String brugerNavn = "cahit";
         String pw = "and51Ae";
         String mail = "cph@gmail.com";
@@ -64,6 +65,7 @@ public class UserTest {
     @Test(expected = IllegalArgumentException.class)
     public void testCreateUserMethodDublicateEmail() {
         //arrange
+        User.getUserList().clear();
         String brugerNavn = "andreas";
         String pw = "and51Ae";
         String mail = "cph@gmail.com";
@@ -74,6 +76,7 @@ public class UserTest {
     @Test(expected = IllegalArgumentException.class)
     public void testCreateUserPasswordMismatch() {
         //arrange
+        User.getUserList().clear();
         String brugerNavn = "Marcus";
         String pw = "and51Ae";
         String pw2 = "and51AE";
@@ -86,6 +89,7 @@ public class UserTest {
     @Test
     public void testCreateNewUser() {
         //arrange
+        User.getUserList().clear();
         String brugerNavn = "michael";
         String pw = "and51Ae";
         String mail = "cphmichael@mail.com";
@@ -100,6 +104,8 @@ public class UserTest {
 
     @Test
     public void testCreateUserFromDb() {
+        //arrange
+        User.getUserList().clear();
         //act
         User.createUsersFromDB();
         //assert
@@ -118,6 +124,8 @@ public class UserTest {
 
     @Test
     public void testMultipleCreatUserFromDbCalls() {
+        //arrange
+        User.getUserList().clear();
         //act
         for (int i = 0; i < 10; i++) {
             User.createUsersFromDB();

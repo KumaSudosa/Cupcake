@@ -18,8 +18,6 @@ public class LoginCommand extends Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
         
-        User.createUsersFromDB();
-        
         // Get parameters and set initial nextJspPage String
         String nextJspPage = "";
         String email = request.getParameter("email");

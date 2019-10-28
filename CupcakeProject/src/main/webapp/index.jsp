@@ -98,15 +98,15 @@
            <br>
         <form action="FrontController">
             <p align="center">
-            <input type="hidden" name="command" value="entry" />
-            <input type="hidden" name="entryType" value="login" />
+            <input type="hidden" name="command" value="goToJsp" />
+            <input type="hidden" name="goToJsp" value="login" />
             <input type="submit" value="Login" />
             </p>
         </form>
         <form action="FrontController">
             <p align="center">
-            <input type="hidden" name="command" value="entry" />
-            <input type="hidden" name="entryType" value="registration" />
+            <input type="hidden" name="command" value="goToJsp" />
+            <input type="hidden" name="goToJsp" value="registration" />
             <input align="center" type="submit" value="Create user" />
             </p>
         </form>

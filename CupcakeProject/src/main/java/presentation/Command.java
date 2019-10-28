@@ -3,17 +3,16 @@ package presentation;
 import presentation.commands.ConfirmationCommand;
 import presentation.commands.RegistrationCommand;
 import presentation.commands.ProductsCommand;
-import presentation.commands.EntryCommand;
 import presentation.commands.ShoppageCommand;
 import presentation.commands.LoginCommand;
 import presentation.commands.UnknownCommand;
 import presentation.commands.InvoiceCommand;
 import presentation.commands.FrontpageCommand;
+import presentation.commands.GoToJspCommand;
 import java.util.HashMap;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import presentation.commands.GoToShoppageCommand;
 
 public abstract class Command {
 
@@ -26,10 +25,9 @@ public abstract class Command {
         commands.put("products", new ProductsCommand());
         commands.put("confirmation", new ConfirmationCommand());
         commands.put("shoppage", new ShoppageCommand());
-        commands.put("entry", new EntryCommand());
         commands.put("invoice", new InvoiceCommand());
         commands.put("frontpage", new FrontpageCommand());
-        commands.put("goToShoppage", new GoToShoppageCommand());
+        commands.put("goToJsp", new GoToJspCommand());
     }
 
     public static Command from(HttpServletRequest request) {

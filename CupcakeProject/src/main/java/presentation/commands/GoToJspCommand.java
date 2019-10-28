@@ -14,17 +14,12 @@ import presentation.Command;
  *
  * @author Michael N. Korsgaard
  */
-public class GoToShoppageCommand extends Command{
+public class GoToJspCommand extends Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
-        // Get parameters and set initial nextJspPage String
-        String jspPage = "shoppage";
-        
-        // Logic calls
-        
-        // Set Attributes and go to next Page
-        return jspPage;
+        String nextJsp = request.getParameter("goToJsp");
+        return nextJsp;
     }
     
 }

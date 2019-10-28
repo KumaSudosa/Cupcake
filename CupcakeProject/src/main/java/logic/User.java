@@ -21,6 +21,7 @@ public class User {
 
     public static void setupMapper(UserMapperInterface mapper) {
         User.userMapper = mapper;
+        createUsersFromDB();
     }
 
     public static User getUserFromUserList(String email) {
@@ -57,6 +58,7 @@ public class User {
             String username = map.get("username");
             String password = map.get("login");
             String email = map.get("email");
+            
             Double balance = Double.parseDouble(map.get("balance"));
             User user = new User(username, password, email, balance);
         }
