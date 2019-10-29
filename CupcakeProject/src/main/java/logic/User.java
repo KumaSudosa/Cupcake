@@ -200,6 +200,10 @@ public abstract class User {
     public String getRole() {
         return role;
     }
+    
+    public double getNewUserBalance() {
+        return newUserBalance;
+    }
 
     public static UserMapperInterface getUserMapper() {
         return userMapper;

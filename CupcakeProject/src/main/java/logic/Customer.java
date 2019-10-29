@@ -1,17 +1,14 @@
 package logic;
 
 import javax.security.auth.login.LoginException;
-import static logic.User.createUsersFromDB;
 import static logic.User.getUserListArray;
-import persistence.mappers.UserMapperInterface;
 
 /**
- *
  * @author andre
  */
 public class Customer extends User {
 
-    private double balance;
+    private static double balance;
     private static ShoppingCart shoppingCart;
 
     public Customer(String username, String password, String email, double balance) {
@@ -52,7 +49,7 @@ public class Customer extends User {
         return true;
     }
 
-    public double getBalance() {
+    public static double getBalance() {
         return balance;
     }
 
