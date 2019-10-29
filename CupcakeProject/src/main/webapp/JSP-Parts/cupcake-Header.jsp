@@ -26,8 +26,8 @@
                             </li>
                         </c:if>
                         <li>
-
-                            <input type="hidden" name="command" value="logout" />
+                        <form action="FrontController">
+                        <input type="hidden" name="command" value="logout" />
                         <hoverEffect><input type="submit" value="logout"></hoverEffect>
                         </form>
                         </li>
