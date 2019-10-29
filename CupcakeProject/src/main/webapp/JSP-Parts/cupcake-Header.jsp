@@ -4,13 +4,19 @@
 <header>
     <div class="container">
         <logo>
-            <img class="logoImg" src="decorations/CupcakeLogo.png" />
+            <form action="FrontController">
+                <input type="hidden" name="command" value="goToJsp" />
+                <input type="hidden" name="goToJsp" value="index" />
+                <button>
+                    <img class="logoImg" src="decorations/CupcakeLogo.png" />
+                </button>
+            </form>
             <p>Gruppe 3's Cupcakes</p>
         </logo>
         <nav>
             <ul><c:choose>
                     <c:when test="${sessionScope.user != null}">
-                        
+
                         <li>
                             Logged in as: <c:out value="${sessionScope.user.getUsername()}"/>
                         </li>
@@ -20,10 +26,10 @@
                             </li>
                         </c:if>
                         <li>
-                            <form action="FrontController">
-                                <input type="hidden" name="command" value="logout" />
-                                <hoverEffect><input type="submit" value="logout"></hoverEffect>
-                            </form>
+
+                            <input type="hidden" name="command" value="logout" />
+                        <hoverEffect><input type="submit" value="logout"></hoverEffect>
+                        </form>
                         </li>
                     </c:when>
                     <c:otherwise>
