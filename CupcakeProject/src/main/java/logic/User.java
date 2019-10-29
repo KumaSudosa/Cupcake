@@ -60,12 +60,11 @@ public abstract class User {
             String username = map.get("username");
             String password = map.get("login");
             String email = map.get("email");
-
-            Double balance = Double.parseDouble(map.get("balance"));
             String role = map.get("role");
             if (role.equals("a")) {
                 User user = new Admin(username, password, email, role);
             } else if (role.equals("c")) {
+                Double balance = Double.parseDouble(map.get("balance"));
                 User user = new Customer(username, password, email, role, balance);
             }
         }

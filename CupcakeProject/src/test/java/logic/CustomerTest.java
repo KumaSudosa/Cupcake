@@ -37,7 +37,7 @@ public class CustomerTest {
     }
     
     
-     @Test
+    @Test
     public void testCreateNewCustomer() {
         //arrange
         User.getUserList().clear();
@@ -83,7 +83,7 @@ public class CustomerTest {
         assertTrue(expectedEmail.equals(result.getEmail()));
         assertTrue(expectedPassword.equals(result.getPassword()));
         assertEquals(expectedBalance, result.getNewUserBalance(), 50);
-        assertEquals(expectedRole, result.getRole(), "c");
+        assertTrue(expectedRole.equals(result.getRole()));
     }
     
     @Test
@@ -93,19 +93,20 @@ public class CustomerTest {
         String brugerNavn = "cahit";
         String pw = "and51Ae";
         String mail = "cph@gmail.com";
+        String role = "c";
         double funds = 50;
 
         //act
-        Customer result = new Customer(brugerNavn, pw, mail, funds);
+        Customer result = new Customer(brugerNavn, pw, mail, role, funds);
 
         //assert
         assertEquals(brugerNavn, result.getUsername());
         assertEquals(pw, result.getPassword());
         assertEquals(mail, result.getEmail());
+        assertEquals(role, result.getRole());
         assertEquals(funds, result.getNewUserBalance(), 0);
         assertEquals(1, User.getUserList().size());
     }
-    
     
     @Test
     public void testCorrectLoginCustomer() throws LoginException {
@@ -113,10 +114,10 @@ public class CustomerTest {
         String brugerNavn = "cahit";
         String pw = "and51Ae";
         String mail = "cph2@gmail.com";
-        double funds = 0;
+        double funds = 50;
         String role = "c";
         
-        Customer customer = new Customer(brugerNavn, pw, mail, funds);
+        Customer customer = new Customer(brugerNavn, pw, mail, role, funds);
         assertNull(customer.getShoppingCart());
 
         //act
@@ -133,10 +134,10 @@ public class CustomerTest {
         String brugerNavn = "cahit";
         String pw = "and51Ae";
         String mail = "cph2@gmail.com";
-        double funds = 0;
+        double funds = 50;
         String role = "c";
 
-        Customer customer = new Customer(brugerNavn, pw, mail, funds);
+        Customer customer = new Customer(brugerNavn, pw, mail, role, funds);
         User.LoginUser(mail, pw);
         ShoppingCart currentShoppingCart = customer.getShoppingCart();
 
@@ -146,5 +147,137 @@ public class CustomerTest {
         //assert
         assertEquals(customer, result);
         assertEquals(currentShoppingCart, customer.getShoppingCart());
+    }
+    
+    /* @Test
+    public void testPayForShoppingCart() {
+        
+    } */
+    
+    /* @Test
+    public void canBalanceCoverPayment() {
+        
+    } */
+    
+    
+    
+    @Test(expected = LoginException.class)
+    public void testWrongLoginPwCustomer() throws LoginException {
+        //arrange
+        String brugerNavn = "cahit";
+        String pw = "and51Ae";
+        String mail = "cph2@gmail.com";
+        String role = "c";
+        double funds = 50;
+        Customer result = new Customer(brugerNavn, pw, mail, role, funds);
+
+        //act
+        User.LoginUser(mail, "and63Jm");
+    }
+    
+    @Test(expected = LoginException.class)
+    public void testWrongLoginEmailCustomer() throws LoginException {
+        //arrange
+        String brugerNavn = "cahit";
+        String pw = "and51Ae";
+        String mail = "cph2@gmail.com";
+        String role = "c";
+        double funds = 50;
+        Customer result = new Customer(brugerNavn, pw, mail, role, funds);
+
+        //act
+        User.LoginUser("cph2@hotmail.com", pw);
+    }
+    
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCustomerMethodDublicateEmail() {
+        //arrange
+        User.getUserList().clear();
+        String brugerNavn = "andreas";
+        String pw = "and51Ae";
+        String mail = "cph@gmail.com";
+
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCustomerNoUppercaseInPw() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "hej123";
+        String mail = "cph2@gmail.com";
+
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCustomerNoLowercaseInPw() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "HEJ123";
+        String mail = "cph2@gmail.com";
+
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCustomerNoNumbersInPw() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "hejHej";
+        String mail = "cph2@gmail.com";
+
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCustomerWithNoPw() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "      ";
+        String mail = "cph2@gmail.com";
+
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCustomerPwTooLong() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "D3tteEr21TegnLangt1kk";
+        String mail = "cph2@gmail.com";
+
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCustomerPwTooShort() {
+        //arrange
+        String brugerNavn = "Malte";
+        String pw = "aB1";
+        String mail = "cph2@gmail.com";
+
+        //act
+        User.RegisterUser(brugerNavn, pw, pw, mail);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreateCustomerPasswordMismatch() {
+        //arrange
+        User.getUserList().clear();
+        String brugerNavn = "Marcus";
+        String pw = "and51Ae";
+        String pw2 = "and51AE";
+        String mail = "marc@hotmail.com";
+
+        //act
+        User.RegisterUser(brugerNavn, pw, pw2, mail);
     }
 }

@@ -106,6 +106,10 @@ public class Invoice {
     private void addLineItemToInvoice(LineItem lineItem){
         lineItems.add(lineItem);
     }
+    
+    public static void emptyInvoiceList(){
+        invoices.clear();
+    }
 
     public static void setupInvoiceMapper(InvoiceMapperInterface mapper) {
         invoiceMapper = mapper;

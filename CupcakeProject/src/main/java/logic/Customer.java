@@ -16,22 +16,6 @@ public class Customer extends User {
         this.balance = balance;
     }
 
-    public static User LoginUser(String email, String password) throws LoginException {
-        for (User user : getUserListArray()) {
-            if (user.getEmail().toLowerCase().equals(email.toLowerCase())) {
-                if (user.getPassword().equals(password)) {
-                    if (getShoppingCart() == null) {
-                        ShoppingCart cart = new ShoppingCart();
-                    }
-                    return user;
-                } else {
-                    throw new LoginException("Wrong Password");
-                }
-            }
-        }
-        throw new LoginException("No Matching Email");
-    }
-
     public void payForShoppingCart() {
         if (this.canBalanceCoverPayment()) {
             double payment = getShoppingCart().getTotalPrice();
