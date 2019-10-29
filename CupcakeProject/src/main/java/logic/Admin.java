@@ -14,7 +14,8 @@ public class Admin extends User{
     }
     
     public void changeCustomerBalance(Customer user, int newBalance) {
-        
+        user.setBalance(newBalance);
+        User.getUserMapper().updateBalance(user);
     }
     
 }

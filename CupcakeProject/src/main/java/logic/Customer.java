@@ -64,4 +64,8 @@ public class Customer extends User {
         Customer.shoppingCart = shoppingCart;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+    
 }
