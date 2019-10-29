@@ -8,8 +8,8 @@ import javax.security.auth.login.LoginException;
  */
 public class Admin extends User{
     
-    public Admin(String username, String password, String email) {
-        super(username, password, email);
+    public Admin(String username, String password, String email, String role) {
+        super(username, password, email, role);
     }
     
 }

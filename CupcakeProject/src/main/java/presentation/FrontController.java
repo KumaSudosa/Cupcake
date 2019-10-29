@@ -18,40 +18,41 @@ import persistence.mappers.InvoiceMapper;
 import persistence.mappers.InvoiceMapperInterface;
 import persistence.mappers.UserMapperInterface;
 
- /*
+/*
  @author Gruppe 3
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
-    
+
     private static boolean needSetup = true;
-    
-    public static void setup(){
-        UserMapperInterface userMapper = new UserMapper();
-        User.setupMapper(userMapper);
-        
-        CupcakeMapperInterface cupcakeMapper = new CupcakeMapper();
-        CupcakeBottom.setupMapper(cupcakeMapper);
-        CupcakeTopping.setupMapper(cupcakeMapper);
-        
-        InvoiceMapperInterface invoiceMapper = new InvoiceMapper();
-        Invoice.setupInvoiceMapper(invoiceMapper);
-        
-        needSetup = false;
+
+    public static void setup() {
+        if (needSetup) {
+            UserMapperInterface userMapper = new UserMapper();
+            User.setupMapper(userMapper);
+
+            CupcakeMapperInterface cupcakeMapper = new CupcakeMapper();
+            CupcakeBottom.setupMapper(cupcakeMapper);
+            CupcakeTopping.setupMapper(cupcakeMapper);
+
+            InvoiceMapperInterface invoiceMapper = new InvoiceMapper();
+            Invoice.setupInvoiceMapper(invoiceMapper);
+
+            needSetup = false;
+        }
+
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(needSetup){
-            setup();
-        }
+        setup();
         try {
             Command cmd = Command.from(request);
             String view = cmd.execute(request, response);
-            if(view.equals("index")){
+            if (view.equals("index")) {
                 request.getRequestDispatcher(view + ".jsp").forward(request, response);
             } else {
-                request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);                
+                request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
             }
         } catch (LoginException ex) {
             request.setAttribute("error", ex.getMessage());
