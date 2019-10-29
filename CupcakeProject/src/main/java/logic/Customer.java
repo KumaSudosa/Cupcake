@@ -8,7 +8,7 @@ import static logic.User.getUserListArray;
  */
 public class Customer extends User {
 
-    private static double balance;
+    private double balance;
     private static ShoppingCart shoppingCart;
 
     public Customer(String username, String password, String email, String role, double balance) {
@@ -42,7 +42,7 @@ public class Customer extends User {
         throw new IllegalArgumentException("Email did not belong to a customer");
     }
 
-    public static double getBalance() {
+    public double getBalance() {
         return balance;
     }
 
