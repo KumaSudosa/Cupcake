@@ -18,9 +18,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Shop page</title>
+        <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
     </head>
     <body>
-        
+        <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
         <%
             User user = (User) session.getAttribute("user");
             boolean userLoggedIn = true;
@@ -58,37 +59,37 @@
         </h5>
         <%}%>
         <%}%>
-        <% if(userLoggedIn){%>
+        <% if (userLoggedIn) {%>
         <h5 align="right">
             <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="frontpage" />
-            
-            <button onclick="myFunction()">Logout</button>
-            <script>
-            function myFunction() {
-                alert("Logging you out now");
-            }
-            </script>
-                    
+                <input type="hidden" name="command" value="logout" />
+
+                <button onclick="myFunction()">Logout</button>
+                <script>
+                    function myFunction() {
+                        alert("Logging you out now");
+                    }
+                </script>
+
 
             </form>
         </h5>
         <%}%>
         <br>
         <br>
-        
+
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="shoppage" />
             <p align="center"><input type="submit" value="Go to products page" style="height:50px; width:150px" /></p>
         </form>
-        
+
         <br>
         <br>
-        
-        <% if(userLoggedIn){%>
+
+        <% if (userLoggedIn) {%>
         <form action="FrontController" method="POST">
-        <input type="hidden" name="command" value="invoice" />
-        <p align="center"><input type="submit" value="Go to purchase history" style="height:50px; width:150px" /></p>
+            <input type="hidden" name="command" value="invoice" />
+            <p align="center"><input type="submit" value="Go to purchase history" style="height:50px; width:150px" /></p>
         </form>
         <%}%>
     </body>

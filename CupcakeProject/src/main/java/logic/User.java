@@ -35,10 +35,11 @@ public abstract class User {
         throw new IllegalArgumentException("User not found in userList");
     }
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = role;
         userList.add(this);
     }
 
@@ -63,9 +64,9 @@ public abstract class User {
             Double balance = Double.parseDouble(map.get("balance"));
             String role = map.get("role");
             if (role.equals("a")) {
-                User user = new Admin(username, password, email);
+                User user = new Admin(username, password, email, role);
             } else if (role.equals("c")) {
-                User user = new Customer(username, password, email, balance);
+                User user = new Customer(username, password, email, role, balance);
             }
         }
     }
@@ -128,7 +129,7 @@ public abstract class User {
         if (!password2.equals(password)) {
             throw new IllegalArgumentException("passwords do not match.");
         }
-        Customer newCustomer = new Customer(username, password, email, newUserBalance);
+        Customer newCustomer = new Customer(username, password, email, "c", newUserBalance);
         userMapper.insertUser(newCustomer);
     }
 

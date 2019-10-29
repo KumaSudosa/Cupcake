@@ -11,8 +11,8 @@ public class Customer extends User {
     private static double balance;
     private static ShoppingCart shoppingCart;
 
-    public Customer(String username, String password, String email, double balance) {
-        super(username, password, email);
+    public Customer(String username, String password, String email, String role, double balance) {
+        super(username, password, email, role);
         this.balance = balance;
     }
 
@@ -61,4 +61,8 @@ public class Customer extends User {
         Customer.shoppingCart = shoppingCart;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+    
 }

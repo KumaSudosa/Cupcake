@@ -1,6 +1,7 @@
 package logic;
 
 import javax.security.auth.login.LoginException;
+import persistence.mappers.UserMapper;
 
 /**
  *
@@ -8,8 +9,13 @@ import javax.security.auth.login.LoginException;
  */
 public class Admin extends User{
     
-    public Admin(String username, String password, String email) {
-        super(username, password, email);
+    public Admin(String username, String password, String email, String role) {
+        super(username, password, email, role);
+    }
+    
+    public void changeCustomerBalance(Customer user, int newBalance) {
+        user.setBalance(newBalance);
+        User.getUserMapper().updateBalance(user);
     }
     
 }
