@@ -13,6 +13,7 @@ import java.util.HashMap;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import presentation.commands.AdminFunctionsCommand;
 
 public abstract class Command {
 
@@ -28,6 +29,7 @@ public abstract class Command {
         commands.put("invoice", new InvoiceCommand());
         commands.put("logout", new LogoutCommand());
         commands.put("goToJsp", new GoToJspCommand());
+        commands.put("adminfunctions", new AdminFunctionsCommand());
     }
 
     public static Command from(HttpServletRequest request) {

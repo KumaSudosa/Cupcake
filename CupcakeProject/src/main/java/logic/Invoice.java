@@ -46,7 +46,7 @@ public class Invoice {
         return newInvoice;
     }
 
-    public static ArrayList<Invoice> createCustomerInvoicesFromDB(String email) {
+    public static ArrayList<Invoice> createCustomerInvoicesFromDB(String email) throws IllegalArgumentException {
         ArrayList<Invoice> result = new ArrayList();
         ArrayList<HashMap<String, String>> list = invoiceMapper.getInvoicesForCustomer(email);
         for (HashMap<String, String> map : list) {
@@ -66,7 +66,7 @@ public class Invoice {
         return result;
     }
     
-    public static void createAdminInvoicesFromDB() {
+    public static void createAdminInvoicesFromDB() throws IllegalArgumentException {
         invoices.clear();
         ArrayList<HashMap<String, String>> list = invoiceMapper.getInvoicesForAdmin();
         for (HashMap<String, String> map : list) {
@@ -105,6 +105,10 @@ public class Invoice {
     
     private void addLineItemToInvoice(LineItem lineItem){
         lineItems.add(lineItem);
+    }
+    
+    public static void emptyInvoiceList(){
+        invoices.clear();
     }
 
     public static void setupInvoiceMapper(InvoiceMapperInterface mapper) {

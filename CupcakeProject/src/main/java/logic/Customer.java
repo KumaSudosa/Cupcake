@@ -1,38 +1,19 @@
 package logic;
 
 import javax.security.auth.login.LoginException;
-import static logic.User.createUsersFromDB;
 import static logic.User.getUserListArray;
-import persistence.mappers.UserMapperInterface;
 
 /**
- *
  * @author andre
  */
 public class Customer extends User {
 
-    private double balance;
+    private static double balance;
     private static ShoppingCart shoppingCart;
 
     public Customer(String username, String password, String email, String role, double balance) {
         super(username, password, email, role);
         this.balance = balance;
-    }
-
-    public static User LoginUser(String email, String password) throws LoginException {
-        for (User user : getUserListArray()) {
-            if (user.getEmail().toLowerCase().equals(email.toLowerCase())) {
-                if (user.getPassword().equals(password)) {
-                    if (getShoppingCart() == null) {
-                        ShoppingCart cart = new ShoppingCart();
-                    }
-                    return user;
-                } else {
-                    throw new LoginException("Wrong Password");
-                }
-            }
-        }
-        throw new LoginException("No Matching Email");
     }
 
     public void payForShoppingCart() {
@@ -51,8 +32,17 @@ public class Customer extends User {
         }
         return true;
     }
+    
+    public static Customer findCustomerOnEmail(String email) throws IllegalArgumentException {
+        User user = User.getUserFromUserList(email);
+        if(User.isUserCustomer(user)) {
+            Customer customer = (Customer) user;
+            return customer;
+        }
+        throw new IllegalArgumentException("Email did not belong to a customer");
+    }
 
-    public double getBalance() {
+    public static double getBalance() {
         return balance;
     }
 

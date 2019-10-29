@@ -4,6 +4,7 @@
     Author     : Michael N. Korsgaard
 --%>
 
+<%@page import="logic.Admin"%>
 <%@page import="logic.LineItem"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="logic.Invoice"%>
@@ -22,8 +23,10 @@
             int tableSize = 40;
             if (User.isUserCustomer(user)) {
                 invoiceList = Invoice.createCustomerInvoicesFromDB(user.getEmail());
+                
             } else if (User.isUserAdmin(user)) {
-                invoiceList = Invoice.getInvoices();
+                Admin admin = (Admin) user;
+                invoiceList = admin.getInvoices();
                 tableSize = 60;
             }
             String username = user.getUsername();

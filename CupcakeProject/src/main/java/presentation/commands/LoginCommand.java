@@ -28,9 +28,8 @@ public class LoginCommand extends Command {
             User user = User.LoginUser(email, password);
             request.getSession().setAttribute("user", user);
             
-            if (email.equals("Marcus.Marcus@Marcus.dk")) {
-                ArrayList<Invoice> invoices = Invoice.getInvoices();
-                request.setAttribute("invoices", invoices);
+            if (User.isUserAdmin(user)) {
+                
                 nextJspPage = "admin";
             } else {
                 nextJspPage = "shoppage"; 
