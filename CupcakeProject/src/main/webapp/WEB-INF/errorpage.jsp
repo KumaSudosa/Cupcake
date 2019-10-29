@@ -10,8 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
     </head>
     <body>
+        <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
         <h1>ERROR</h1>
     </body>
 </html>

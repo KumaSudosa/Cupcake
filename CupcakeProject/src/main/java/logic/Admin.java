@@ -9,8 +9,8 @@ import persistence.mappers.UserMapper;
  */
 public class Admin extends User{
     
-    public Admin(String username, String password, String email) {
-        super(username, password, email);
+    public Admin(String username, String password, String email, String role) {
+        super(username, password, email, role);
     }
     
     public void changeCustomerBalance(Customer user, int newBalance) {

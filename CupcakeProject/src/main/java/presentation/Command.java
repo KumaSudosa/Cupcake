@@ -7,7 +7,7 @@ import presentation.commands.ShoppageCommand;
 import presentation.commands.LoginCommand;
 import presentation.commands.UnknownCommand;
 import presentation.commands.InvoiceCommand;
-import presentation.commands.FrontpageCommand;
+import presentation.commands.LogoutCommand;
 import presentation.commands.GoToJspCommand;
 import java.util.HashMap;
 import javax.security.auth.login.LoginException;
@@ -26,7 +26,7 @@ public abstract class Command {
         commands.put("confirmation", new ConfirmationCommand());
         commands.put("shoppage", new ShoppageCommand());
         commands.put("invoice", new InvoiceCommand());
-        commands.put("frontpage", new FrontpageCommand());
+        commands.put("logout", new LogoutCommand());
         commands.put("goToJsp", new GoToJspCommand());
     }
 
