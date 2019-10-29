@@ -32,6 +32,15 @@ public class Customer extends User {
         }
         return true;
     }
+    
+    public static Customer findCustomerOnEmail(String email) throws IllegalArgumentException {
+        User user = User.getUserFromUserList(email);
+        if(User.isUserCustomer(user)) {
+            Customer customer = (Customer) user;
+            return customer;
+        }
+        throw new IllegalArgumentException("Email did not belong to a customer");
+    }
 
     public static double getBalance() {
         return balance;

@@ -26,7 +26,7 @@ public abstract class User {
         createUsersFromDB();
     }
 
-    public static User getUserFromUserList(String email) {
+    public static User getUserFromUserList(String email) throws IllegalArgumentException {
         for (User user : userList) {
             if (user.getEmail().equals(email)) {
                 return user;
