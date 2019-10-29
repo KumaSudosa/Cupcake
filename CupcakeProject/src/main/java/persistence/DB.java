@@ -2,6 +2,7 @@ package persistence;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class DB {
 
     public static Connection getConnection() throws SQLException {
 
-        try (FileInputStream f = (FileInputStream) DB.class.getResourceAsStream("/db.properties")) {
+        try (InputStream f = DB.class.getResourceAsStream("/db.properties")) {
             Properties pros = new Properties();
             pros.load(f);
             URL = pros.getProperty("url");
