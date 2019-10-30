@@ -16,12 +16,18 @@
     <head>
         <style>
             .square {
-                height: 35px;
-                width: 200px;
+                height: 50px;
+                width: 230px;
                 background-color: #b9ffb9;
                 text-align: left;
                 margin-bottom: 20px;
                 margin-top: 50px;
+                border: 1px solid #444;
+            }
+            body {
+                background-image: url("decorations/linesBackground.png");
+                background-repeat: repeat;
+                background-attachment: fixed;
             }
         </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,34 +51,37 @@
                 cart = customer.getShoppingCart();
             } else if (User.isUserAdmin(user)) {
                 userIsAdmin = true;
-            } 
+            }
         %>
-        
+
         <% if (userLoggedIn) {
-           if (userIsCustomer) {%>
-        
+                if (userIsCustomer) {%>
+
         <div  style="float:right; width: 15%; padding-bottom: 20px; padding-right: 50px">
-        <h5 class="square" align="right">
-            Shopping cart:
-            <%=cart.getCupcakeAmount()%> Cupcakes
-            <br>
-            Shopping cart Total Price:
-            <%=cart.getTotalPrice()%> Kr.
-        </h5>
-        <%}%>
-        <%}%>
+            <h5 class="square" align="right" border="">
+                Your balance:
+                <%=customer.getBalance()%> Kr.
+                <br>
+                Shopping cart:
+                <%=cart.getCupcakeAmount()%> Cupcakes
+                <br>
+                Shopping cart Total Price:
+                <%=cart.getTotalPrice()%> Kr.
+            </h5>
+            <%}%>
+            <%}%>
         </div>
-        
-      <!--  <form action="FrontController" method="POST"> -->
-            <!-- <input type="hidden" name="command" value="shoppage" /> -->
-            <table align="center" border = "1" width = "15%" style="margin-left: 653px">
+
+        <form action="FrontController" method="POST"> 
+            <input type="hidden" name="command" value="shoppage" /> 
+            <table align="center" border = "1" width = "15%" style="margin-left: 653px" bgcolor="fffef2">
                 <thead>
                     <tr bgcolor = "#87E187">
                         <td>Bottoms</td>
                         <td>Price</td>
                     </tr>
                 </thead>
-        
+
                 <tbody>
                     <%
                         ArrayList<CupcakeBottom> cupcakeBottomList = (ArrayList<CupcakeBottom>) CupcakeBottom.getCupcakeBottomsList();
@@ -86,7 +95,7 @@
                         <td align="center"> <%=price + ",-"%> </td>
                         <%if (userIsCustomer) {%>
                         <td align="center"><input type="radio" name=bottomchoice value="<%=bottomID%>"></td>
-                        <%}%>
+                            <%}%>
                     </tr>
                 </tbody>
                 <% } %>
@@ -94,7 +103,7 @@
 
             <br>
 
-            <table align="center" border = "1" width = "15%">
+            <table align="center" border = "1" width = "15%" bgcolor="fffef2">
                 <thead>
                     <tr bgcolor = "#87E187">
                         <td>Toppings</td>
@@ -115,7 +124,7 @@
                         <td align="center"><%=price + ",-"%></td>
                         <%if (userIsCustomer) {%>
                         <td align="center"><input type="radio" name=toppingchoice value="<%=toppingID%>"></td>
-                        <%}%>
+                            <%}%>
                     </tr>
                 </tbody>
                 <%}%>
@@ -126,15 +135,14 @@
             <br>
             <%if (userIsCustomer) {%>
             <p align="center"> Insert your quantity here:<input type="text" name=AmountOf value="1" size="1" style="text-align:center;"/><input type="submit" value="Add"/></p>
-            <%}%>
+                <%}%>
         </form>
+        <%if (request.getAttribute("error") != null) {
+                String errorMsg = (String) request.getAttribute("error");
+        %>
+        <h2 align="center"><%=errorMsg%></h2>
+        <%}%>
         <br>
 
-        
-        <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="goToJsp" />
-            <input type="hidden" name="goToJsp" value="shoppage" />
-            <p align="center"> <input type="submit" value="Go back to shoppage"/></p>
-        </form>
     </body>
 </html>

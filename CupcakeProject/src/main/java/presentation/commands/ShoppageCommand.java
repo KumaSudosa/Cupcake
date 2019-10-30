@@ -27,12 +27,16 @@ public class ShoppageCommand extends Command {
             if (toppingString != null && bottomString != null && amountString != null) {
                 int topping = Integer.parseInt(toppingString);
                 int bottom = Integer.parseInt(bottomString);
-                int amount = Integer.parseInt(amountString);
                 try {
+                    int amount = Integer.parseInt(amountString);
                     customer.getShoppingCart().addLineItemsToShoppingCart(topping, bottom, amount);
                 } // Set Attributes and go to next Page
                 catch (IllegalArgumentException ex) {
-                    request.setAttribute("error", ex.getMessage());
+                    if (ex instanceof NumberFormatException) {
+                        request.setAttribute("error", "Please write a number");
+                    } else {
+                        request.setAttribute("error", ex.getMessage());
+                    }
                 }
             }
         }

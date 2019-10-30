@@ -14,6 +14,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>confirmation</title>
         <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
+        <style>
+            body {
+                background-image: url("decorations/linesBackground.png");
+                background-repeat: repeat;
+                background-attachment: fixed;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
@@ -32,7 +39,7 @@
 
         <!-- This div will hold the table for the shopping cart -->
         <div align="center" style="float:left; width:40%; height:70%">
-            <table align="center" border = "1" style="float:right; width:65%">
+            <table align="center" border = "1" style="float:right; width:65%" bgcolor="fffef2">
                 <thead>
                     <tr bgcolor = "#87E187">
                         <td>Cupcake</td>

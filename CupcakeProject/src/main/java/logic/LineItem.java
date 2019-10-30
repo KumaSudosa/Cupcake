@@ -7,7 +7,7 @@ public class LineItem {
     private int amount;
     private double cupcakePrice;
     private double subTotalPrice;
-    private static final int MAX_AMOUNT = 999;
+    private static final int MAX_AMOUNT = 1000;
     private static final int MIN_AMOUNT = 1;
 
     private LineItem(int cupcakeToppingID, int cupcakeBottomID, int amount) {
