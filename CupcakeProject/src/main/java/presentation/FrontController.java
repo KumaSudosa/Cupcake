@@ -1,7 +1,6 @@
 package presentation;
 
 import java.io.IOException;
-import javax.security.auth.login.LoginException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +52,7 @@ public class FrontController extends HttpServlet {
             } else {
                 request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
             }
-        } catch (LoginException ex) {
+        } catch (Exception ex) {
             request.setAttribute("error", ex.getMessage());
             request.getRequestDispatcher("/WEB-INF/errorpage.jsp").forward(request, response);
         }
