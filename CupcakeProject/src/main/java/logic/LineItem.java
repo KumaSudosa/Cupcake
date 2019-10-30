@@ -85,6 +85,4 @@ public class LineItem {
     public String toString() {
         return cupcakeBottom.getCupcakeBottomDescription() + " with " + cupcakeTopping.getCupcakeToppingDescription();
     }
-    
-    
 }

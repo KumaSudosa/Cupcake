@@ -39,7 +39,6 @@ public class ProductsCommand extends Command {
 //            NextJspPage = "products";
             }
         }
-
         return NextJspPage;
     }
 }

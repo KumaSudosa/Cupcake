@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.Customer;
 import logic.Invoice;
-import logic.User;
 import presentation.Command;
 
 /**

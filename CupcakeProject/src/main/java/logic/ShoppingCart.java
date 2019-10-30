@@ -7,10 +7,8 @@ public class ShoppingCart {
     private static ArrayList<ShoppingCart> shoppingCarts = new ArrayList();
     private static ArrayList<LineItem> lineItems;
     private double totalPrice;
-    private int cupcakeAmount;
 
     public ShoppingCart() {
-        //TODO pull highest inVoiceNr from Mapper, and remove static variable HighestInvoiceNr
         this.lineItems = new ArrayList();
         this.totalPrice = 0;
     }
@@ -73,10 +71,6 @@ public class ShoppingCart {
         this.totalPrice = newTotalPrice;
     }
 
-    private void displayShoppingCartTotalPrice() {
-
-    }
-
     public static ArrayList<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
     }
@@ -104,5 +98,4 @@ public class ShoppingCart {
         }
         return true;
     }
-
 }

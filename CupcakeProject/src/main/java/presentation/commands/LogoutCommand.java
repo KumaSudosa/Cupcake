@@ -3,7 +3,6 @@ package presentation.commands;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import presentation.Command;
 
 public class LogoutCommand extends Command {
