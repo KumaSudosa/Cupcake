@@ -17,37 +17,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>admin page</title>
         <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
+        <style>
+            body {
+                background-image: url("decorations/linesBackground.png");
+                background-repeat: repeat;
+                background-attachment: fixed;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
-        <h1 align='center'>Invoice list</h1>
+        <h1 align='center'>Admin Control Panel</h1>
 
         <%
             Admin admin = (Admin) session.getAttribute("user");
         %>
-        <h5 align="right">
-            You are logged in as:
-            <br>
-            <%=admin.getUsername()%>
-            <br> 
-            Admin account
-        </h5>
-
+        <br>
+        <br>
         <h5 align="right">
             <form action="FrontController" method="POST">
                 <input type="hidden" name="command" value="frontpage" />
 
-                <button onclick="myFunction()">Logout</button>
-                <script>
-                    function myFunction() {
-                        alert("Logging you out now");
-                    }
-                </script>
-
             </form>
         </h5>
         <form action="FrontController">
-            <table border = "1" style="float: left; width:40%; margin-left: 10%; margin-right: 10%">
+            <table border = "1" style="float: left; width:40%; margin-left: 10%; margin-right: 10%" bgcolor="fffef2">
                 <thead>
                     <tr bgcolor = "#87E187">
                         <td>E-mail</td>

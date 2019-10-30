@@ -18,6 +18,8 @@ public class ProductsCommand extends Command {
         String NextJspPage = "confirmation";
         User user = (User) request.getSession().getAttribute("user");
         String removeLineItemID = request.getParameter("removeCupcakeTopAndBottomID");
+        String a = request.getParameter("AmountOf");
+        
 
         // Logic calls
         if (User.isUserCustomer(user)) {
@@ -32,12 +34,13 @@ public class ProductsCommand extends Command {
 
             // Set Attributes and go to next Page
             if (customer.getShoppingCart().isEmpty()) {
-                request.setAttribute("error", "Nothing in shoppingcart to buy");
+                request.setAttribute("error", "Nothing in shopping cart to buy");
 //            NextJspPage = "products";
             } else if (!customer.canBalanceCoverPayment()) {
-                request.setAttribute("error", "Balance do not cover the the total price in the shoppingcart");
+                request.setAttribute("error", "Balance does not cover the total price in the shopping cart");
 //            NextJspPage = "products";
             }
+            
         }
         return NextJspPage;
     }

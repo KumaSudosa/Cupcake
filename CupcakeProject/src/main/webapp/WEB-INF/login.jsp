@@ -12,6 +12,13 @@ Author     : Michael
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>login </title>
         <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
+        <style>
+            body {
+                background-image: url("decorations/linesBackground.png");
+                background-repeat: repeat;
+                background-attachment: fixed;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>

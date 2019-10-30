@@ -49,7 +49,12 @@
                         <li>
                             <form action="FrontController" method="POST">
                                 <input type="hidden" name="command" value="logout" />
-                                <hoverEffect><input type="submit" value="logout"></hoverEffect>
+                                <hoverEffect onclick="myFunction()"><input type="submit" value="logout"></hoverEffect>
+                                <script>
+                                    function myFunction() {
+                                        alert("Logging you out now");
+                                    }
+                                </script>
                             </form>
                         </li>
                     </c:when>

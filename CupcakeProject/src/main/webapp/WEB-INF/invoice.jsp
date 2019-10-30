@@ -16,6 +16,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Invoices</title>
         <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
+        <style>
+            body {
+                background-image: url("decorations/linesBackground.png");
+                background-repeat: repeat;
+                background-attachment: fixed;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
@@ -33,10 +40,13 @@
             }
             String username = user.getUsername();
         %>
-
+        <%if(User.isUserAdmin(user)) {%>
+        <h1 align="center">All Invoices</h1>
+        <%} else{%>
         <h1 align="center">Hello <%=username%></h1>
+        <%}%>
         <br>
-        <table border = "1" align = "center" style="width:<%=tableSize%>%">
+        <table border = "1" align = "center" style="width:<%=tableSize%>%" bgcolor="fffef2">
             <thead>
                 <tr bgcolor = "#87E187">
                     <th style="width:15%">Invoices</th>
@@ -59,7 +69,7 @@
                 <tr>
                     <td align="center"><%=id%></td>
                     <td align="center">
-                        <table style="width:100%">
+                        <table style="width:100%" bgcolor="fffef2">
                             <tbody>
                                 <%
                                     for (LineItem lineItem : invoice.getLineItems()) {
@@ -89,7 +99,11 @@
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="goToJsp" />
             <input type="hidden" name="goToJsp" value="userPage" />
-            <p align="center"> <input type="submit" value="Go back to shoppage"/></p>
+            <%if(User.isUserAdmin(user)){%>
+            <p align="center"> <input type="submit" value="Go back to control panel"/></p>
+            <%} else {%>
+            <p align="center"> <input type="submit" value="Go back to shop page"/></p>
+            <%}%>
         </form>
 
 
