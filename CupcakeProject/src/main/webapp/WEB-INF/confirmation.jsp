@@ -29,7 +29,11 @@
             ShoppingCart shoppingCart = customer.getShoppingCart();
         %>
 
-        <h1 align="center">Please confirm your Order</h1>
+        <div class="circle" style="margin: 0 auto; width: 500px">
+            <div class="circleFrame">
+                <h1 align="center">Please confirm your Order</h1>
+            </div>
+        </div>
 
         <br>
 
@@ -78,21 +82,25 @@
         </div>
 
         <!-- This div will hold the information -->
-        <div align="center" style="float:left; width:25%; height:70%">
-            <h2>Shoppingcart Info</h2><br>
-            <b><%=shoppingCart.getCupcakeAmount()%> cupcakes</b> <br>
-            <b>Totalpris: <%=shoppingCart.getTotalPrice()%>,-</b>
-            <%
-                String error = (String) request.getAttribute("error");
-                if (error == null) {
-            %>
-            <form action="FrontController" method="POST">
-                <input type="hidden" name="command" value="confirmation" />
-                <p align="center"> <input type="submit" value="Confirm Order"/></p>
-            </form>
-            <%} else {%>
-            <h3 style="color:Tomato"><%=error%></h3>
-            <%}%>
+        <div class="circle" style="margin-left: 5%; margin-right: 20%; float: left; width: 25%">
+            <div class="circleFrame">
+
+                <h2>Shoppingcart Info</h2><br>
+                <b><%=shoppingCart.getCupcakeAmount()%> cupcakes</b> <br>
+                <b>Totalpris: <%=shoppingCart.getTotalPrice()%>,-</b>
+                <%
+                    String error = (String) request.getAttribute("error");
+                    if (error == null) {
+                %>
+                <form action="FrontController" method="POST">
+                    <input type="hidden" name="command" value="confirmation" />
+                    <p align="center"> <input type="submit" value="Confirm Order"/></p>
+                </form>
+                <%} else {%>
+                <h3 style="color:Tomato"><%=error%></h3>
+                <%}%>
+
+            </div>
         </div>
 
         <div align="center" style="float:left; width:25%; height:70%">

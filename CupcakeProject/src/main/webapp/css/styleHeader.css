@@ -87,3 +87,16 @@ nav hoverEffect::before {
 nav hoverEffect:hover::before {
     width: 100%;
 }
+
+.circle{
+    text-align: center; 
+    height: 30%; 
+    
+    background-color: #fffef2; 
+    border-radius: 50%
+}
+
+.circleFrame{
+    border: solid #aaaaa0 2px; 
+    border-radius: 50%;
+}

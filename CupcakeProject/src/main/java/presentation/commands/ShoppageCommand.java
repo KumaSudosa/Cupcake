@@ -38,6 +38,8 @@ public class ShoppageCommand extends Command {
                         request.setAttribute("error", ex.getMessage());
                     }
                 }
+            } else {
+                request.setAttribute("error", "Remeber to select all \n parts of the cupcake");
             }
         }
         return nextJspPage;

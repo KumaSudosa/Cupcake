@@ -21,37 +21,43 @@
     </head>
     <body>
         <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
-        <h1 align="center">Registration page</h1>
-        
-        <br>
-        <form action="FrontController" method="POST">
-            <h3 align="center"> username:</h3>
+
+        <div style="float: left">
+            <p><img src="decorations/large_happy-birthday-cupcake.png" alt="Bookstore Icon Stolen From The Internet" width="250" height="281"></p>
+        </div>
+
+        <div style="background-color: #fffef2; width: 25%; margin: 0 auto; border: solid #aaaaa0 2px; ">
+            <br>
+            <br>
+            <h1 align="center">Registration page</h1>
+
+            <br>
+            <form action="FrontController" method="POST">
+                <h3 align="center"> username:</h3>
                 <p align="center">
-                <input type="text" name="username" value="" placeholder="choose username"
-                /></p>
-            
-            <h3 align="center"> password:</h3>
+                    <input type="text" name="username" value="" placeholder="choose username" style="text-align: center;"/></p>
+
+                <h3 align="center"> password:</h3>
                 <p align="center">
-                <input type="password" name="password" value="" placeholder="choose password"
-                /></p>
-                
+                    <input type="password" name="password" value="" placeholder="choose password" style="text-align: center;"/></p>
+
                 <p align="center">
-                <input type="password" name="passwordRepeat" value="" placeholder="write password again"
-                /></p>
-                
-            <h3 align="center"> email:</h3>
+                    <input type="password" name="passwordRepeat" value="" placeholder="write password again" style="text-align: center;"/></p>
+
+                <h3 align="center"> email:</h3>
                 <p align="center">
-                <input type="text" name="email" value="" placeholder="choose email"
-                /></p>
-                
-            <input type="hidden" name="command" value="registration" />
-            <p align="center"> <input type="submit" value="Register" /></p>
-        </form>
-        <%if (request.getAttribute("RegistrationError") != null) {
-        IllegalArgumentException registrationError = (IllegalArgumentException) request.getAttribute("RegistrationError");
-        String errorMessage = registrationError.getMessage();
-        %>
-        <h2 align="center"><%=errorMessage%> </h2>
-        <%}%>
+                    <input type="text" name="email" value="" placeholder="choose email" style="text-align: center;"/></p>
+
+                <input type="hidden" name="command" value="registration" />
+                <p align="center"> <input type="submit" value="Register" /></p>
+            </form>
+            <%if (request.getAttribute("RegistrationError") != null) {
+                    IllegalArgumentException registrationError = (IllegalArgumentException) request.getAttribute("RegistrationError");
+                    String errorMessage = registrationError.getMessage();
+            %>
+            <h2 align="center"><%=errorMessage%> </h2>
+            <%}%>
+            <br><br><br>
+        </div>
     </body>
 </html>

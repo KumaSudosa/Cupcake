@@ -57,8 +57,8 @@
                 <p align="center"><input type="submit" value="Go to purchase history" style="height:50px; width:150px" /></p>
             </form>
         </div>
-        <div style="text-align: center; float: left; height: 30%; width:25%; margin-left: 0%; margin-right: 25%; background-color: #fffef2; border-radius: 50%">
-            <div style="border: solid #aaaaa0 2px; border-radius: 50%;">
+        <div class="circle" style="margin-left: 0%; margin-right: 25%; float: left; width: 375px">
+            <div class="circleFrame">
                 <br>
                 <b style="font-size: 24px; font-family: Lucida Bright">Username</b>
                 <p style="font-size: 18px"><%=customer.getUsername()%></p>

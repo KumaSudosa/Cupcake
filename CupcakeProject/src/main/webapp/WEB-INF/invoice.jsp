@@ -40,11 +40,17 @@
             }
             String username = user.getUsername();
         %>
-        <%if(User.isUserAdmin(user)) {%>
-        <h1 align="center">All Invoices</h1>
-        <%} else{%>
-        <h1 align="center">Hello <%=username%></h1>
-        <%}%>
+
+        <div class="circle" style="margin: 0 auto; width: 500px">
+            <div class="circleFrame">
+                <%if (User.isUserAdmin(user)) {%>
+                <h1 align="center">All Invoices</h1>
+                <%} else {%>
+                <h1 align="center"><%=username%> Invoices</h1>
+                <%}%>
+            </div>
+        </div>
+        <br>
         <br>
         <table border = "1" align = "center" style="width:<%=tableSize%>%" bgcolor="fffef2">
             <thead>
@@ -99,11 +105,11 @@
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="goToJsp" />
             <input type="hidden" name="goToJsp" value="userPage" />
-            <%if(User.isUserAdmin(user)){%>
+            <%if (User.isUserAdmin(user)) {%>
             <p align="center"> <input type="submit" value="Go back to control panel"/></p>
-            <%} else {%>
+                <%} else {%>
             <p align="center"> <input type="submit" value="Go back to shop page"/></p>
-            <%}%>
+                <%}%>
         </form>
 
 

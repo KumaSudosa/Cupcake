@@ -134,13 +134,22 @@
             <br>
             <br>
             <%if (userIsCustomer) {%>
-            <p align="center"> Insert your quantity here:<input type="text" name=AmountOf value="1" size="1" style="text-align:center;"/><input type="submit" value="Add"/></p>
-                <%}%>
+            <div class="circle" style="margin: 0 auto; width: 300px">
+                <div class="circleFrame">
+                    <p align="center"> Insert your quantity here:<input type="text" name=AmountOf value="1" size="1" style="text-align:center;"/><input type="submit" value="Add"/></p>
+                </div>
+            </div>
+            <%}%>
         </form>
         <%if (request.getAttribute("error") != null) {
                 String errorMsg = (String) request.getAttribute("error");
         %>
-        <h2 align="center"><%=errorMsg%></h2>
+        <br>
+        <div class="circle" style="margin: 0 auto; width: 25%">
+            <div class="circleFrame">
+                <h3 align="center"><%=errorMsg%></h3>
+            </div>
+        </div>
         <%}%>
         <br>
 
