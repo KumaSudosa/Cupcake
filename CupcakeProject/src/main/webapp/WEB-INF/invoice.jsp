@@ -88,7 +88,7 @@
         <br>
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="goToJsp" />
-            <input type="hidden" name="goToJsp" value="shoppage" />
+            <input type="hidden" name="goToJsp" value="userPage" />
             <p align="center"> <input type="submit" value="Go back to shoppage"/></p>
         </form>
 

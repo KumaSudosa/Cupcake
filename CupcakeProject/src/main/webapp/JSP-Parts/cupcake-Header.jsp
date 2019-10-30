@@ -4,7 +4,7 @@
 <header>
     <div class="container">
         <logo>
-            <form action="FrontController">
+            <form action="FrontController" method="POST">
                 <input type="hidden" name="command" value="goToJsp" />
                 <input type="hidden" name="goToJsp" value="index" />
                 <button>
@@ -20,21 +20,21 @@
                     <c:when test="${sessionScope.user != null}">
                         <c:if test="${sessionScope.user.getRole() eq 'c'}">
                             <li>
-                                <form action="FrontController">
+                                <form action="FrontController" method="POST">
                                     <input type="hidden" name="command" value="products"/>
                                     <input type="submit" value="Shopping cart"><b style="background: #fff; border: 1px solid #666; color: #666; text-align: center; border-radius: 50%; width: 15px; height: 15px; padding: 8px;">${sessionScope.user.getShoppingCart().getCupcakeAmount()}</b>                                   
                                 </form>
                             </li>
                         </c:if>
                         <li>
-                            <form action="FrontController">
+                            <form action="FrontController" method="POST">
                                 <input type="hidden" name="command" value="goToJsp" />
                                 <input type="hidden" name="goToJsp" value="products" />
                                 <hoverEffect><input type="submit" value="products"></hoverEffect>
                             </form>
                         </li>
                         <li>
-                            <form action="FrontController">
+                            <form action="FrontController" method="POST">
                                 <input type="hidden" name="command" value="goToJsp" />
                                 <c:if test="${sessionScope.user.getRole() eq 'c'}">
                                     <input type="hidden" name="goToJsp" value="shoppage" />
@@ -47,7 +47,7 @@
                             </form>
                         </li>
                         <li>
-                            <form action="FrontController">
+                            <form action="FrontController" method="POST">
                                 <input type="hidden" name="command" value="logout" />
                                 <hoverEffect><input type="submit" value="logout"></hoverEffect>
                             </form>
@@ -55,14 +55,14 @@
                     </c:when>
                     <c:otherwise>
                         <li>
-                            <form action="FrontController">
+                            <form action="FrontController" method="POST">
                                 <input type="hidden" name="command" value="goToJsp" />
                                 <input type="hidden" name="goToJsp" value="login" />
                                 <hoverEffect><input type="submit" value="login"></hoverEffect>
                             </form>
                         </li>
                         <li>
-                            <form action="FrontController">
+                            <form action="FrontController" method="POST">
                                 <input type="hidden" name="command" value="goToJsp" />
                                 <input type="hidden" name="goToJsp" value="registration" />
                                 <hoverEffect><input type="submit" value="signup"></hoverEffect>
