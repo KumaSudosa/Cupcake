@@ -18,6 +18,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Shop page</title>
+        <style>
+            body {
+                background-image: url("decorations/linesBackground.png");
+                background-repeat: repeat;
+                background-attachment: fixed;
+            }
+        </style>
         <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
     </head>
     <body>
@@ -41,56 +48,26 @@
 
         %>
         <% if (userLoggedIn) {%>
-        <h5 align="right">
-            You are logged in as:
-            <br>
-            <%=user.getUsername()%>
-        </h5>
-        <% if (userIsCustomer) {%>
-        <h5 align="right">
-            Your balance is:
-            <%=customer.getBalance()%> DKK
-            <br>
-            Shopping cart:
-            <%=cart.getCupcakeAmount()%> Cupcakes
-            <br>
-            Shopping cart Total Price:
-            <%=cart.getTotalPrice()%> Kr.
-        </h5>
-        <%}%>
-        <%}%>
-        <% if (userLoggedIn) {%>
-        <h5 align="right">
+        <br><br><br>
+        <div style="float: left; height: 30%; width:20%; margin-left: 25%; margin-right: 5%">
             <form action="FrontController" method="POST">
-                <input type="hidden" name="command" value="logout" />
-
-                <button onclick="myFunction()">Logout</button>
-                <script>
-                    function myFunction() {
-                        alert("Logging you out now");
-                    }
-                </script>
-
-
+                <input type="hidden" name="command" value="invoice" />
+                <p align="center"><input type="submit" value="Go to purchase history" style="height:50px; width:150px" /></p>
             </form>
-        </h5>
-        <%}%>
-        <br>
-        <br>
-
-        <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="shoppage" />
-            <p align="center"><input type="submit" value="Go to products page" style="height:50px; width:150px" /></p>
-        </form>
-
-        <br>
-        <br>
-
-        <% if (userLoggedIn) {%>
-        <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="invoice" />
-            <p align="center"><input type="submit" value="Go to purchase history" style="height:50px; width:150px" /></p>
-        </form>
+        </div>
+        <div style="text-align: center; float: left; height: 30%; width:25%; margin-left: 0%; margin-right: 25%; background-color: #fffef2; border-radius: 50%">
+            <div style="border: solid #aaaaa0 2px; border-radius: 50%;">
+            <br>
+            <b style="font-size: 24px; font-family: Lucida Bright">Username</b>
+            <p style="font-size: 18px"><%=customer.getUsername()%></p>
+            <br><br>
+            <b style="font-size: 24px; font-family: Lucida Bright">Email</b>
+            <p style="font-size: 18px"><%=customer.getEmail()%></p>
+            <br><br>
+            <b style="font-size: 24px; font-family: Lucida Bright">Balance</b>
+            <p style="font-size: 18px"><%=customer.getBalance()%>,-</p> <br>
+            </div>
+        </div>
         <%}%>
     </body>
 </html>

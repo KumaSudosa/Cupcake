@@ -15,15 +15,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Invoices</title>
+        <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
     </head>
     <body>
+        <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
         <%
             User user = (User) session.getAttribute("user");
             ArrayList<Invoice> invoiceList = null;
             int tableSize = 40;
             if (User.isUserCustomer(user)) {
                 invoiceList = Invoice.createCustomerInvoicesFromDB(user.getEmail());
-                
+
             } else if (User.isUserAdmin(user)) {
                 Admin admin = (Admin) user;
                 invoiceList = admin.getInvoices();
@@ -41,9 +43,9 @@
                     <th style="width:55%">Details</th>
                     <th style="width:15%">Order Date</th>
                     <th style="width:15%">Total Price</th>
-                    <%if(User.isUserAdmin(user)) {%>
+                        <%if (User.isUserAdmin(user)) {%>
                     <th style="width:15%">Customer</th>
-                    <%}%>
+                        <%}%>
                 </tr>
             </thead>
             <tbody>
@@ -76,7 +78,7 @@
                     </td>
                     <td align="center"><%=date%></td>
                     <td align="center"><%=totalPrice%>,-</td>
-                    <%if(User.isUserAdmin(user)) {%>
+                    <%if (User.isUserAdmin(user)) {%>
                     <td align="center"><%=customer%></td>
                     <%}%>
                 </tr>

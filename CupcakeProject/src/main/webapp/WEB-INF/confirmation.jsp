@@ -13,8 +13,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>confirmation</title>
+        <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
     </head>
     <body>
+        <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
         <%
             Customer customer = (Customer) session.getAttribute("user");
             ShoppingCart shoppingCart = customer.getShoppingCart();
@@ -34,9 +36,9 @@
                 <thead>
                     <tr bgcolor = "#87E187">
                         <td>Cupcake</td>
-                        <td>Quantity</td>
-                        <td>Subtotal Price</td>
-                        <td>Remove</td>
+                        <td align="center">Quantity</td>
+                        <td align="center">Subtotal Price</td>
+                        <td align="center">Remove</td>
                     </tr>
                 </thead>
 
@@ -58,7 +60,7 @@
                             <form action="FrontController" method="POST">
                                 <input type="hidden" name="command" value="products" />
                                 <input type="hidden" name="removeCupcakeTopAndBottomID" value="<%=lineItemToppingAndBottomID%>" />
-                                <input type="submit" value="X"/>
+                                <input type="submit" value="X" style="background-color:#EE000050"/>
                             </form>
                         </td>
                     </tr>
@@ -74,8 +76,8 @@
             <b><%=shoppingCart.getCupcakeAmount()%> cupcakes</b> <br>
             <b>Totalpris: <%=shoppingCart.getTotalPrice()%>,-</b>
             <%
-            String error = (String) request.getAttribute("error");
-            if(error == null){
+                String error = (String) request.getAttribute("error");
+                if (error == null) {
             %>
             <form action="FrontController" method="POST">
                 <input type="hidden" name="command" value="confirmation" />

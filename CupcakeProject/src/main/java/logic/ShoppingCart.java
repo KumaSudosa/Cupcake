@@ -73,10 +73,6 @@ public class ShoppingCart {
         this.totalPrice = newTotalPrice;
     }
 
-    private void displayShoppingCartTotalPrice() {
-
-    }
-
     public static ArrayList<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
     }
