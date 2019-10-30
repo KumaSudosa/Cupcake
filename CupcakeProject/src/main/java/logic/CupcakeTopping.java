@@ -44,7 +44,7 @@ public class CupcakeTopping {
                 return cupcakeTopping;
             }
         }
-        throw new IllegalArgumentException("No cupcaketopping for cupcake with the given ID. "
+        throw new IllegalArgumentException("No cupcake topping for cupcake with the given ID. "
                 + "You must choose an ID-number between 1 and " + cupcakeToppingsList.size());
     }
 

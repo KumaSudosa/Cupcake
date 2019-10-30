@@ -1,10 +1,7 @@
 package logic;
 
-import javax.security.auth.login.LoginException;
-import static logic.User.getUserListArray;
-
 /**
- * @author andre
+ * @author Andreas
  */
 public class Customer extends User {
 
@@ -22,7 +19,7 @@ public class Customer extends User {
             this.balance -= payment;
             User.getUserMapper().updateBalance(this);
         } else {
-            // TODO: Throw error
+            throw new IllegalArgumentException("There is an error with the shopping cart");
         }
     }
 
@@ -57,5 +54,4 @@ public class Customer extends User {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-    
 }

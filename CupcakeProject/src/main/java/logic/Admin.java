@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author andre
+ * @author Andreas
  */
 public class Admin extends User{
     
@@ -27,7 +27,4 @@ public class Admin extends User{
     public void setInvoices(ArrayList<Invoice> invoices) {
         this.invoices = invoices;
     }
-    
-    
-    
 }

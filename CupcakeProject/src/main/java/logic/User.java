@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.security.auth.login.LoginException;
 import persistence.mappers.UserMapperInterface;
-import logic.Customer;
 
 /**
  *
@@ -208,5 +207,4 @@ public abstract class User {
     public static UserMapperInterface getUserMapper() {
         return userMapper;
     }
-
 }

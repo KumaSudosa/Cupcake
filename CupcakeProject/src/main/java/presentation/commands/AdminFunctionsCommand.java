@@ -10,7 +10,7 @@ import presentation.Command;
 
 /**
  *
- * @author andre
+ * @author Andreas
  */
 public class AdminFunctionsCommand extends Command {
 
@@ -52,5 +52,4 @@ public class AdminFunctionsCommand extends Command {
         }
         return nxtJsp;
     }
-
 }

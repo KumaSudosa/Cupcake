@@ -1,11 +1,8 @@
 package presentation.commands;
 
-import java.util.ArrayList;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import logic.Invoice;
 import logic.User;
 import presentation.Command;
 
