@@ -41,25 +41,21 @@
 
         %>
         <% if (userLoggedIn) {%>
-        <h5 align="right">
-            You are logged in as:
-            <br>
-            <%=user.getUsername()%>
-        </h5>
+        
+        
         <% if (userIsCustomer) {%>
         <h5 align="right">
-            Your balance is:
-            <%=customer.getBalance()%> DKK
-            <br>
             Shopping cart:
             <%=cart.getCupcakeAmount()%> Cupcakes
             <br>
             Shopping cart Total Price:
             <%=cart.getTotalPrice()%> Kr.
         </h5>
+        
+        
         <%}%>
         <%}%>
-        <% if (userLoggedIn) {%>
+       <!-- <% if (userLoggedIn) {%>
         <h5 align="right">
             <form action="FrontController" method="POST">
                 <input type="hidden" name="command" value="logout" />
@@ -74,7 +70,7 @@
 
             </form>
         </h5>
-        <%}%>
+        <%}%> -->
         <br>
         <br>
 

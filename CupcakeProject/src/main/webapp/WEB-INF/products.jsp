@@ -14,6 +14,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            .square {
+                height: 35px;
+                width: 200px;
+                background-color: #b9ffb9;
+                text-align: left;
+                margin-bottom: 20px;
+                margin-top: 50px;
+            }
+        </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Purchasing cupcakes</title>
         <link rel="stylesheet" type="text/css" href="css/styleHeader.css">
@@ -35,20 +45,14 @@
                 cart = customer.getShoppingCart();
             } else if (User.isUserAdmin(user)) {
                 userIsAdmin = true;
-            }
-
+            } 
         %>
-        <% if (userLoggedIn) {%>
-        <h5 align="right">
-            You are logged in as:
-            <br>
-            <%=user.getUsername()%>
-        </h5>
-        <% if (userIsCustomer) {%>
-        <h5 align="right">
-            Your balance is:
-            <%=customer.getBalance()%> DKK
-            <br>
+        
+        <% if (userLoggedIn) {
+           if (userIsCustomer) {%>
+        
+        <div  style="float:right; width: 15%; padding-bottom: 20px; padding-right: 50px">
+        <h5 class="square" align="right">
             Shopping cart:
             <%=cart.getCupcakeAmount()%> Cupcakes
             <br>
@@ -57,17 +61,18 @@
         </h5>
         <%}%>
         <%}%>
-
-        <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="shoppage" />
-            <table align="center" border = "1" width = "15%">
+        </div>
+        
+      <!--  <form action="FrontController" method="POST"> -->
+            <!-- <input type="hidden" name="command" value="shoppage" /> -->
+            <table align="center" border = "1" width = "15%" style="margin-left: 653px">
                 <thead>
                     <tr bgcolor = "#87E187">
                         <td>Bottoms</td>
                         <td>Price</td>
                     </tr>
                 </thead>
-
+        
                 <tbody>
                     <%
                         ArrayList<CupcakeBottom> cupcakeBottomList = (ArrayList<CupcakeBottom>) CupcakeBottom.getCupcakeBottomsList();
@@ -125,12 +130,6 @@
         </form>
         <br>
 
-        <%if (userIsCustomer) {%>
-        <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="products" />
-            <p align="center"> <input type="submit" value="Go to checkout"/></p>
-        </form>
-        <%}%>
         
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="goToJsp" />
