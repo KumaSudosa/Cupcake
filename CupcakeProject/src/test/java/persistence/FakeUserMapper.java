@@ -24,16 +24,6 @@ public class FakeUserMapper implements UserMapperInterface {
     }
 
     @Override
-    public ArrayList<HashMap<String, String>> getUsername() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<HashMap<String, String>> getEmail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void insertUser(Customer user) {
 
         HashMap<String, String> map = new HashMap();

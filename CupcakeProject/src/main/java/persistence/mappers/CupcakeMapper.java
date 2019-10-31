@@ -15,7 +15,7 @@ public class CupcakeMapper implements CupcakeMapperInterface {
         ArrayList<HashMap<String, String>> bottoms = new ArrayList();
 
         String sql = "SELECT * FROM cupcakeshop.bottoms";
-        
+
         try {
             ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
             while (rs.next()) {
@@ -30,8 +30,7 @@ public class CupcakeMapper implements CupcakeMapperInterface {
         }
         return bottoms;
     }
-    
-    
+
     @Override
     public ArrayList<HashMap<String, String>> getCupcakeToppings() {
         ArrayList<HashMap<String, String>> toppings = new ArrayList();
@@ -51,29 +50,5 @@ public class CupcakeMapper implements CupcakeMapperInterface {
             Logger.getLogger(CupcakeMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return toppings;
-    }
-
-    @Override
-    public HashMap<String, String> getCupcakeBottomsFromID(int cupcakeBottomID) {
-        ArrayList<HashMap<String, String>> fullList = getCupcakeBottoms();
-        for (HashMap<String, String> map : fullList) {
-            int mapCupcakeBottomID = Integer.parseInt(map.get("id"));
-            if(mapCupcakeBottomID == cupcakeBottomID){
-                return map;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public HashMap<String, String> getCupcakeToppingsFromID(int cupcakeToppingID) {
-        ArrayList<HashMap<String, String>> fullList = getCupcakeToppings();
-        for (HashMap<String, String> map : fullList) {
-            int mapCupcakeToppingID = Integer.parseInt(map.get("id"));
-            if(mapCupcakeToppingID == cupcakeToppingID){
-                return map;
-            }
-        }
-        return null;
     }
 }

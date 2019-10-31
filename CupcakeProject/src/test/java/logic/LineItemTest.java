@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package logic;
 
 import java.util.HashMap;
@@ -94,40 +89,37 @@ public class LineItemTest {
 
     @Test
     public void testIncreaseAmount() {
-
+        //arrange
         int bottomID = 2;
         int toppingID = 2;
         int amount = 5;
-
+        //act
         LineItem result = LineItem.createLineItem(toppingID, bottomID, amount);
-
         result.increaseAmount(amount);
-
+        //assert
         int expectedAmount = 10;
-
         assertEquals(expectedAmount, result.getAmount());
     }
 
-    
     //Test til amount
     @Test(expected = IllegalArgumentException.class)
     public void negativeTestZeroAmountToppingInput() {
-
+        //arrange
         int cupcakeToppingID = 2;
         int cupcakeBottomID = 2;
         int amount = 0;
-
+        //act
         LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void negativeTestMaxOfToppingInputExceeded() {
-
+        //arrange
         int cupcakeToppingID = 2;
         int cupcakeBottomID = 2;
         int amount = 1000;
-
+        //act
         LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
 
     }
@@ -135,22 +127,22 @@ public class LineItemTest {
     //Test til cupcakeBottomID
     @Test(expected = IllegalArgumentException.class)
     public void negativeTestCupcakeBottomIDZero() {
-
+        //arrange
         int cupcakeToppingID = 2;
         int cupcakeBottomID = 0;
         int amount = 5;
-
+        //act
         LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void negativeTestCupcakeBottomIDSizeOvershoot() {
-
+        //arrange
         int cupcakeToppingID = 2;
         int cupcakeBottomID = 10;
         int amount = 5;
-
+        //act
         LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
 
     }
@@ -158,52 +150,50 @@ public class LineItemTest {
     //Tests til cupcakeToppingID
     @Test(expected = IllegalArgumentException.class)
     public void negativeTestCupcakeToppingIDZero() {
-
+        //arrange
         int cupcakeToppingID = 0;
         int cupcakeBottomID = 2;
         int amount = 5;
-
+        //act
         LineItem result = LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void negativeTestCupcakeToppingIDSizeOvershoot() {
-
+        //arrange
         int cupcakeToppingID = 10;
         int cupcakeBottomID = 2;
         int amount = 5;
-
+        //act
         LineItem.createLineItem(cupcakeToppingID, cupcakeBottomID, amount);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void negativeTestIncreaseAmountOverMaxAmount() {
-
+        //arrange
         int bottomID = 2;
         int toppingID = 2;
         int amount = 5;
         int newAmount = 1000;
-
+        //act
         LineItem result = LineItem.createLineItem(toppingID, bottomID, amount);
-
         result.increaseAmount(newAmount);
 
     }
 
-     @Test(expected = IllegalArgumentException.class)
-     public void negativeTestIncreaseNegativeAmount() {
-
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestIncreaseNegativeAmount() {
+        //arrange
         int bottomID = 2;
         int toppingID = 2;
         int amount = 5;
         int newAmount = -20;
-
+        //act
         LineItem result = LineItem.createLineItem(toppingID, bottomID, amount);
-
         result.increaseAmount(newAmount);
 
     }
-    
+
 }
