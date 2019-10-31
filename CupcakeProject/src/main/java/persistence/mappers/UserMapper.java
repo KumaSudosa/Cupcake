@@ -38,48 +38,6 @@ public class UserMapper implements UserMapperInterface {
     }
 
     @Override
-    public ArrayList<HashMap<String, String>> getUsername() {
-
-        ArrayList<HashMap<String, String>> usernames = new ArrayList();
-
-        String sql = "SELECT * FROM cupcakeshop.users";
-
-        try {
-            ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
-            while (rs.next()) {
-                HashMap<String, String> map = new HashMap();
-                map.put("username", rs.getString("username"));
-
-                usernames.add(map);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CupcakeMapper.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return usernames;
-    }
-
-    @Override
-    public ArrayList<HashMap<String, String>> getEmail() {
-
-        ArrayList<HashMap<String, String>> emails = new ArrayList();
-
-        String sql = "SELECT * FROM cupcakeshop.users";
-
-        try {
-            ResultSet rs = DB.getConnection().prepareStatement(sql).executeQuery();
-            while (rs.next()) {
-                HashMap<String, String> map = new HashMap();
-                map.put("email", rs.getString("email"));
-
-                emails.add(map);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CupcakeMapper.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return emails;
-    }
-
-    @Override
     public void insertUser(Customer user) {
 
         // currently it's not possible to create a new admin account, therefore the user is automatically given the role "customer"

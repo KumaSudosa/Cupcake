@@ -18,7 +18,7 @@
             .square {
                 height: 50px;
                 width: 230px;
-                background-color: #b9ffb9;
+                background-color: #fffef2;
                 text-align: left;
                 margin-bottom: 20px;
                 margin-top: 50px;

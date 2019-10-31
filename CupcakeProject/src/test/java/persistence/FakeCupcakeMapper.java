@@ -19,30 +19,6 @@ public class FakeCupcakeMapper implements CupcakeMapperInterface {
         return bottomInfo;
     }
 
-    @Override
-    public HashMap<String, String> getCupcakeBottomsFromID(int cupcakeBottomID) {
-        ArrayList<HashMap<String, String>> fullList = getCupcakeBottoms();
-        for (HashMap<String, String> map : fullList) {
-            int mapCupcakeBottomID = Integer.parseInt(map.get("id"));
-            if (mapCupcakeBottomID == cupcakeBottomID) {
-                return map;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public HashMap<String, String> getCupcakeToppingsFromID(int cupcakeToppingID) {
-        ArrayList<HashMap<String, String>> fullList = getCupcakeToppings();
-        for (HashMap<String, String> map : fullList) {
-            int mapCupcakeToppingID = Integer.parseInt(map.get("id"));
-            if (mapCupcakeToppingID == cupcakeToppingID) {
-                return map;
-            }
-        }
-        return null;
-    }
-
     public void setBottomInfo(ArrayList<HashMap<String, String>> bottomInfo) {
         this.bottomInfo = bottomInfo;
     }
