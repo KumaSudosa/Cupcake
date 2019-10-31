@@ -13,7 +13,6 @@ import persistence.DB;
 /**
  * @author Michael N. Korsgaard
  */
-
 public class InvoiceMapper implements InvoiceMapperInterface {
 
     @Override
@@ -99,4 +98,4 @@ public class InvoiceMapper implements InvoiceMapperInterface {
             }
         }
     }
-} 
+}
