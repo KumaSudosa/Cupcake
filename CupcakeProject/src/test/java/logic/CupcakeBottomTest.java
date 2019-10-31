@@ -13,7 +13,7 @@ public class CupcakeBottomTest {
     public void setup() {
         FakeCupcakeMapper fakeMapper = new FakeCupcakeMapper();
         HashMap<String, String> map = new HashMap();
-        
+
         String[][] bottoms = {
             {"1", "Chocolate", "5"},
             {"2", "Vanilla", "5"},
@@ -32,33 +32,31 @@ public class CupcakeBottomTest {
         CupcakeMapperInterface cupcakeMapper = fakeMapper;
         CupcakeBottom.setupMapper(cupcakeMapper);
     }
-    
+
     @Test
-    public void getCupcakeBottomFromIDTest () {
+    public void getCupcakeBottomFromIDTest() {
         //arrange
         int ID = 1;
-        
+
         //act
         CupcakeBottom result = CupcakeBottom.getCupcakeBottomFromID(ID);
-        
+
         //assert
         String expectedCupcakeDescription = "Chocolate";
         double expectedCupcakePrice = 5;
-        
+
         assertEquals(ID, result.getCupcakeBottomID());
         assertTrue(expectedCupcakeDescription.equals(result.getCupcakeBottomDescription()));
         assertEquals(expectedCupcakePrice, result.getPriceBottom(), 0);
     }
 
- 
-    
-    @Test (expected = IllegalArgumentException.class)
-    
-    public void negativeTestCupcakeBottomIdNotFound(){
-  
-    int expectedCupcakeBottomId = 10;     
-     
-    CupcakeBottom.getCupcakeBottomFromID(expectedCupcakeBottomId);
-}
-   
+    @Test(expected = IllegalArgumentException.class)
+
+    public void negativeTestCupcakeBottomIdNotFound() {
+
+        int expectedCupcakeBottomId = 10;
+
+        CupcakeBottom.getCupcakeBottomFromID(expectedCupcakeBottomId);
+    }
+
 }

@@ -9,13 +9,13 @@ import persistence.FakeCupcakeMapper;
 import persistence.mappers.CupcakeMapperInterface;
 
 public class CupcakeToppingTest {
-    
+
     @Before
     public void setup() {
         FakeCupcakeMapper fakeMapper = new FakeCupcakeMapper();
         HashMap<String, String> map = new HashMap();
 
-    String[][] toppings = {
+        String[][] toppings = {
             {"1", "Chocolate", "5"},
             {"2", "Blueberry", "5"},
             {"3", "Rasberry", "5"},
@@ -37,33 +37,31 @@ public class CupcakeToppingTest {
         CupcakeMapperInterface cupcakeMapper = fakeMapper;
         CupcakeTopping.setupMapper(cupcakeMapper);
     }
-    
+
     @Test
-    public void getCupcakeToppingFromIDTest () {
+    public void getCupcakeToppingFromIDTest() {
         //arrange
         int ID = 1;
-        
+
         //act
         CupcakeTopping result = CupcakeTopping.getCupcakeToppingFromID(ID);
-        
+
         //assert
         String expectedCupcakeDescription = "Chocolate";
         double expectedCupcakePrice = 5;
-        
+
         assertEquals(ID, result.getCupcakeToppingID());
         assertTrue(expectedCupcakeDescription.equals(result.getCupcakeToppingDescription()));
         assertEquals(expectedCupcakePrice, result.getPriceTopping(), 0);
     }
 
-        @Test (expected = IllegalArgumentException.class)
-        public void negativeTestCupcakeToppingsIdNotFound(){
-        
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestCupcakeToppingsIdNotFound() {
+
         int expectedCupcakeToppingsId = 10;
-        
+
         CupcakeTopping.getCupcakeToppingFromID(expectedCupcakeToppingsId);
-        
-        
-        
-}
+
+    }
 
 }

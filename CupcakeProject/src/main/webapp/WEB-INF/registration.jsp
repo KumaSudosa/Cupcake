@@ -32,7 +32,7 @@
             </div>
         </div>
         <br>
-        
+
 
         <div style="background-color: #fffef2; width:275px; height: 350px; margin: 0 auto; border: solid #aaaaa0 2px; ">
 
@@ -56,13 +56,16 @@
                 <input type="hidden" name="command" value="registration" />
                 <p align="center"> <input type="submit" value="Register" /></p>
             </form>
-            <%if (request.getAttribute("RegistrationError") != null) {
-                    IllegalArgumentException registrationError = (IllegalArgumentException) request.getAttribute("RegistrationError");
-                    String errorMessage = registrationError.getMessage();
-            %>
-            <h2 align="center"><%=errorMessage%> </h2>
-            <%}%>
-
         </div>
+        <%if (request.getAttribute("RegistrationError") != null) {
+                IllegalArgumentException registrationError = (IllegalArgumentException) request.getAttribute("RegistrationError");
+                String errorMessage = registrationError.getMessage();
+        %>
+        <br><br>
+        <div style="background-color: #fffef2; width:400px; height: 50px; margin: 0 auto; border: solid #aaaaa0 2px; padding-bottom: 15px">
+            <h2 align="center"><%=errorMessage%> </h2>
+        </div>
+        <%}%>
+
     </body>
 </html>

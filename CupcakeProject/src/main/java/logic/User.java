@@ -116,60 +116,68 @@ public abstract class User {
         if (noUsername || noPassword || noEmail) {
             throw new IllegalArgumentException("remember to fill out all fields");
         }
-        pwCheck(password);
+        checkPasswordValidation(password, password2);
+        checkEmailValidation(email);
 
-        for (HashMap<String, String> map : userMapper.getUserList()) {
-            String dbEmail = map.get("email");
-
-            if (email.toLowerCase().equals(dbEmail.toLowerCase())) {
-                throw new IllegalArgumentException("email is already in use.");
-            }
-        }
-        if (!password2.equals(password)) {
-            throw new IllegalArgumentException("passwords do not match.");
-        }
         Customer newCustomer = new Customer(username, password, email, "c", newUserBalance);
         userMapper.insertUser(newCustomer);
     }
 
-    public static void pwCheck(String password) {
-        boolean letter = false;
-        boolean upperLetter = false;
-        boolean lowerLetter = false;
-        boolean number = false;
-
-        //Skal være mellem 6 og 20 karaktere for at overhovedet at komme ind i if statement
-        if (password.length() >= 6 && 20 >= password.length()) {
-
-            for (int i = 0; i < password.length(); i++) {
-                char s = password.charAt(i);
-
-                if (Character.isLetter(s)) {
-                    letter = true;
-                    //Bliver true hvis den møder minimum et bogstav
-                }
-                if (Character.isUpperCase(s)) {
-                    upperLetter = true;
-                    //Bliver true hvis den minimum et UpperCase bogstav
-                }
-                if (Character.isLowerCase(s)) {
-                    lowerLetter = true;
-                    //Bliver true hvis den møder minimum et LowerCase bogstav
-                }
-                if (Character.isDigit(s)) {
-                    number = true;
-                    //Bliver true hvis den møder minimum et tal
-                }
-            }
-
-            //Tjekker at alt er som det skal være ellers kaster den en fejl
-            if (!lowerLetter || !upperLetter || !number || !letter) {
-                throw new IllegalArgumentException("Your password needs to contain at least an "
-                        + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
-            }
-        } else {
+    private static void checkPasswordValidation(String password, String password2) throws IllegalArgumentException {
+        // Check password contains between 6 and 20 characters
+        if (password.length() < 6 || 20 < password.length()) {
             throw new IllegalArgumentException("Your password needs to contain at least a "
                     + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
+        }
+
+        // Check password contains uppercase, lowercase and number
+        boolean containsUppercaseLetter = false;
+        boolean containsLowercaseLetter = false;
+        boolean containsNumber = false;
+        for (char s : password.toCharArray()) {
+            if (Character.isUpperCase(s)) {
+                containsUppercaseLetter = true;
+            }
+            if (Character.isLowerCase(s)) {
+                containsLowercaseLetter = true;
+            }
+            if (Character.isDigit(s)) {
+                containsNumber = true;
+            }
+        }
+        if (!containsLowercaseLetter || !containsUppercaseLetter || !containsNumber) {
+            throw new IllegalArgumentException("Your password needs to contain at least an "
+                    + "uppercase letter, lowercase letter, a number and be between 6 and 20 characters. Please try again.");
+        }
+
+        // Check passwords matches
+        if (!password2.equals(password)) {
+            throw new IllegalArgumentException("passwords do not match.");
+        }
+    }
+
+    private static void checkEmailValidation(String email) throws IllegalArgumentException {
+
+        //Check email for containing email symbols
+        boolean containsAtSymbol = false;
+        boolean containsDotSymbolAfterAt = false;
+        for (char character : email.toCharArray()) {
+            if (character == '@') {
+                containsAtSymbol = true;
+            }
+            if (containsAtSymbol && character == '.') {
+                containsDotSymbolAfterAt = true;
+            }
+        }
+        if (!containsAtSymbol || !containsDotSymbolAfterAt) {
+            throw new IllegalArgumentException("please write valid email with @ and .");
+        }
+        
+        //Check for dublication
+        for (User user : userList) {
+            if (email.toLowerCase().equals(user.email.toLowerCase())) {
+                throw new IllegalArgumentException("email is already in use.");
+            }
         }
     }
 

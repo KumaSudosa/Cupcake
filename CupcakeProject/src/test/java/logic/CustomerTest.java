@@ -193,7 +193,6 @@ public class CustomerTest {
     @Test(expected = IllegalArgumentException.class)
     public void testCreateCustomerMethodDublicateEmail() {
         //arrange
-        User.getUserList().clear();
         String brugerNavn = "andreas";
         String pw = "and51Ae";
         String mail = "cph@gmail.com";
