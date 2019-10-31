@@ -48,8 +48,8 @@ public class Invoice {
 
     public static ArrayList<Invoice> createCustomerInvoicesFromDB(String email) throws IllegalArgumentException {
         ArrayList<Invoice> result = new ArrayList();
-        ArrayList<HashMap<String, String>> list = invoiceMapper.getInvoicesForCustomer(email);
-        for (HashMap<String, String> map : list) {
+        ArrayList<HashMap<String, String>> dbListOfInvoices = invoiceMapper.getInvoicesForCustomer(email);
+        for (HashMap<String, String> map : dbListOfInvoices) {
             int invoiceID = Integer.parseInt(map.get("id_invoice"));
             Invoice invoice = findInvoiceInsideListFromID(result, invoiceID);
             if (invoice == null) {

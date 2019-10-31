@@ -6,7 +6,7 @@ package logic;
 public class Customer extends User {
 
     private double balance;
-    private static ShoppingCart shoppingCart;
+    private ShoppingCart shoppingCart;
 
     public Customer(String username, String password, String email, String role, double balance) {
         super(username, password, email, role);
@@ -43,12 +43,12 @@ public class Customer extends User {
         return balance;
     }
 
-    public static ShoppingCart getShoppingCart() {
+    public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
 
-    public static void setShoppingCart(ShoppingCart shoppingCart) {
-        Customer.shoppingCart = shoppingCart;
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
     public void setBalance(double balance) {

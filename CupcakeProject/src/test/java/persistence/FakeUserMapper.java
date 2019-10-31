@@ -46,7 +46,11 @@ public class FakeUserMapper implements UserMapperInterface {
 
     @Override
     public void updateBalance(Customer user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (HashMap<String, String> map : userInfo) {
+            if(map.get("email").equals(user.getEmail())){
+                map.put("balance", Double.toString(user.getBalance()));
+            }
+        }
     }
 
 }

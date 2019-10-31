@@ -19,7 +19,7 @@ public class ConfirmationCommand extends Command {
         Customer customer = (Customer) request.getSession().getAttribute("user");
         
         // Logic calls
-        Invoice invoice = Invoice.convertShoppingCartToNewInvoiceFromUser(customer);
+        Invoice.convertShoppingCartToNewInvoiceFromUser(customer);
         
         // Set Attributes and go to next Page
         return NextJspPage;

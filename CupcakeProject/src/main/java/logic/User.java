@@ -90,11 +90,11 @@ public abstract class User {
                         return user;
                     }
                 } else {
-                    throw new LoginException("Wrong Password");
+                    throw new LoginException("Wrong Email/Password");
                 }
             }
         }
-        throw new LoginException("No Matching Email");
+        throw new LoginException("Wrong Email/Password");
     }
 
     /**
@@ -108,6 +108,7 @@ public abstract class User {
     public static void RegisterUser(String username, String password, String password2, String email) throws IllegalArgumentException {
 
         //check for unfilled forms in registration
+        // TODO: Check email for @ and minimum of 1 dot
         boolean noUsername = username.length() < 1;
         boolean noPassword = password.length() < 1;
         boolean noEmail = email.length() < 1;
@@ -199,7 +200,7 @@ public abstract class User {
     public String getRole() {
         return role;
     }
-    
+
     public double getNewUserBalance() {
         return newUserBalance;
     }
