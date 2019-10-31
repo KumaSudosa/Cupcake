@@ -9,11 +9,10 @@ import persistence.FakeUserMapper;
 import persistence.mappers.UserMapperInterface;
 
 /**
- * @author Marcus
+ * @author Marcus & Andreas
  */
-
 public class CustomerTest {
-    
+
     UserMapperInterface userMapper;
 
     @Before
@@ -35,8 +34,7 @@ public class CustomerTest {
         userMapper = fakeMapper;
         User.setupUserClass(userMapper);
     }
-    
-    
+
     @Test
     public void testCreateNewCustomer() {
         //arrange
@@ -57,7 +55,7 @@ public class CustomerTest {
         assertEquals(balance, User.getUserList().get(0).getNewUserBalance(), 50.0);
         assertEquals(role, User.getUserList().get(0).getRole());
     }
-    
+
     @Test
     public void testMultipleCreateCustomerFromDbCalls() {
         //arrange
@@ -85,7 +83,7 @@ public class CustomerTest {
         assertEquals(expectedBalance, result.getNewUserBalance(), 50);
         assertTrue(expectedRole.equals(result.getRole()));
     }
-    
+
     @Test
     public void testCreateCustomerConstructor() {
         //arrange
@@ -107,7 +105,7 @@ public class CustomerTest {
         assertEquals(funds, result.getNewUserBalance(), 0);
         assertEquals(1, User.getUserList().size());
     }
-    
+
     @Test
     public void testCorrectLoginCustomer() throws LoginException {
         //arrange
@@ -116,7 +114,7 @@ public class CustomerTest {
         String mail = "cph2@gmail.com";
         double funds = 50;
         String role = "c";
-        
+
         Customer customer = new Customer(brugerNavn, pw, mail, role, funds);
         assertNull(customer.getShoppingCart());
 
@@ -148,19 +146,7 @@ public class CustomerTest {
         assertEquals(customer, result);
         assertEquals(currentShoppingCart, customer.getShoppingCart());
     }
-    
-    /* @Test
-    public void testPayForShoppingCart() {
-        
-    } */
-    
-    /* @Test
-    public void canBalanceCoverPayment() {
-        
-    } */
-    
-    
-    
+
     @Test(expected = LoginException.class)
     public void testWrongLoginPwCustomer() throws LoginException {
         //arrange
@@ -174,7 +160,7 @@ public class CustomerTest {
         //act
         User.LoginUser(mail, "and63Jm");
     }
-    
+
     @Test(expected = LoginException.class)
     public void testWrongLoginEmailCustomer() throws LoginException {
         //arrange
@@ -188,8 +174,7 @@ public class CustomerTest {
         //act
         User.LoginUser("cph2@hotmail.com", pw);
     }
-    
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testCreateCustomerMethodDublicateEmail() {
         //arrange
@@ -200,7 +185,7 @@ public class CustomerTest {
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testCreateCustomerNoUppercaseInPw() {
         //arrange
@@ -255,7 +240,7 @@ public class CustomerTest {
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testCreateCustomerPwTooShort() {
         //arrange
@@ -266,7 +251,7 @@ public class CustomerTest {
         //act
         User.RegisterUser(brugerNavn, pw, pw, mail);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testCreateCustomerPasswordMismatch() {
         //arrange

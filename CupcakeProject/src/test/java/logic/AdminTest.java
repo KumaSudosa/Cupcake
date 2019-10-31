@@ -9,12 +9,11 @@ import persistence.FakeUserMapper;
 import persistence.mappers.UserMapperInterface;
 
 /**
- * @author Marcus
+ * @author Marcus & Andreas
  */
-
 public class AdminTest {
-    
-   UserMapperInterface userMapper;
+
+    UserMapperInterface userMapper;
 
     @Before
     public void setup() {
@@ -22,7 +21,7 @@ public class AdminTest {
         FakeUserMapper fakeMapper = new FakeUserMapper();
         User.getUserList().clear();
         String[][] users = {
-            {"cahit", "and51Ae","cph@gmail.com", "a"},};
+            {"cahit", "and51Ae", "cph@gmail.com", "a"},};
         for (String[] user : users) {
             HashMap<String, String> map = new HashMap();
             map.put("username", user[0]);
@@ -34,7 +33,7 @@ public class AdminTest {
         userMapper = fakeMapper;
         User.setupUserClass(userMapper);
     }
-    
+
     @Test
     public void testCorrectLoginAdmin() throws LoginException {
         //arrange
@@ -42,7 +41,7 @@ public class AdminTest {
         String pw = "and51Ae";
         String mail = "cph2@gmail.com";
         String role = "a";
-        
+
         Admin admin = new Admin(brugerNavn, pw, mail, role);
 
         //act
@@ -51,8 +50,7 @@ public class AdminTest {
         //assert
         assertEquals(admin, result);
     }
-    
-    
+
     @Test
     public void testCreateAdminConstructor() {
         //arrange
@@ -72,13 +70,7 @@ public class AdminTest {
         assertEquals(role, result.getRole());
         assertEquals(1, User.getUserList().size());
     }
-    
-    /* @Test
-    public void testChangeCustomerBalance() {
-        //arrange
-    } */
-    
-    
+
     @Test(expected = LoginException.class)
     public void testWrongLoginPwAdmin() throws LoginException {
         //arrange
@@ -91,7 +83,7 @@ public class AdminTest {
         //act
         User.LoginUser(mail, "Admin321");
     }
-    
+
     @Test(expected = LoginException.class)
     public void testWrongLoginEmailAdmin() throws LoginException {
         //arrange

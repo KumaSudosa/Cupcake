@@ -9,9 +9,8 @@ import static org.junit.Assert.*;
 import persistence.mappers.UserMapperInterface;
 
 /**
- * @author cahit
+ * @author Cahit
  */
-
 public class UserTest {
 
     UserMapperInterface userMapper;
@@ -35,8 +34,7 @@ public class UserTest {
         userMapper = fakeMapper;
         User.setupUserClass(userMapper);
     }
-    
-    
+
     @Test
     public void testCreateUsersFromDb() {
         //arrange
@@ -52,7 +50,7 @@ public class UserTest {
         String expectedEmail = "cph@gmail.com";
         Double expectedBalance = 50.0;
         String expectedRole = "c";
-        
+
         assertEquals(expectedSize, User.getUserList().size());
         assertTrue(expectedUsername.equals(result.getUsername()));
         assertTrue(expectedEmail.equals(result.getEmail()));

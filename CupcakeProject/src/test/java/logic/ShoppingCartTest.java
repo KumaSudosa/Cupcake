@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package logic;
 
 import java.util.HashMap;
@@ -161,13 +156,10 @@ public class ShoppingCartTest {
         assertEquals(expectedTotalPrice, result.getTotalPrice(), 0);
     }
 
-    
-    
     @Test
-    public void testRemoveLineItemFromShoppingCart(){
-    
-       ShoppingCart result = new ShoppingCart();
-       
+    public void testRemoveLineItemFromShoppingCart() {
+        //arrange
+        ShoppingCart result = new ShoppingCart();
         int cupcakeToppingID1 = 1;
         int cupcakeBottomID1 = 1;
         int amount1 = 1;
@@ -177,29 +169,28 @@ public class ShoppingCartTest {
         int cupcakeToppingID3 = 3;
         int cupcakeBottomID3 = 3;
         int amount3 = 3;
-        
+
+        //act
         result.addLineItemsToShoppingCart(cupcakeToppingID1, cupcakeBottomID1, amount1);
         result.addLineItemsToShoppingCart(cupcakeToppingID2, cupcakeBottomID2, amount2);
         result.addLineItemsToShoppingCart(cupcakeToppingID3, cupcakeBottomID3, amount3);
-        
+
         result.removeLineItemFromShoppingCart(cupcakeToppingID1, cupcakeBottomID1);
-        
+        //assert
         int expectedChoppingCartSize = 2;
         int expectedCupcakeBottomID = 3;
         int expectedCupcakeToppingID = 2;
-      
+
         assertEquals(result.getLineItems().size(), expectedChoppingCartSize);
-        assertEquals(result.getLineItems().get(1).getCupcakeBottom().getCupcakeBottomID(),expectedCupcakeBottomID);
-        assertEquals(result.getLineItems().get(0).getCupcakeTopping().getCupcakeToppingID(),expectedCupcakeToppingID);
+        assertEquals(result.getLineItems().get(1).getCupcakeBottom().getCupcakeBottomID(), expectedCupcakeBottomID);
+        assertEquals(result.getLineItems().get(0).getCupcakeTopping().getCupcakeToppingID(), expectedCupcakeToppingID);
     }
 
-    
-    
-    @Test (expected = IllegalArgumentException.class)
-    public void negativeTestCannotFindToppingIDInLineItem(){
-      
-            ShoppingCart result = new ShoppingCart();
-       
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestCannotFindToppingIDInLineItem() {
+        //arrange
+        ShoppingCart result = new ShoppingCart();
+
         int cupcakeToppingID1 = 1;
         int cupcakeBottomID1 = 1;
         int amount1 = 1;
@@ -209,26 +200,21 @@ public class ShoppingCartTest {
         int cupcakeToppingID3 = 3;
         int cupcakeBottomID3 = 3;
         int amount3 = 3;
-        
-       
+        //act
         int cupcakeToppingID2ToRemove = 5;
-        
         result.addLineItemsToShoppingCart(cupcakeToppingID1, cupcakeBottomID1, amount1);
         result.addLineItemsToShoppingCart(cupcakeToppingID2, cupcakeBottomID2, amount2);
         result.addLineItemsToShoppingCart(cupcakeToppingID3, cupcakeBottomID3, amount3);
-        
+
         result.removeLineItemFromShoppingCart(cupcakeToppingID2ToRemove, cupcakeBottomID1);
 
-        
-        
-    } 
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void negativeTestCannotFindBottomIDInLineItem() {
+        //arrange
+        ShoppingCart result = new ShoppingCart();
 
-    @Test (expected = IllegalArgumentException.class)
-    public void negativeTestCannotFindBottomIDInLineItem(){
-      
-            ShoppingCart result = new ShoppingCart();
-       
         int cupcakeToppingID1 = 1;
         int cupcakeBottomID1 = 1;
         int amount1 = 1;
@@ -238,19 +224,15 @@ public class ShoppingCartTest {
         int cupcakeToppingID3 = 3;
         int cupcakeBottomID3 = 3;
         int amount3 = 3;
-        
+        //act
         int cupcakeBottomIDToRemove = 5;
-        
-        
+
         result.addLineItemsToShoppingCart(cupcakeToppingID1, cupcakeBottomID1, amount1);
         result.addLineItemsToShoppingCart(cupcakeToppingID2, cupcakeBottomID2, amount2);
         result.addLineItemsToShoppingCart(cupcakeToppingID3, cupcakeBottomID3, amount3);
-        
+
         result.removeLineItemFromShoppingCart(cupcakeToppingID1, cupcakeBottomIDToRemove);
 
-        
-        
-    } 
+    }
 
-    
 }
