@@ -10,6 +10,18 @@ import presentation.Command;
  */
 public class RegistrationCommand extends Command {
 
+    /**
+     * @author Gruppe 3
+     * 
+     * checks whether parameters are valid.
+     * 
+     * catches IllegalArgumentException.
+     * 
+     * @param request html request from FrontController
+     * @param response html response from FrontController
+     * @return String for next JSP by stringName.jsp
+     */
+    
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         // Get parameters and set initial nextJspPage String

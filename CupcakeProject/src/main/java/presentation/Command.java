@@ -17,6 +17,14 @@ import presentation.commands.AdminFunctionsCommand;
 
 public abstract class Command {
 
+    /**
+     * @author Gruppe 3
+     * 
+     * hosts a list of all commands and directs the flow according to the 
+     * requested command key words.
+     * 
+     */
+    
     private static HashMap<String, Command> commands;
 
     private static void initCommands() {
@@ -40,6 +48,5 @@ public abstract class Command {
         return commands.getOrDefault(commandName, new UnknownCommand());
     }
 
-    public abstract String execute(HttpServletRequest request, HttpServletResponse response)
-            throws LoginException;
+    public abstract String execute(HttpServletRequest request, HttpServletResponse response);
 }

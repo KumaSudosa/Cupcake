@@ -12,8 +12,21 @@ import presentation.Command;
  */
 public class ShoppageCommand extends Command {
 
+    /**
+     * @author Gruppe 3
+     * 
+     * is used everytime customer tries to add cupcakes to the shopping-cart
+     * 
+     * catches IllegalArgumentException
+     * 
+     * @param request html request from FrontController
+     * @param response html response from FrontController
+     * @return String for next JSP by stringName.jsp
+     */
+    
+    
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
+    public String execute(HttpServletRequest request, HttpServletResponse response){
         // Get parameters and set initial nextJspPage String
         User user = (User) request.getSession().getAttribute("user");
         String nextJspPage = "products";

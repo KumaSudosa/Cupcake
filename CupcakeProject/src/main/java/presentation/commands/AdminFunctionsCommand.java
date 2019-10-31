@@ -14,8 +14,21 @@ import presentation.Command;
  */
 public class AdminFunctionsCommand extends Command {
 
+    /**
+     * @author Gruppe 3
+     * admin has three choices/buttons
+     * - sets the balance for the customer
+     * - see invoice for certain customer
+     * - see invoices for all customers
+     * 
+     * catches NumberFormatException and IllegalArgumentException
+     * 
+     * @param request html request from FrontController
+     * @param response html response from FrontController
+     * @return String for next JSP by stringName.jsp
+     */
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String nxtJsp = "";
         Admin admin = (Admin) request.getSession().getAttribute("user");
 
