@@ -90,7 +90,9 @@
         <%if (request.getAttribute("error") != null) {
                 String errorMessage = (String) request.getAttribute("error");
         %>
-        <h2 color="red"><%=errorMessage%></h2>
+        <div align="center" style="position: absolute; right: 20%; top: 400px; padding-bottom: 20px; background-color: #fffef2; width:350px; height: 50px; margin: 0 auto; border: solid #aaaaa0 2px; ">
+                <h2 style="color:Tomato"><%=errorMessage%></h2>
+        </div>
         <%}%>
     </body>
 </html>
