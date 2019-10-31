@@ -1,4 +1,3 @@
-
 package persistence.mappers;
 
 import java.util.ArrayList;
@@ -10,16 +9,32 @@ import logic.Customer;
  * @author gruppe 3
  */
 public interface UserMapperInterface {
- 
-public ArrayList<HashMap<String, String>> getUserList(); 
 
-public ArrayList<HashMap<String, String>> getUsername();
+    /**
+     * <b>Infomation is stored as follows:<br>
+     * <i>information, hashmap-key</i></b><br><br>
+     * username, 'username'<br>
+     * password, 'login'<br>
+     * email, 'email'<br>
+     * balance, 'balance'<br>
+     * user-subclass type (a = admin, c = customer), 'role'
+     *
+     * @return HashMap with every User, as stored above
+     */
+    public ArrayList<HashMap<String, String>> getUserList();
 
-public ArrayList<HashMap<String, String>> getEmail();
+    /**
+     * Upon successful registration, this uploads the new Customer to the DB
+     *
+     * @param user Customer to be uploaded to DB
+     */
+    public void insertUser(Customer user);
 
-public void insertUser(Customer user);
+    /**
+     * Upon payment, upload the Customer's updated balance to the DB
+     *
+     * @param user Customer with balance to be updated in DB
+     */
+    public void updateBalance(Customer user);
 
-public void updateBalance(Customer user);
-
-    
 }

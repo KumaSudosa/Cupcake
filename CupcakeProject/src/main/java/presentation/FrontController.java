@@ -28,7 +28,7 @@ public class FrontController extends HttpServlet {
     public static void setup() {
         if (needSetup) {
             UserMapperInterface userMapper = new UserMapper();
-            User.setupMapper(userMapper);
+            User.setupUserClass(userMapper);
 
             CupcakeMapperInterface cupcakeMapper = new CupcakeMapper();
             CupcakeBottom.setupMapper(cupcakeMapper);

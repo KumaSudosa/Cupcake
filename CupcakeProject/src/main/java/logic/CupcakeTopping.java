@@ -38,6 +38,11 @@ public class CupcakeTopping {
         }
     }
 
+    /**
+     * @param cupcakeToppingID Finds a cupcake topping based on the specific ID
+     * @return returns the cupcake topping that matches the ID
+     * @throws Exception if an error is found (if ID doesn't exist) and tells that it doesn't exist and what must be chosen
+     */
     public static CupcakeTopping getCupcakeToppingFromID(int cupcakeToppingID) {
         for (CupcakeTopping cupcakeTopping : cupcakeToppingsList) {
             if (cupcakeTopping.getCupcakeToppingID() == cupcakeToppingID) {

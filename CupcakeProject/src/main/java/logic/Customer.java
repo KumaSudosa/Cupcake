@@ -13,6 +13,10 @@ public class Customer extends User {
         this.balance = balance;
     }
 
+    /**
+     * method subtracts the shopping cart's total price from the user's balance and updates it.
+     * @throws exception if it doesn't work, I.E the shopping cart price can't be taken from the user's balance
+     */
     public void payForShoppingCart() {
         if (this.canBalanceCoverPayment()) {
             double payment = getShoppingCart().getTotalPrice();
@@ -23,6 +27,10 @@ public class Customer extends User {
         }
     }
 
+    /**
+     * @return method checks if the total purchase price in the shopping cart is higher than the user's balance.
+     * if the purchase price is higher it returns "false", and if the purchase is not higher it returns "true"
+     */
     public boolean canBalanceCoverPayment() {
         if (this.shoppingCart.getTotalPrice() > this.balance) {
             return false;
@@ -30,6 +38,12 @@ public class Customer extends User {
         return true;
     }
     
+    /**
+     * 
+     * @param email method takes an email and finds the customer that has the specific email
+     * @return returns the customer that matches with the email
+     * @throws exception if the email doesn't match a user (doesn't exist)
+     */
     public static Customer findCustomerOnEmail(String email) throws IllegalArgumentException {
         User user = User.getUserFromUserList(email);
         if(User.isUserCustomer(user)) {

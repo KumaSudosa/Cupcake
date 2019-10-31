@@ -8,6 +8,7 @@ import persistence.mappers.CupcakeMapperInterface;
  *
  * @author Michael N. Korsgaard
  */
+
 public class CupcakeBottom {
 
     private int cupcakeBottomID;
@@ -38,6 +39,12 @@ public class CupcakeBottom {
         }
     }
 
+    /**
+     * @param cupcakeBottomID Finds a cupcake bottom based on the specific ID
+     * @return returns the cupcake bottom that matches the ID
+     * @throws Exception if an error is found (if ID doesn't exist) and tells that it doesn't exist and what must be chosen
+     */
+    
     public static CupcakeBottom getCupcakeBottomFromID(int cupcakeBottomID) {
         for (CupcakeBottom cupcakeBottom : cupcakeBottomsList) {
             if (cupcakeBottom.getCupcakeBottomID() == cupcakeBottomID) {

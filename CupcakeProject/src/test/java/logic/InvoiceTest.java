@@ -13,6 +13,9 @@ import persistence.FakeUserMapper;
 import persistence.mappers.CupcakeMapperInterface;
 import persistence.mappers.InvoiceMapperInterface;
 
+/**
+ * @author Micheal N. Korsgaard
+ */
 public class InvoiceTest {
 
     InvoiceMapperInterface invoiceMapper;
@@ -82,7 +85,7 @@ public class InvoiceTest {
             fakeUserMapper.addUserInfo(mapUser);
         }
         FakeUserMapper userMapper = fakeUserMapper;
-        User.setupMapper(userMapper);
+        User.setupUserClass(userMapper);
 
         //Make Mock Mapper for Invoices
         FakeInvoiceMapper fakeInvoiceMapper = new FakeInvoiceMapper();
@@ -131,7 +134,7 @@ public class InvoiceTest {
         assertEquals(expectedAmount, result.get(0).getLineItems().get(0).getAmount(), 0);
         assertEquals(expectedUserForInvoice, result.get(0).getUser());
     }
-    
+
     @Test
     public void testCreateAdminInvoicesFromDB() {
         //act
@@ -141,14 +144,14 @@ public class InvoiceTest {
         int expectedSize = 2;
         assertEquals(expectedSize, result.size());
     }
-    
+
     @Test
     public void testConvertShoppingCartToNewInvoiceFromUser() {
         //arrange
         Customer customer = new Customer("Michael", "Tester2", "Testing2@Email.dk", "c", 100);
         customer.setShoppingCart(new ShoppingCart());
         customer.getShoppingCart().addLineItemsToShoppingCart(1, 2, 3);
-        
+
         //act
         Invoice result = Invoice.convertShoppingCartToNewInvoiceFromUser(customer);
 
