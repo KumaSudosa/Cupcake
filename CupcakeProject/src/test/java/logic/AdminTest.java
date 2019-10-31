@@ -32,7 +32,7 @@ public class AdminTest {
             fakeMapper.addUserInfo(map);
         }
         userMapper = fakeMapper;
-        User.setupMapper(userMapper);
+        User.setupUserClass(userMapper);
     }
     
     @Test

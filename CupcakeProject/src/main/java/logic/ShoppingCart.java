@@ -15,7 +15,6 @@ public class ShoppingCart {
 
     /**
      * @author Michael N. Korsgaard
-     * @version alpha 1.0, first draft
      * @param cupcakeToppingID int from the selection from jsp mathcing a toppingID in the database.
      * @param cupcakeBottomID int from the selection from jsp mathcing a bottomID in the database.
      * @param amount int the amount of the cupcake that should be added to the shoppingCart
@@ -43,7 +42,15 @@ public class ShoppingCart {
         }
     }
 
-    public void removeLineItemFromShoppingCart(int toppingID, int bottomID) {
+    /**
+     * Remove a specific lineItem in the shoppingCart that matches the given int topppingID and bottomID.
+     * 
+     * @author Michael N. Korsgaard
+     * @param toppingID int ID for topping to be removed.
+     * @param bottomID int ID for bottom to be removed.
+     * @throws IllegalArgumentException if no lineItem in the shoppingCart has a matching Topping- and Bottom-ID
+     */
+    public void removeLineItemFromShoppingCart(int toppingID, int bottomID) throws IllegalArgumentException{
         boolean matchingBottom = false;
         boolean matchingTopping = false;
         for (LineItem lineItem : lineItems) {
@@ -55,7 +62,7 @@ public class ShoppingCart {
             }
         }
         if (!matchingBottom || !matchingTopping) {
-            throw new IllegalArgumentException("Can't find the line-item.");
+            throw new IllegalArgumentException("Can't find the lineItem.");
         }
     }
 
@@ -63,6 +70,9 @@ public class ShoppingCart {
         this.lineItems = new ArrayList();
     }
 
+    /**
+     * Find the price for all lineItems in the shoppingCart, and sets the shoppingCart totalPrice.
+     */
     private void calculateTotalPrice() {
         int newTotalPrice = 0;
         for (LineItem lineItem : lineItems) {
@@ -84,6 +94,10 @@ public class ShoppingCart {
         return totalPrice;
     }
 
+    /**
+     * count the amount of cupcakes in the each LineItem of the shoppingCart, and returns the total.
+     * @return int total amount of cupcakes in the shoppingCart
+     */
     public int getCupcakeAmount() {
         int totalAmountCupcake = 0;
         for (LineItem lineItem : lineItems) {

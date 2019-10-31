@@ -19,12 +19,28 @@ public abstract class User {
 
     private static UserMapperInterface userMapper;
     private static ArrayList<User> userList = new ArrayList();
-
-    public static void setupMapper(UserMapperInterface mapper) {
+    
+    /**
+     * Setup the User class with the correct Mapper for either testing or execution, 
+     * and pull all data from the relevent mapper to make local variables matching the given database.
+     * 
+     * @author Michael N. Korsgaard
+     * @param mapper Correct Mapper or Fake Mapper for testing
+     */
+    public static void setupUserClass(UserMapperInterface mapper) {
         User.userMapper = mapper;
         createUsersFromDB();
     }
 
+    /**
+     * Search the list of users for a User with a matching email to the given parameter String, and return
+     * the User. If no match is found, IllegalArgumentExcepton is thrown with that message.
+     * 
+     * @author Marcus E. Johnsen
+     * @param email String that should be matching a String email for a user in the userList
+     * @return return user with matching email to given String
+     * @throws IllegalArgumentException if no user has matching email
+     */
     public static User getUserFromUserList(String email) throws IllegalArgumentException {
         for (User user : userList) {
             if (user.getEmail().equals(email)) {
@@ -47,11 +63,9 @@ public abstract class User {
     }
 
     /**
-     * @author Cahit
-     * @param username
-     * @param password
-     * @param email
-     * @throws IllegalArgumentException
+     * Create Users from the data in DB, and store then in the UserList.
+     * 
+     * @author Cahit Bakirci
      */
     public static void createUsersFromDB() {
         userList.clear();
@@ -70,11 +84,13 @@ public abstract class User {
     }
 
     /**
+     * Attempt to login user with given email and password, and returns user where email matches if correct email is given.
+     * 
      * @author Michael N. Korsgaard
-     * @param email
-     * @param password
-     * @return
-     * @throws LoginException
+     * @param email String to be used for login
+     * @param password String to be used for login
+     * @return User that matching Email and Password
+     * @throws LoginException thrown is no user with matching Email is found, or if password is incorrect.
      */
     public static User LoginUser(String email, String password) throws LoginException {
         for (User user : userList) {
@@ -98,12 +114,16 @@ public abstract class User {
     }
 
     /**
+     * Takes user input and check for valid input. 
+     * IllegalArgumentException thrown if any input cannot be used to create a new User with unique data.
+     * If all input is valid to create new user, new user is created locally and pushed into DB thought UserMapper.
+     * 
      * @author Marcus & Cahit
-     * @param username
-     * @param password
-     * @param password2
-     * @param email
-     * @throws IllegalArgumentException
+     * @param username user input for username
+     * @param password user input for password
+     * @param password2 dublicate user input for password for confirmation
+     * @param email user input for email
+     * @throws IllegalArgumentException thrown if any input cannot be used to create a new User with unique data.
      */
     public static void RegisterUser(String username, String password, String password2, String email) throws IllegalArgumentException {
 
@@ -123,6 +143,14 @@ public abstract class User {
         userMapper.insertUser(newCustomer);
     }
 
+    /**
+     * Check validation of password for user creation.
+     * 
+     * @author Cahit Bakirci
+     * @param password user input for password
+     * @param password2 dublicate user input for password for confirmation
+     * @throws IllegalArgumentException thrown if any input cannot be used to create a new User with unique data.
+     */
     private static void checkPasswordValidation(String password, String password2) throws IllegalArgumentException {
         // Check password contains between 6 and 20 characters
         if (password.length() < 6 || 20 < password.length()) {
@@ -156,6 +184,13 @@ public abstract class User {
         }
     }
 
+    /**
+     * Check validation of email for user creation.
+     * 
+     * @author Michael N. Korsgaard
+     * @param email user input for email
+     * @throws IllegalArgumentException thrown if any input cannot be used to create a new User with unique data.
+     */
     private static void checkEmailValidation(String email) throws IllegalArgumentException {
 
         //Check email for containing email symbols

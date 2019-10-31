@@ -82,7 +82,7 @@ public class InvoiceTest {
             fakeUserMapper.addUserInfo(mapUser);
         }
         FakeUserMapper userMapper = fakeUserMapper;
-        User.setupMapper(userMapper);
+        User.setupUserClass(userMapper);
 
         //Make Mock Mapper for Invoices
         FakeInvoiceMapper fakeInvoiceMapper = new FakeInvoiceMapper();
