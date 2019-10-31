@@ -51,13 +51,12 @@
 
         <br><br><br>
         <div style="float: left; height: 30%; width:20%; margin-left: 25%; margin-right: 5%">
-
             <form action="FrontController" method="POST">
                 <input type="hidden" name="command" value="invoice" />
                 <p align="center"><input type="submit" value="Go to purchase history" style="height:50px; width:150px" /></p>
             </form>
         </div>
-        <div class="circle" style="margin-left: 0%; margin-right: 25%; float: left; width: 375px">
+        <div class="circle" style="margin-left: 0%; float: left; width: 375px">
             <div class="circleFrame">
                 <br>
                 <b style="font-size: 24px; font-family: Lucida Bright">Username</b>

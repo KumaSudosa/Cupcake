@@ -82,9 +82,9 @@
         </div>
 
         <!-- This div will hold the information -->
-        <div class="circle" style="margin-left: 5%; margin-right: 20%; float: left; width: 25%">
+        <div class="circle" style="margin-left: 5%; float: left; width: 300px">
             <div class="circleFrame">
-
+                <br>
                 <h2>Shoppingcart Info</h2><br>
                 <b><%=shoppingCart.getCupcakeAmount()%> cupcakes</b> <br>
                 <b>Totalpris: <%=shoppingCart.getTotalPrice()%>,-</b>
@@ -99,6 +99,8 @@
                 <%} else {%>
                 <h3 style="color:Tomato"><%=error%></h3>
                 <%}%>
+                <br>
+                <br>
 
             </div>
         </div>

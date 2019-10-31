@@ -57,7 +57,7 @@
         <% if (userLoggedIn) {
                 if (userIsCustomer) {%>
 
-        <div  style="float:right; width: 15%; padding-bottom: 20px; padding-right: 50px">
+        <div style="position: absolute; width: 15%; padding-bottom: 20px; right: 5%;">
             <h5 class="square" align="right" border="">
                 Your balance:
                 <%=customer.getBalance()%> Kr.
@@ -74,7 +74,7 @@
 
         <form action="FrontController" method="POST"> 
             <input type="hidden" name="command" value="shoppage" /> 
-            <table align="center" border = "1" width = "15%" style="margin-left: 653px" bgcolor="fffef2">
+            <table align="center" border = "1" width = "15%" style="float: top" bgcolor="fffef2">
                 <thead>
                     <tr bgcolor = "#87E187">
                         <td>Bottoms</td>
@@ -103,7 +103,7 @@
 
             <br>
 
-            <table align="center" border = "1" width = "15%" bgcolor="fffef2">
+            <table align="center" border = "1" width = "15%" bgcolor="fffef2" style="float: top">
                 <thead>
                     <tr bgcolor = "#87E187">
                         <td>Toppings</td>

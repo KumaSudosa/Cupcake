@@ -23,34 +23,39 @@ Author     : Michael
     <body>
         <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
 
-        <h1 align="center"> Login page</h1>
+        <div class="circle" style="margin: 0 auto; width: 220px">
+            <div class="circleFrame">
+                <h1 align="center"> Login page</h1>
+            </div>
+        </div>
 
         <br>
-        
-        <form action="FrontController" method="POST">
-            <p align="center"> 
-                Email
-                <br>
-                <input type="text" name="email" value="" /></p>
-            <p align="center"> 
-                Password 
-                <br>
-                <input type="password" name="password" value="" /></p>
-            
-            <br>
-            
-            <input type="hidden" name="command" value="login" />
-            <p align="center"> <input type="submit" value="Login" /></p>
+        <div style="background-color: #fffef2; width: 225px; margin: 0 auto; border: solid #aaaaa0 2px; ">
+            <form action="FrontController" method="POST">
+                <p align="center"> 
+                    Email
+                    <br>
+                    <input type="text" name="email" value="" /></p>
+                <p align="center"> 
+                    Password 
+                    <br>
+                    <input type="password" name="password" value="" /></p>
 
-        </form>
-            
+                <br>
+
+                <input type="hidden" name="command" value="login" />
+                <p align="center"> <input type="submit" value="Login" /></p>
+
+            </form>
+        </div>
+
         <%if (request.getAttribute("LoginError") != null) {
-        LoginException loginError = (LoginException) request.getAttribute("LoginError");
-        String errorMessage = loginError.getMessage();
+                LoginException loginError = (LoginException) request.getAttribute("LoginError");
+                String errorMessage = loginError.getMessage();
         %>
         <br>
         <h2 align="center"><%=errorMessage%></h2>
-        <% } %>
-        
+        <% }%>
+
     </body>
 </html>

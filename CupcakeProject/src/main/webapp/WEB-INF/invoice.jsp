@@ -29,14 +29,14 @@
         <%
             User user = (User) session.getAttribute("user");
             ArrayList<Invoice> invoiceList = null;
-            int tableSize = 40;
+            int tableSize = 700;
             if (User.isUserCustomer(user)) {
                 invoiceList = Invoice.createCustomerInvoicesFromDB(user.getEmail());
 
             } else if (User.isUserAdmin(user)) {
                 Admin admin = (Admin) user;
-                invoiceList = admin.getInvoices();
-                tableSize = 60;
+                invoiceList = admin.getInvoices();  
+                tableSize = 900;
             }
             String username = user.getUsername();
         %>
@@ -52,7 +52,7 @@
         </div>
         <br>
         <br>
-        <table border = "1" align = "center" style="width:<%=tableSize%>%" bgcolor="fffef2">
+        <table border = "1" align = "center" style="width:<%=tableSize%>px" bgcolor="fffef2">
             <thead>
                 <tr bgcolor = "#87E187">
                     <th style="width:15%">Invoices</th>

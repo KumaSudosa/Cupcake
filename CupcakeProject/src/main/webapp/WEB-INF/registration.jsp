@@ -26,12 +26,17 @@
             <p><img src="decorations/large_happy-birthday-cupcake.png" alt="Bookstore Icon Stolen From The Internet" width="250" height="281"></p>
         </div>
 
-        <div style="background-color: #fffef2; width: 25%; margin: 0 auto; border: solid #aaaaa0 2px; ">
-            <br>
-            <br>
-            <h1 align="center">Registration page</h1>
+        <div class="circle" style="margin: 0 auto; width: 275px">
+            <div class="circleFrame">
+                <h1 align="center">Registration page</h1>
+            </div>
+        </div>
+        <br>
+        
 
-            <br>
+        <div style="background-color: #fffef2; width:275px; height: 350px; margin: 0 auto; border: solid #aaaaa0 2px; ">
+
+
             <form action="FrontController" method="POST">
                 <h3 align="center"> username:</h3>
                 <p align="center">
@@ -57,7 +62,7 @@
             %>
             <h2 align="center"><%=errorMessage%> </h2>
             <%}%>
-            <br><br><br>
+
         </div>
     </body>
 </html>

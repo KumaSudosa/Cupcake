@@ -27,7 +27,11 @@
     </head>
     <body>
         <jsp:include page="/JSP-Parts/cupcake-Header.jsp"/>
-        <h1 align='center'>Admin Control Panel</h1>
+        <div class="circle" style="margin: 0 auto; width: 350px">
+            <div class="circleFrame">
+                <h1 align='center'>Admin Control Panel</h1>
+            </div>
+        </div>
 
         <%
             Admin admin = (Admin) session.getAttribute("user");
@@ -68,14 +72,17 @@
                     <%}%>
                 </tbody>
             </table>
-            <input type="submit" value="Set Balance" style="width: 100px" name="setBalanceButton"/>
-            <input type="text" name="setBalance" value="" style="width: 116px" placeholder="Add to balance"/>
-            <br>
-            <br>
-
-            <input type="hidden" name="command" value="adminfunctions" />
-            <input type="submit" value="See Invoice" style="width: 100px" name="singleInvoice"/>
-            <input type="submit" value="See All Invoices" style="width: 120px" name="allInvoice"/>
+            <div style="position: absolute; right: 20%; background-color: #fffef2; width:250px; height: 100px; border: solid #aaaaa0 2px; ">
+                <div style="padding-top: 20px; padding-left: 14px">
+                    <input type="submit" value="Set Balance" style="width: 100px" name="setBalanceButton"/>
+                    <input type="text" name="setBalance" value="" style="width: 116px" placeholder="Add to balance"/>
+                </div>
+                <div style="padding-top: 15px; padding-left: 14px">
+                    <input type="hidden" name="command" value="adminfunctions" />
+                    <input type="submit" value="See Invoice" style="width: 100px" name="singleInvoice"/>
+                    <input type="submit" value="See All Invoices" style="width: 120px" name="allInvoice"/>
+                </div>
+            </div>
         </form>
 
         <br>
