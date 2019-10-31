@@ -1,7 +1,7 @@
 <%-- 
     Document   : administratorpage
     Created on : 25-Oct-2019, 09:15:18
-    Author     : Marcus
+    Author     : Marcus & Andreas
 --%>
 
 <%@page import="logic.Customer"%>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 24-10-2019, 09:10:00
-    Author     : andre
+    Author     : Andreas
 --%>
 
 <%@page import="logic.User"%>
@@ -43,7 +43,7 @@
                 <br>
                 <div>
                     <div style="float: top; margin-bottom: -350px">
-                        <p><img src="decorations/sifbaslfdbfd.png" alt="Bookstore Icon Stolen From The Internet" width="250" height="281"></p>
+                        <p><img src="decorations/theCupCake.png" alt="Bookstore Icon Stolen From The Internet" width="250" height="281"></p>
                     </div>
 
                     <div style="float:left; width: 20%; padding-bottom: 20px; padding-left: 50px">
@@ -98,22 +98,6 @@
 
                 <div style="margin-top: 335px">
                     <br>
-                    <!-- THESE LINES BELOW SHOULD NO LONGER BE NEEDED
-                    <form action="FrontController">
-                        <p align="center">
-                            <input type="hidden" name="command" value="goToJsp" />
-                            <input type="hidden" name="goToJsp" value="login" />
-                            <input type="submit" value="Login" />
-                        </p>
-                    </form>
-                    <form action="FrontController">
-                        <p align="center">
-                            <input type="hidden" name="command" value="goToJsp" />
-                            <input type="hidden" name="goToJsp" value="registration" />
-                            <input align="center" type="submit" value="Create user" />
-                        </p>
-                    </form>
-                    -->
                 </div>
             </div>
         </div>

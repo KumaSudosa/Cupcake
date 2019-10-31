@@ -1,7 +1,7 @@
 <%-- 
 Document   : login
 Created on : 09-Oct-2019, 12:08:57
-Author     : Michael
+Author     : Michael N. Korsgaard
 --%>
 
 <%@page import="javax.security.auth.login.LoginException"%>
